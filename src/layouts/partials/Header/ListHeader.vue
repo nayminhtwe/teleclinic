@@ -1,6 +1,6 @@
 <template>
   <q-header elevated class="bg-primary text-white">
-    <q-toolbar class="q-pa-xs">
+    <q-toolbar class="q-py-md">
       <div class="col-10 offset-1 col-lg-4 offset-lg-4">
         <q-input rounded outlined placeholder="Search" v-model="text">
           <template v-slot:prepend>

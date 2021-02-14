@@ -12,7 +12,8 @@ const routes = [
     path: '/patient',
     component: () => import('layouts/AppLayout.vue'),
     children: [
-      { path: ':patientId', component: () => import('pages/Patient.vue') }
+      { path: ':patientId', component: () => import('pages/Patient.vue') },
+      { path: ':patientId/visit', component: () => import('pages/Visit.vue') }
     ]
   },
   {

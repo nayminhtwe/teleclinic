@@ -15,18 +15,22 @@
         <q-btn flat round dense icon="apps" class="q-mr-sm" />
       </div>
     </q-toolbar>
-    <q-toolbar class="q-pa-md" inset>
-      <div class="row">
-        <div class="col-9">
+    <q-toolbar class="q-pa-md">
+      <!-- <div class="row"> -->
+        <div class="col-3 col-lg-1">
           <q-avatar size="72px">
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
           </q-avatar>
+          <div class="text-h6 q-ml-sm">0000</div>
         </div>
-        <div class="col-9">
-          <div class="text-h6">Welcome Back</div>
-          <div class="text-h5">Dr. Kyaw Kyaw</div>
+        <div class="col-8 col-lg-4">
+            <div class="text-h6">Aye Aye Myint</div>
+            <div class="text-subtitle2">32 years</div>
+            <div class="text-subtitle2">Female</div>
+            <div class="text-weight-regular">12 street,34 ward,56 City,78 Ts</div>
+            <div class="text-weight-regular">09-123456789</div>
         </div>
-      </div>
+      <!-- </div> -->
     </q-toolbar>
   </q-header>
 </template>

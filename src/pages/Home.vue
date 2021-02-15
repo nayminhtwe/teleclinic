@@ -1,6 +1,56 @@
 <template>
   <q-page>
     <list-header />
+    <div class="row q-pa-sm">
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-avatar
+          font-size="52px"
+          color="red"
+          text-color="white"
+          icon="directions"
+        />
+      </div>
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-avatar
+          font-size="52px"
+          color="teal"
+          text-color="white"
+          icon="local_hospital"
+        />
+      </div>
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-avatar
+          font-size="52px"
+          color="yellow"
+          text-color="white"
+          icon="history"
+        />
+      </div>
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-avatar
+          font-size="52px"
+          color="red"
+          text-color="white"
+          icon="directions"
+        />
+      </div>
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-avatar
+          font-size="52px"
+          color="teal"
+          text-color="white"
+          icon="local_hospital"
+        />
+      </div>
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-avatar
+          font-size="52px"
+          color="yellow"
+          text-color="white"
+          icon="history"
+        />
+      </div>
+    </div>
     <div class="q-pa-md row items-start q-gutter-lg">
       <div class="col-12 text-h6">Patients In Waiting Room (5)</div>
       <q-card class="my-card" style="width: 10em">

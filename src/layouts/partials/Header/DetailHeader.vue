@@ -19,7 +19,10 @@
       <!-- <div class="row"> -->
         <div class="col-3 col-lg-1">
           <q-avatar size="72px">
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
+            <!-- <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" /> -->
+            <img
+            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
+          />
           </q-avatar>
           <div class="text-h6 q-ml-sm">0000</div>
         </div>

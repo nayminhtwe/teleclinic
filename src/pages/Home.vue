@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <list-header />
-    <div class="row q-pa-sm">
+    <div class="row q-ma-sm text-center">
       <div class="col-4 col-lg-2 q-mb-md">
         <q-avatar
           font-size="52px"

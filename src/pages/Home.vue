@@ -53,11 +53,15 @@
     </div>
     <div class="q-pa-md row items-start q-gutter-lg">
       <div class="col-12 text-h6">Patients In Waiting Room (5)</div>
-      <q-card class="my-card" style="width: 10em">
-        <q-avatar size="5em" rounded>
-          <img
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
-          />
+      <q-card
+        class="my-card"
+        style="width: 10em"
+      >
+        <q-avatar
+          size="5em"
+          rounded
+        >
+          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
         </q-avatar>
 
         <q-card-section>
@@ -70,11 +74,15 @@
           {{ lorem }}
         </q-card-section>
       </q-card>
-      <q-card class="my-card" style="width: 10em">
-        <q-avatar size="5em" rounded>
-          <img
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
-          />
+      <q-card
+        class="my-card"
+        style="width: 10em"
+      >
+        <q-avatar
+          size="5em"
+          rounded
+        >
+          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
         </q-avatar>
 
         <q-card-section>
@@ -87,11 +95,15 @@
           {{ lorem }}
         </q-card-section>
       </q-card>
-      <q-card class="my-card" style="width: 10em">
-        <q-avatar size="5em" rounded>
-          <img
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
-          />
+      <q-card
+        class="my-card"
+        style="width: 10em"
+      >
+        <q-avatar
+          size="5em"
+          rounded
+        >
+          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
         </q-avatar>
 
         <q-card-section>
@@ -105,11 +117,15 @@
         </q-card-section>
       </q-card>
 
-      <q-card class="my-card" style="width: 10em">
-        <q-avatar size="5em" rounded>
-          <img
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
-          />
+      <q-card
+        class="my-card"
+        style="width: 10em"
+      >
+        <q-avatar
+          size="5em"
+          rounded
+        >
+          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
         </q-avatar>
 
         <q-card-section>
@@ -125,11 +141,15 @@
     </div>
     <div class="q-pa-md row items-start q-gutter-lg">
       <div class="col-12 text-h6">Your Patients (36)</div>
-      <q-card class="my-card" style="width: 10em">
-        <q-avatar size="5em" rounded>
-          <img
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
-          />
+      <q-card
+        class="my-card"
+        style="width: 10em"
+      >
+        <q-avatar
+          size="5em"
+          rounded
+        >
+          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
         </q-avatar>
 
         <q-card-section>
@@ -142,11 +162,15 @@
           {{ lorem }}
         </q-card-section>
       </q-card>
-      <q-card class="my-card" style="width: 10em">
-        <q-avatar size="5em" rounded>
-          <img
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
-          />
+      <q-card
+        class="my-card"
+        style="width: 10em"
+      >
+        <q-avatar
+          size="5em"
+          rounded
+        >
+          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
         </q-avatar>
 
         <q-card-section>
@@ -159,11 +183,15 @@
           {{ lorem }}
         </q-card-section>
       </q-card>
-      <q-card class="my-card" style="width: 10em">
-        <q-avatar size="5em" rounded>
-          <img
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
-          />
+      <q-card
+        class="my-card"
+        style="width: 10em"
+      >
+        <q-avatar
+          size="5em"
+          rounded
+        >
+          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
         </q-avatar>
 
         <q-card-section>
@@ -177,11 +205,15 @@
         </q-card-section>
       </q-card>
 
-      <q-card class="my-card" style="width: 10em">
-        <q-avatar size="5em" rounded>
-          <img
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
-          />
+      <q-card
+        class="my-card"
+        style="width: 10em"
+      >
+        <q-avatar
+          size="5em"
+          rounded
+        >
+          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
         </q-avatar>
 
         <q-card-section>

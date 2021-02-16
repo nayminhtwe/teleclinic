@@ -225,7 +225,11 @@
     </div>
     <div class="q-pa-md q-gutter-md">
       <q-btn-group spread>
-        <q-btn color="red" label="Visit" icon="timeline" />
+        <q-btn
+          color="red"
+          label="Visit"
+          icon="timeline"
+        />
         <q-btn
           color="blue"
           label="Referal"
@@ -234,7 +238,10 @@
         />
       </q-btn-group>
     </div>
-    <q-dialog v-model="prompt" full-height>
+    <q-dialog
+      v-model="prompt"
+      full-height
+    >
       <q-card>
         <q-table
           grid

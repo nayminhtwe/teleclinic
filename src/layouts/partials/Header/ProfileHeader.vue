@@ -1,8 +1,17 @@
 <template>
-  <q-header elevated class="bg-primary text-white">
+  <q-header
+    elevated
+    class="bg-primary text-white"
+  >
     <q-toolbar>
       <div class="col-1">
-        <q-btn flat round dense icon="west" class="q-mr-sm" />
+        <q-btn
+          flat
+          round
+          dense
+          icon="west"
+          class="q-mr-sm"
+        />
       </div>
       <div class="col-10">
         <div class="absolute-center">
@@ -12,7 +21,10 @@
         </div>
       </div>
     </q-toolbar>
-    <q-toolbar class="q-pa-md" inset>
+    <q-toolbar
+      class="q-pa-md"
+      inset
+    >
       <div class="row">
         <div class="col-9">
           <q-avatar size="72px">

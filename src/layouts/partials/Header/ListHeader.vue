@@ -30,7 +30,7 @@
         </div>
         <div class="col-9">
           <div class="text-h6">Welcome Back</div>
-          <div class="text-h5">Dr. Kyaw Kyaw</div>
+          <div class="text-h5">{{ getDoctorProfile.Name }}</div>
         </div>
       </div>
     </q-toolbar>
@@ -38,9 +38,20 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {}
+  },
+  computed: {
+    ...mapGetters({
+      getDoctorProfile: 'doctor/getDoctorProfile'
+    })
+  },
+  created () {
+    if (this.getDoctorProfile === null) {
+      this.$store.dispatch('doctor/profile')
+    }
   }
 }
 </script>

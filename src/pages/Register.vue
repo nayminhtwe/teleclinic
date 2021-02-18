@@ -105,6 +105,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Register',
   data () {
@@ -121,6 +123,11 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapGetters({
+      status: 'doctor/status'
+    })
+  },
   methods: {
     addInput () {
       this.files.push({ data: '' })
@@ -128,7 +135,7 @@ export default {
     clearInput (id) {
       this.files.splice(id, 1)
     },
-    submit () {
+    async submit () {
       const formData = new FormData()
       formData.append('Name', this.name)
       formData.append('Qualifications', this.qualifications)
@@ -141,17 +148,10 @@ export default {
         formData.append('certificate_file[]', file.data)
       }
 
-      this.$axios.post('http://188.166.217.32/api/v1/register',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      ).then(response => console.log(response.data.access_token))
-        .catch(function () {
-          console.log('FAILURE!!')
-        })
+      await this.$store.dispatch('doctor/register', formData)
+      if (this.status === 'success') {
+        this.$router.push('/home')
+      }
     }
   }
 }

@@ -11,5 +11,9 @@
   "typescript.format.placeOpenBraceOnNewLineForControlBlocks": false,
   "typescript.format.placeOpenBraceOnNewLineForFunctions": false,
   "vetur.format.defaultFormatter.html": "js-beautify-html",
-  "vetur.format.defaultFormatter.js": "vscode-typescript"
+  "vetur.format.defaultFormatter.js": "vscode-typescript",
+  "[javascript]": {
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false
+  }
 }

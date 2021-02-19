@@ -5,37 +5,37 @@
       <div class="col-12 text-h6 q-mb-md">HISTORY</div>
       <q-input
         outlined
-        v-model="text"
+        v-model="chief_complaint"
         label="Chief complaint"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="history_of_present_illness"
         label="History of present illness"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="past_medical_history"
         label="Past Medical history"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="past_surgical_history"
         label="Past surgical history"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="social_history"
         label="Social history"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="drug_allergy"
         label="Drug allergy"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="other_history"
         label="Others"
       />
       <q-uploader
@@ -49,52 +49,52 @@
       <div class="col-12 text-h6 q-mb-md">PHYSICAL EXAMINATIONS</div>
       <q-input
         outlined
-        v-model="text"
+        v-model="general_Condition"
         label="General Condition"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="anaemia"
         label="Anaemia"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="jaundice"
         label="Juandice"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="temperature"
         label="Temperature"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="BP"
         label="BP"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="PR"
         label="PR"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="heart"
         label="Heart"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="lungs"
         label="Lungs"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="abdomen"
         label="Abdomen"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="other_physical"
         label="Others"
       />
       <q-uploader
@@ -108,37 +108,37 @@
       <div class="col-12 text-h6 q-mb-md">INVESTIGATIONS</div>
       <q-input
         outlined
-        v-model="text"
+        v-model="blood_tests"
         label="Blood Tests"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="urinalysis"
         label="Urinalysis"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="swabs"
         label="Swabs"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="ECG_Echo"
         label="ECG/Echo"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="CXR"
         label="CXR"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="USG"
         label="USG"
       />
       <q-input
         outlined
-        v-model="text"
+        v-model="other_investigation"
         label="Others"
       />
       <q-uploader
@@ -152,7 +152,7 @@
       <div class="col-12 text-h6 q-mb-md">TREATMENT</div>
       <q-input
         outlined
-        v-model="text"
+        v-model="treatment"
         label="Treatment"
       />
       <q-uploader
@@ -166,7 +166,7 @@
       <div class="col-12 text-h6 q-mb-md">FURTHER PLAN</div>
       <q-input
         outlined
-        v-model="text"
+        v-model="further_plan"
         label="Further Plan"
       />
       <q-uploader
@@ -180,7 +180,7 @@
       <div class="col-12 text-h6 q-mb-md">OTHERS</div>
       <q-input
         outlined
-        v-model="text"
+        v-model="other"
         label="Others"
       />
       <q-uploader
@@ -204,6 +204,38 @@
 import DetailHeader from 'src/layouts/partials/Header/DetailHeader.vue'
 export default {
   name: 'Visit',
+  data () {
+    return {
+      chief_complaint: '',
+      history_of_present_illness: '',
+      past_medical_history: '',
+      past_surgical_history: '',
+      social_history: '',
+      drug_allergy: '',
+      other_history: '',
+      general_Condition: '',
+      anaemia: '',
+      jaundice: '',
+      temperature: '',
+      BP: '',
+      PR: '',
+      heart: '',
+      lungs: '',
+      abdomen: '',
+      other_physical: '',
+      blood_tests: '',
+      urinalysis: '',
+      swabs: '',
+      ECG_Echo: '',
+      CXR: '',
+      USG: '',
+      other_investigation: '',
+      treatment: '',
+      further_plan: '',
+      other: ''
+
+    }
+  },
   components: {
     DetailHeader
   }

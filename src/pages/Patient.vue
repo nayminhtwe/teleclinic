@@ -72,7 +72,7 @@
                 <div v-if="!!visit.investigation.urinalysis">Urinalysis : {{ visit.investigation.urinalysis }}</div>
                 <div v-if="!!visit.investigation.swabs">Swabs : {{ visit.investigation.swabs }}</div>
                 <div v-if="!!visit.investigation.temperature">Temperature : {{ visit.investigation.temperature }}</div>
-                <div v-if="!!visit.investigation.ECG_Echo">ECG/Echo : {{ visit.investigation.ECG_Echo }}</div>
+                <!-- <div v-if="!!visit.investigation.ECG_Echo">ECG/Echo : {{ visit.investigation.ECG_Echo }}</div> -->
                 <div v-if="!!visit.investigation.CXR">CXR : {{ visit.investigation.CXR }}</div>
                 <div v-if="!!visit.investigation.USG">USG : {{ visit.investigation.USG }}</div>
                 <div v-if="!!visit.investigation.others">Others : {{ visit.investigation.others }}</div>

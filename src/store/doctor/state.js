@@ -4,6 +4,7 @@ export default function () {
     refreshToken: '',
     current: null,
     status: '',
-    message: ''
+    message: '',
+    errors: []
   }
 }

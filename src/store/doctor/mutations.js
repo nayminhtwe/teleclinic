@@ -11,8 +11,10 @@ const mutations = {
     state.message = payload.message
   },
 
-  [types.AUTH_ERROR] (state) {
+  [types.AUTH_ERROR] (state, payload) {
     state.status = 'error'
+    state.message = payload.message
+    state.errors = payload.errors
   },
   [types.PROFILE_REQUEST] (state) {
     state.status = 'loading'

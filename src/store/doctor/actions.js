@@ -15,7 +15,8 @@ const actions = {
         commit(types.AUTH_SUCCESS, response.data)
       })
       .catch(err => {
-        commit(types.AUTH_ERROR, err)
+        console.log(err.response.data)
+        commit(types.AUTH_ERROR, err.response.data)
         localStorage.removeItem('access_token') // if the request fails, remove any possible user token if possible
       })
   },
@@ -33,11 +34,13 @@ const actions = {
     await axios
       .post('http://188.166.217.32/api/v1/login', formData)
       .then(response => {
-        localStorage.setItem('access_token', response.data.access_token)
-        commit(types.AUTH_SUCCESS, response.data)
+        if (response.data.error_code === 0) {
+          localStorage.setItem('access_token', response.data.access_token)
+          commit(types.AUTH_SUCCESS, response.data)
+        }
       })
       .catch(err => {
-        commit(types.AUTH_ERROR, err)
+        commit(types.AUTH_ERROR, err.response.data)
         localStorage.removeItem('access_token') // if the request fails, remove any possible user token if possible
       })
   }

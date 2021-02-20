@@ -1,11 +1,27 @@
 <template>
   <q-page class="flex flex-center">
     <div class="q-pa-xs">
+      <q-banner
+        inline-actions
+        class="text-white bg-red"
+        v-if="banner"
+      >
+        {{ message }}
+        <template v-slot:action>
+          <q-btn
+            flat
+            color="white"
+            icon="error"
+            @click="banner = false"
+          />
+        </template>
+      </q-banner>
       <div class="col-lg-6 col-12 q-py-md">
         <q-input
           standout="bg-teal text-white"
           v-model="name"
           label="Name"
+          :rules="[val => !!val || 'Field is required']"
         />
       </div>
 
@@ -14,6 +30,7 @@
           standout="bg-teal text-white"
           v-model="qualifications"
           label="Qualifications"
+          :rules="[val => !!val || 'Field is required']"
         />
       </div>
 
@@ -22,6 +39,7 @@
           standout="bg-teal text-white"
           v-model="contact_number"
           label="Contact Number"
+          :rules="[val => !!val || 'Field is required']"
         />
       </div>
 
@@ -30,6 +48,7 @@
           standout="bg-teal text-white"
           v-model="email"
           label="Email"
+          :rules="[val => !!val || 'Field is required']"
         />
       </div>
       <div class="col-lg-6 col-12 q-py-md">
@@ -38,6 +57,7 @@
           v-model="password"
           label="Password"
           type="password"
+          :rules="[val => !!val || 'Field is required']"
         />
       </div>
 
@@ -47,6 +67,7 @@
           v-model="password_confirmation"
           label="Password Confirm"
           type="password"
+          :rules="[val => !!val || 'Field is required']"
         />
       </div>
 
@@ -97,6 +118,7 @@
           <q-input
             v-model="file.name"
             label="Name"
+            :rules="[val => !!val || 'Field is required']"
           />
         </div>
         <div class="col-6">
@@ -106,6 +128,7 @@
             v-model="file.data"
             label="File"
             counter
+            :rules="[val => !!val || 'Field is required']"
           >
             <template v-slot:prepend>
               <q-icon
@@ -140,12 +163,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'Register',
   data () {
     return {
+      banner: false,
       name: '',
       qualifications: '',
       contact_number: '',
@@ -159,6 +183,10 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      message: state => state.doctor.message,
+      errors: state => state.doctor.errors
+    }),
     ...mapGetters({
       status: 'doctor/status'
     })
@@ -188,6 +216,10 @@ export default {
       await this.$store.dispatch('doctor/register', formData)
       if (this.status === 'success') {
         this.$router.push('/home')
+      }
+
+      if (this.status === 'error') {
+        this.banner = true
       }
     }
   }

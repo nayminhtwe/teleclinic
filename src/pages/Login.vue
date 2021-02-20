@@ -2,11 +2,27 @@
   <q-page class="flex flex-center">
     <div class="q-pa-xs">
       <div class="col-lg-6 col-12 q-py-md">
+        <q-banner
+          inline-actions
+          class="text-white bg-red q-mb-lg"
+          v-if="banner"
+        >
+          {{ message }}
+          <template v-slot:action>
+            <q-btn
+              flat
+              color="white"
+              icon="error"
+              @click="banner = false"
+            />
+          </template>
+        </q-banner>
         <q-input
           color="teal"
           outlined
           v-model="email"
           label="Email"
+          :rules="[val => !!val || 'Field is required']"
         >
           <template v-slot:append>
             <q-avatar>
@@ -20,7 +36,9 @@
           color="teal"
           outlined
           v-model="password"
+          type="password"
           label="Password"
+          :rules="[val => !!val || 'Field is required']"
         >
           <template v-slot:append>
             <q-avatar>
@@ -46,16 +64,21 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'Login',
   data () {
     return {
+      banner: '',
       email: '',
       password: ''
     }
   },
   computed: {
+    ...mapState({
+      message: state => state.doctor.message,
+      errors: state => state.doctor.errors
+    }),
     ...mapGetters({
       status: 'doctor/status'
     })
@@ -69,6 +92,10 @@ export default {
       await this.$store.dispatch('doctor/login', formData)
       if (this.status === 'success') {
         this.$router.push('/home')
+      }
+
+      if (this.status === 'error') {
+        this.banner = true
       }
     }
   }

@@ -134,7 +134,7 @@ export default {
     })
 
     this.$api.get(
-      'patient'
+      'patients'
     ).then((response) => {
       this.visited_patients = response.data.data
     })

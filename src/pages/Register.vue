@@ -61,8 +61,8 @@
 
       </div>
 
-      <div
-        class="col-lg-6 col-12 q-py-md"
+      <!-- <div
+        class="row col-lg-6 col-12 q-py-md"
         v-for="(file, id) in files"
         :key="id"
       >
@@ -87,6 +87,41 @@
             />
           </template>
         </q-file>
+      </div> -->
+      <div
+        class="row"
+        v-for="(file, id) in files"
+        :key="id"
+      >
+        <div class="col-6">
+          <q-input
+            v-model="file.name"
+            label="Name"
+          />
+        </div>
+        <div class="col-6">
+          <q-file
+            filled
+            bottom-slots
+            v-model="file.data"
+            label="File"
+            counter
+          >
+            <template v-slot:prepend>
+              <q-icon
+                name="cloud_upload"
+                @click.stop
+              />
+            </template>
+            <template v-slot:append>
+              <q-icon
+                name="close"
+                @click.prevent="clearInput(id)"
+                class="cursor-pointer"
+              />
+            </template>
+          </q-file>
+        </div>
       </div>
 
       <div class="q-py-md q-gutter-sm">
@@ -119,7 +154,7 @@ export default {
       password_confirmation: '',
       file_name: '',
       files: [
-        { data: '' }
+        { name: '', data: '' }
       ]
     }
   },
@@ -130,7 +165,7 @@ export default {
   },
   methods: {
     addInput () {
-      this.files.push({ data: '' })
+      this.files.push({ name: '', data: '' })
     },
     clearInput (id) {
       this.files.splice(id, 1)
@@ -145,7 +180,9 @@ export default {
       formData.append('password_confirmation', this.password_confirmation)
       formData.append('file_name', 'certificate')
       for (const file of this.files) {
-        formData.append('certificate_file[]', file.data)
+        if (!!file.name && !!file.data) {
+          formData.append('certificate_file[]', file.data, file.name)
+        }
       }
 
       await this.$store.dispatch('doctor/register', formData)

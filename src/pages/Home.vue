@@ -53,29 +53,33 @@
     </div>
     <div class="q-pa-md row items-start q-gutter-lg">
       <div class="col-12 text-h6">Patients In Waiting Room ({{ waiting_patients.length }})</div>
-      <q-card
-        class="my-card"
-        style="width: 10em"
+      <div
         v-for="patient in waiting_patients"
         :key="patient.id"
+        @click="patientdetail(patient.patient_id)"
       >
-        <q-avatar
-          size="5em"
-          rounded
+        <q-card
+          class="my-card"
+          style="width: 10em"
         >
-          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
-        </q-avatar>
+          <q-avatar
+            size="5em"
+            rounded
+          >
+            <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
+          </q-avatar>
 
-        <q-card-section>
-          <div class="text-weight-regular">{{ patient.patient.Name }}</div>
-          <div class="text-weight-regular">{{ patient.patient.Gender }}, {{ patient.patient.Age }}</div>
-          <div class="text-weight-regular">{{ patient.patient.Contact_Number }}</div>
-        </q-card-section>
+          <q-card-section>
+            <div class="text-weight-regular">{{ patient.patient.Name }}</div>
+            <div class="text-weight-regular">{{ patient.patient.Gender }}, {{ patient.patient.Age }}</div>
+            <div class="text-weight-regular">{{ patient.patient.Contact_Number }}</div>
+          </q-card-section>
 
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-      </q-card>
+          <q-card-section class="q-pt-none">
+            {{ lorem }}
+          </q-card-section>
+        </q-card>
+      </div>
     </div>
     <div class="q-pa-md row items-start q-gutter-lg">
       <div class="col-12 text-h6">Your Patients ({{ visited_patients.length }})</div>
@@ -84,6 +88,7 @@
         style="width: 10em"
         v-for="patient in visited_patients"
         :key="patient.id"
+        @click="patientdetail(patient.patient_id)"
       >
         <q-avatar
           size="5em"
@@ -138,6 +143,12 @@ export default {
     ).then((response) => {
       this.visited_patients = response.data.data
     })
+  },
+  methods: {
+    patientdetail (id) {
+      console.log(id)
+      this.$router.push(`/patient/${id}`)
+    }
   }
 }
 </script>

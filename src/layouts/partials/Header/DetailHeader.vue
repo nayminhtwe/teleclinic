@@ -11,6 +11,7 @@
           dense
           icon="west"
           class="q-mr-sm"
+          @click="$router.push('/')"
         />
       </div>
       <div class="col-10">

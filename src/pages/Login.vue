@@ -59,6 +59,14 @@
           </div>
         </q-btn>
       </div>
+      <div class="q-py-md text-center">
+        <q-btn
+          flat
+          color="primary"
+          label="Register"
+          @click="$router.push('/login/register')"
+        />
+      </div>
     </div>
   </q-page>
 </template>
@@ -91,7 +99,7 @@ export default {
 
       await this.$store.dispatch('doctor/login', formData)
       if (this.status === 'success') {
-        this.$router.push('/home')
+        this.$router.push('/')
       }
 
       if (this.status === 'error') {

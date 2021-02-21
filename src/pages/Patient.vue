@@ -304,7 +304,7 @@ export default {
       this.$api.post(
         'referral', formData
       ).then((response) => {
-        this.$router.push('home')
+        this.$router.push('/')
       }).catch(err => {
         console.log(err.response.data)
       })

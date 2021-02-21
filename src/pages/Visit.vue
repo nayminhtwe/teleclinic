@@ -597,7 +597,7 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         }).then(response => {
-          this.$router.push('/home')
+          this.$router.push('/')
         })
     }
   }

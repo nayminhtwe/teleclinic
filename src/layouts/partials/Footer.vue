@@ -17,6 +17,7 @@
           dense
           icon="home"
           class="q-mr-md"
+          @click="$router.push('/')"
         />
       </q-tab>
       <q-tab name="waiting">

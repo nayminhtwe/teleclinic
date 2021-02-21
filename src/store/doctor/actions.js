@@ -34,7 +34,7 @@ const actions = {
     await axios
       .post('http://188.166.217.32/api/v1/login', formData)
       .then(response => {
-        if (response.data.error_code === 0) {
+        if (response.data.error_code === '0') {
           localStorage.setItem('access_token', response.data.access_token)
           commit(types.AUTH_SUCCESS, response.data)
         }

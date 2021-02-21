@@ -163,9 +163,10 @@
     <q-dialog
       v-model="prompt"
       full-height
+      full-width
     >
       <q-card>
-        <q-table
+        <!-- <q-table
           grid
           card-class="bg-primary text-white"
           title="Referals"
@@ -188,6 +189,66 @@
               </template>
             </q-input>
           </template>
+        </q-table> -->
+        <q-table
+          :data="data"
+          :columns="columns"
+          row-key="name"
+          selection="single"
+          :selected.sync="selected"
+          :filter="filter"
+          grid
+          card-class="bg-primary text-white"
+          hide-header
+        >
+          <template v-slot:top-right>
+            <q-input
+              borderless
+              dense
+              debounce="300"
+              v-model="filter"
+              placeholder="Search"
+            >
+              <template v-slot:append>
+                <q-icon name="search" />
+              </template>
+            </q-input>
+          </template>
+
+          <template v-slot:item="props">
+            <div
+              class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-style-transition"
+              :style="props.selected ? 'transform: scale(0.95);' : ''"
+            >
+              <q-card
+                :class="props.selected ? 'bg-grey-2' : ''"
+                @click="$parent.$emit('referal', props.row.id)"
+              >
+                <!-- <q-card-section>
+                  <q-checkbox
+                    dense
+                    v-model="props.selected"
+                    :label="props.row.name"
+                  />
+                </q-card-section>
+                <q-separator /> -->
+                <q-list dense>
+                  <q-item
+                    v-for="col in props.cols.filter(col => col.name !== 'desc')"
+                    :key="col.name"
+                  >
+                    <q-item-section>
+                      <q-item-label>{{ col.label }}</q-item-label>
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-item-label caption>{{ col.value }}</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-card>
+            </div>
+          </template>
+
         </q-table>
       </q-card>
     </q-dialog>
@@ -202,83 +263,14 @@ export default {
   data () {
     return {
       prompt: false,
+      selected: [],
       filter: '',
       columns: [
-        {
-          name: 'desc',
-          required: true,
-          label: 'Dessert (100g serving)',
-          align: 'left',
-          field: row => row.name,
-          format: val => `${val}`,
-          sortable: true
-        },
-        { name: 'calories', align: 'center', label: 'Calories', field: 'calories', sortable: true },
-        { name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
-        { name: 'carbs', label: 'Carbs (g)', field: 'carbs' }
+        { name: 'name', align: 'left', label: 'Name', field: 'Name', sortable: true },
+        { name: 'qualifications', label: 'Qualifications', field: 'Qualifications', sortable: true },
+        { name: 'contact number', label: 'Contact Number', field: 'Contact_Number' }
       ],
-      data: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65
-        }
-      ],
+      data: [],
       visits: [],
       patientId: this.$route.params.patientId
     }
@@ -297,6 +289,25 @@ export default {
       `patient_detail/${this.patientId}`
     ).then((response) => {
       this.visits = response.data.data
+    })
+
+    this.$api.get(
+      'doctors'
+    ).then((response) => {
+      this.data = response.data.data
+    })
+
+    this.$parent.$on('referal', id => {
+      const formData = new FormData()
+      formData.append('to_doctor_id', id)
+      formData.append('patient_id', this.patientId)
+      this.$api.post(
+        'referral', formData
+      ).then((response) => {
+        this.$router.push('home')
+      }).catch(err => {
+        console.log(err.response.data)
+      })
     })
   },
   methods: {

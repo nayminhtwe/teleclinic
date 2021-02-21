@@ -146,7 +146,6 @@ export default {
   },
   methods: {
     patientdetail (id) {
-      console.log(id)
       this.$router.push(`/patient/${id}`)
     }
   }

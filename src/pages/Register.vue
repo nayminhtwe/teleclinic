@@ -215,7 +215,7 @@ export default {
 
       await this.$store.dispatch('doctor/register', formData)
       if (this.status === 'success') {
-        this.$router.push('/home')
+        this.$router.push('/')
       }
 
       if (this.status === 'error') {

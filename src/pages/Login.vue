@@ -1,6 +1,11 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="flex flex-center bg-deep-orange-10">
     <div class="q-pa-xs">
+      <div class="text-center q-mb-xl">
+        <q-avatar size="72px">
+          <img src="~assets/ezcare.png" />
+        </q-avatar>
+      </div>
       <div class="col-lg-6 col-12 q-py-md">
         <q-banner
           inline-actions
@@ -14,7 +19,7 @@
               color="white"
               icon="error"
               @click="banner = false"
-            />
+            />s
           </template>
         </q-banner>
         <q-input
@@ -22,12 +27,19 @@
           outlined
           v-model="email"
           label="Email"
+          label-color="white"
           :rules="[val => !!val || 'Field is required']"
         >
           <template v-slot:append>
-            <q-avatar>
+            <q-btn
+              flat
+              dense
+              icon="account_circle"
+              class="q-mr-sm"
+            />
+            <!-- <q-avatar>
               <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
-            </q-avatar>
+            </q-avatar> -->
           </template>
         </q-input>
       </div>
@@ -38,12 +50,19 @@
           v-model="password"
           type="password"
           label="Password"
+          label-color="white"
           :rules="[val => !!val || 'Field is required']"
         >
           <template v-slot:append>
-            <q-avatar>
+            <!-- <q-avatar>
               <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
-            </q-avatar>
+            </q-avatar> -->
+            <q-btn
+              flat
+              dense
+              icon="vpn_key"
+              class="q-mr-sm"
+            />
           </template>
         </q-input>
       </div>
@@ -62,7 +81,7 @@
       <div class="q-py-md text-center">
         <q-btn
           flat
-          color="primary"
+          color="white"
           label="Register"
           @click="$router.push('/login/register')"
         />

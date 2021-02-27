@@ -1,6 +1,11 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="flex flex-center bg-deep-orange-10">
     <div class="q-pa-xs">
+      <div class="text-center q-mb-xl">
+        <q-avatar size="72px">
+          <img src="~assets/ezcare.png" />
+        </q-avatar>
+      </div>
       <q-banner
         inline-actions
         class="text-white bg-red"

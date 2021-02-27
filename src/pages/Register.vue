@@ -26,6 +26,7 @@
           standout="bg-teal text-white"
           v-model="name"
           label="Name"
+          label-color="white"
           :rules="[val => !!val || 'Field is required']"
         />
       </div>
@@ -35,6 +36,7 @@
           standout="bg-teal text-white"
           v-model="qualifications"
           label="Qualifications"
+          label-color="white"
           :rules="[val => !!val || 'Field is required']"
         />
       </div>
@@ -44,6 +46,7 @@
           standout="bg-teal text-white"
           v-model="contact_number"
           label="Contact Number"
+          label-color="white"
           :rules="[val => !!val || 'Field is required']"
         />
       </div>
@@ -53,6 +56,7 @@
           standout="bg-teal text-white"
           v-model="email"
           label="Email"
+          label-color="white"
           :rules="[val => !!val || 'Field is required']"
         />
       </div>
@@ -62,6 +66,7 @@
           v-model="password"
           label="Password"
           type="password"
+          label-color="white"
           :rules="[val => !!val || 'Field is required']"
         />
       </div>
@@ -72,6 +77,7 @@
           v-model="password_confirmation"
           label="Password Confirm"
           type="password"
+          label-color="white"
           :rules="[val => !!val || 'Field is required']"
         />
       </div>
@@ -123,6 +129,7 @@
           <q-input
             v-model="file.name"
             label="Name"
+            label-color="white"
             :rules="[val => !!val || 'Field is required']"
           />
         </div>
@@ -132,12 +139,14 @@
             bottom-slots
             v-model="file.data"
             label="File"
+            label-color="white"
             counter
             :rules="[val => !!val || 'Field is required']"
           >
             <template v-slot:prepend>
               <q-icon
                 name="cloud_upload"
+                color="white"
                 @click.stop
               />
             </template>
@@ -159,9 +168,17 @@
           @click="submit"
         >
           <div class="ellipsis">
-            Login
+            Register
           </div>
         </q-btn>
+      </div>
+      <div class="q-py-md text-center">
+        <q-btn
+          flat
+          color="white"
+          label="Login"
+          @click="$router.push('/login/login')"
+        />
       </div>
     </div>
   </q-page>

@@ -1,53 +1,132 @@
 <template>
   <q-page>
     <list-header />
-    <div class="row q-ma-sm text-center">
+    <q-dialog v-model="alert">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Sorry</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          This features will add soon. We will add in next update
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn
+            flat
+            label="OK"
+            color="primary"
+            v-close-popup
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <div class="row q-ma-xs text-center">
       <div class="col-4 col-lg-2 q-mb-md">
-        <q-avatar
+        <!-- <q-avatar
           font-size="52px"
           color="red"
           text-color="white"
           icon="directions"
+        /> -->
+        <!-- <q-btn
+          flat
+          dense
+          icon="apps"
+        /> -->
+        <q-btn
+          class="text-black"
+          icon="person"
+          label="Doctors"
+          stack
+          @click="alert = true"
+          color="grey-3"
+          style="height: 5rem; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
-        <q-avatar
+        <!-- <q-avatar
           font-size="52px"
           color="teal"
           text-color="white"
           icon="local_hospital"
+        /> -->
+        <q-btn
+          class="text-black"
+          icon="apartment"
+          label="Clinics"
+          stack
+          @click="alert = true"
+          color="grey-3"
+          style="height: 5rem; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
-        <q-avatar
+        <!-- <q-avatar
           font-size="52px"
           color="yellow"
           text-color="white"
           icon="history"
+        /> -->
+        <q-btn
+          class="text-black"
+          icon="local_shipping"
+          label="Ambulances"
+          stack
+          @click="alert = true"
+          color="grey-3"
+          style="height: 5rem; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
-        <q-avatar
+        <!-- <q-avatar
           font-size="52px"
           color="red"
           text-color="white"
           icon="directions"
+        /> -->
+        <q-btn
+          class="text-black"
+          icon="local_pharmacy"
+          label="Pharmacy"
+          stack
+          @click="alert = true"
+          color="grey-3"
+          style="height: 5rem; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
-        <q-avatar
+        <!-- <q-avatar
           font-size="52px"
           color="teal"
           text-color="white"
           icon="local_hospital"
+        /> -->
+        <q-btn
+          class="text-black"
+          icon="biotech"
+          label="Lab"
+          stack
+          @click="alert = true"
+          color="grey-3"
+          style="height: 5rem; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
-        <q-avatar
+        <!-- <q-avatar
           font-size="52px"
           color="yellow"
           text-color="white"
           icon="history"
+        /> -->
+        <q-btn
+          class="text-black"
+          icon="link"
+          label="connect"
+          stack
+          @click="alert = true"
+          color="grey-3"
+          style="height: 5rem; width: 7.5em"
         />
       </div>
     </div>
@@ -126,6 +205,7 @@ export default {
   },
   data () {
     return {
+      alert: false,
       visited_patients: [],
       waiting_patients: []
     }
@@ -151,3 +231,13 @@ export default {
   }
 }
 </script>
+<style scoped>
+.q-btn >>> .q-icon {
+  font-size: 40px;
+  color: purple;
+}
+
+.q-btn >>> .block {
+  font-size: 12px;
+}
+</style>

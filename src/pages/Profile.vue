@@ -59,13 +59,24 @@
             style="width: 18em"
           />
         </div>
+        <div class="q-py-md q-gutter-sm">
+          <q-btn
+            color="primary"
+            style="width: 250px"
+            @click="logout"
+          >
+            <div class="ellipsis">
+              Logout
+            </div>
+          </q-btn>
+        </div>
       </div>
     </div>
   </q-page>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
 export default {
   name: 'Profile',
@@ -82,6 +93,9 @@ export default {
     ProfileHeader
   },
   computed: {
+    ...mapState({
+      message: state => state.doctor.message
+    }),
     ...mapGetters({
       getDoctorProfile: 'doctor/getDoctorProfile'
     })
@@ -92,6 +106,12 @@ export default {
   methods: {
     getFile (path) {
       return `http://188.166.217.32/${path}`
+    },
+    logout () {
+      this.$store.dispatch('doctor/logout')
+      setTimeout(() => {
+        this.$router.push('/login/login')
+      }, 2000)
     }
   }
 }

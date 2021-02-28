@@ -43,6 +43,10 @@ const actions = {
         commit(types.AUTH_ERROR, err.response.data)
         localStorage.removeItem('access_token') // if the request fails, remove any possible user token if possible
       })
+  },
+  logout ({ commit }) {
+    localStorage.removeItem('access_token')
+    commit(types.LOGOUT)
   }
 }
 

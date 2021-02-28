@@ -27,6 +27,10 @@ const mutations = {
 
   [types.PROFILE_ERROR] (state) {
     state.status = 'error'
+  },
+  [types.LOGOUT] (state) {
+    state.token = ''
+    state.status = 'logout'
   }
 }
 

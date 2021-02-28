@@ -47,6 +47,7 @@
           dense
           icon="account_circle"
           class="q-mr-md"
+          @click="$router.push('/profile')"
         />
       </q-tab>
     </q-tabs>

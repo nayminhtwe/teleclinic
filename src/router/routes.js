@@ -22,7 +22,9 @@ const routes = [
     component: () => import('layouts/AppLayout.vue'),
     children: [
       { path: '/', component: () => import('pages/Home.vue'), beforeEnter: ifAuthenticated },
-      { path: 'profile', component: () => import('pages/Profile.vue'), beforeEnter: ifAuthenticated }
+      { path: 'profile', component: () => import('pages/Profile.vue'), beforeEnter: ifAuthenticated },
+      { path: '/patients', component: () => import('pages/Patients.vue'), beforeEnter: ifAuthenticated },
+      { path: '/waitings', component: () => import('pages/Waitings.vue'), beforeEnter: ifAuthenticated }
     ]
   },
   {

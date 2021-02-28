@@ -27,6 +27,7 @@
           dense
           icon="history"
           class="q-mr-md"
+          @click="$router.push('/waitings')"
         />
       </q-tab>
       <q-tab name="home">
@@ -36,6 +37,7 @@
           dense
           icon="local_hospital"
           class="q-mr-md"
+          @click="$router.push('/patients')"
         />
       </q-tab>
       <q-tab name="home">

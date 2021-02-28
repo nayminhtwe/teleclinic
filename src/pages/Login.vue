@@ -19,7 +19,7 @@
               color="white"
               icon="error"
               @click="banner = false"
-            />s
+            />
           </template>
         </q-banner>
         <q-input

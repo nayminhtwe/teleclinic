@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center bg-deep-orange-10">
+  <q-page class="flex flex-center">
     <div class="q-pa-xs">
       <div class="text-center q-mb-xl">
         <q-avatar size="72px">

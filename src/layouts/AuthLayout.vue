@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md bg-deep-orange-10">
     <q-layout view="hHh lpR fFf">
 
       <q-page-container>

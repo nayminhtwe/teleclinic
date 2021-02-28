@@ -11,6 +11,7 @@
           dense
           icon="west"
           class="q-mr-sm"
+          @click="$router.go(-1)"
         />
       </div>
       <div class="col-10">
@@ -28,7 +29,8 @@
       <div class="row">
         <div class="col-9">
           <q-avatar size="72px">
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
+            <!-- <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" /> -->
+            <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
           </q-avatar>
         </div>
         <div class="col-9">

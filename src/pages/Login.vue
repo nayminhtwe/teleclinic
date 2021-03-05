@@ -6,7 +6,7 @@
           <img src="~assets/ezcare.png" />
         </q-avatar>
       </div>
-      <div class="col-lg-6 col-12 q-py-md">
+      <div class="col-lg-6 col-12 q-py-xs">
         <q-banner
           inline-actions
           class="text-white bg-red q-mb-lg"
@@ -24,18 +24,17 @@
         </q-banner>
         <q-input
           color="teal"
-          outlined
           v-model="email"
           label="Email"
           label-color="white"
           :rules="[val => !!val || 'Field is required']"
         >
-          <template v-slot:append>
+          <template v-slot:prepend>
             <q-btn
               flat
               dense
               icon="account_circle"
-              class="q-mr-sm"
+              class="q-mr-sm text-white"
             />
             <!-- <q-avatar>
               <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
@@ -43,17 +42,16 @@
           </template>
         </q-input>
       </div>
-      <div class="col-lg-6 col-12 q-py-md">
+      <div class="col-lg-6 col-12 q-py-xs">
         <q-input
           color="teal"
-          outlined
           v-model="password"
           type="password"
           label="Password"
           label-color="white"
           :rules="[val => !!val || 'Field is required']"
         >
-          <template v-slot:append>
+          <template v-slot:prepend>
             <!-- <q-avatar>
               <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
             </q-avatar> -->
@@ -61,7 +59,7 @@
               flat
               dense
               icon="vpn_key"
-              class="q-mr-sm"
+              class="q-mr-sm text-white"
             />
           </template>
         </q-input>
@@ -69,8 +67,10 @@
 
       <div class="q-py-md q-gutter-sm">
         <q-btn
-          color="primary"
+          color="white"
           style="width: 250px"
+          class="text-black"
+          rounded
           @click="submit"
         >
           <div class="ellipsis">

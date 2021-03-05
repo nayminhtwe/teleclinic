@@ -72,6 +72,6 @@
         <splash src="res/screen/ios/Default@2x~ipad~comany.png" />
     </platform>
     <allow-navigation href="about:*" />
-    <allow-navigation href="http://192.168.99.74:8080" />
     <preference name="SplashMaintainAspectRatio" value="true" />
+    <allow-navigation href="http://192.168.99.74:8082" />
 </widget>

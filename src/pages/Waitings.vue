@@ -9,12 +9,12 @@
         @click="patientdetail(patient.patient_id)"
       >
         <q-card
-          class="my-card"
-          style="width: 10em"
+          class="my-card text-center"
+          style="width: 10em; border: 1px solid grey;"
         >
           <q-avatar
             size="5em"
-            rounded
+            style="border-radius: 1em;"
           >
             <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
           </q-avatar>

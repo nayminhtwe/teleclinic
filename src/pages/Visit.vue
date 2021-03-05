@@ -7,36 +7,43 @@
         outlined
         v-model="chief_complaint"
         label="Chief complaint"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="history_of_present_illness"
         label="History of present illness"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="past_medical_history"
         label="Past Medical history"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="past_surgical_history"
         label="Past surgical history"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="social_history"
         label="Social history"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="drug_allergy"
         label="Drug allergy"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="other_history"
         label="Others"
+        type="textarea"
       />
       <!-- <q-uploader
         style="max-width: 300px"
@@ -95,51 +102,61 @@
         outlined
         v-model="general_Condition"
         label="General Condition"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="anaemia"
         label="Anaemia"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="jaundice"
         label="Juandice"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="temperature"
         label="Temperature"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="BP"
         label="BP"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="PR"
         label="PR"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="heart"
         label="Heart"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="lungs"
         label="Lungs"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="abdomen"
         label="Abdomen"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="other_physical"
         label="Others"
+        type="textarea"
       />
       <!-- <q-uploader
         style="max-width: 300px"
@@ -197,36 +214,43 @@
         outlined
         v-model="blood_tests"
         label="Blood Tests"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="urinalysis"
         label="Urinalysis"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="swabs"
         label="Swabs"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="ECG_Echo"
         label="ECG/Echo"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="CXR"
         label="CXR"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="USG"
         label="USG"
+        type="textarea"
       />
       <q-input
         outlined
         v-model="other_investigation"
         label="Others"
+        type="textarea"
       />
       <!-- <q-uploader
         style="max-width: 300px"
@@ -283,6 +307,7 @@
         outlined
         v-model="treatment"
         label="Treatment"
+        type="textarea"
       />
       <!-- <q-uploader
         style="max-width: 300px"
@@ -339,6 +364,7 @@
         outlined
         v-model="further_plan"
         label="Further Plan"
+        type="textarea"
       />
       <!-- <q-uploader
         style="max-width: 300px"
@@ -395,6 +421,7 @@
         outlined
         v-model="other"
         label="Others"
+        type="textarea"
       />
       <!-- <q-uploader
         style="max-width: 300px"
@@ -447,9 +474,10 @@
         </div>
       </div>
       <q-btn
-        color="primary"
+        color="deep-orange-10"
         class="full-width"
         label="Save"
+        rounded
         @click="submit"
       />
     </div>

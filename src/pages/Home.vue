@@ -40,8 +40,8 @@
           label="Doctors"
           stack
           @click="alert = true"
-          color="grey-3"
-          style="height: 5rem; width: 7.5em"
+          outline
+          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -57,8 +57,8 @@
           label="Clinics"
           stack
           @click="alert = true"
-          color="grey-3"
-          style="height: 5rem; width: 7.5em"
+          outline
+          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -74,8 +74,8 @@
           label="Ambulances"
           stack
           @click="alert = true"
-          color="grey-3"
-          style="height: 5rem; width: 7.5em"
+          outline
+          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -91,8 +91,8 @@
           label="Pharmacy"
           stack
           @click="alert = true"
-          color="grey-3"
-          style="height: 5rem; width: 7.5em"
+          outline
+          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -108,8 +108,8 @@
           label="Lab"
           stack
           @click="alert = true"
-          color="grey-3"
-          style="height: 5rem; width: 7.5em"
+          outline
+          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -125,8 +125,8 @@
           label="connect"
           stack
           @click="alert = true"
-          color="grey-3"
-          style="height: 5rem; width: 7.5em"
+          outline
+          style="height: 7em; width: 7.5em"
         />
       </div>
     </div>
@@ -138,12 +138,12 @@
         @click="patientdetail(patient.patient_id)"
       >
         <q-card
-          class="my-card"
-          style="width: 10em"
+          class="my-card text-center"
+          style="width: 10em; border: 1px solid grey;"
         >
           <q-avatar
             size="5em"
-            rounded
+            style="border-radius: 1em;"
           >
             <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
           </q-avatar>
@@ -164,14 +164,14 @@
       <div class="col-12 text-h6">Your Patients ({{ visited_patients.length }})</div>
       <q-card
         class="my-card"
-        style="width: 10em"
+        style="width: 10em; border: 1px solid grey;"
         v-for="patient in visited_patients"
         :key="patient.id"
         @click="patientdetail(patient.patient_id)"
       >
         <q-avatar
           size="5em"
-          rounded
+          style="border-radius: 1em;"
         >
           <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
         </q-avatar>

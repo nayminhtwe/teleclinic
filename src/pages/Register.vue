@@ -75,7 +75,7 @@
         <q-input
           standout="bg-teal text-white"
           v-model="password_confirmation"
-          label="Password Confirm"
+          label="Confirm Password"
           type="password"
           label-color="white"
           :rules="[val => !!val || 'Field is required']"
@@ -163,8 +163,10 @@
 
       <div class="q-py-md q-gutter-sm">
         <q-btn
-          color="primary"
+          color="white"
           style="width: 250px"
+          class="text-black"
+          rounded
           @click="submit"
         >
           <div class="ellipsis">

@@ -4,12 +4,13 @@
     class="bg-primary text-white"
   >
     <q-toolbar class="q-py-md">
-      <div class="col-10 offset-1 col-lg-4 offset-lg-4">
+      <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
           rounded
           outlined
           placeholder="Search"
           v-model="text"
+          :dense="dense"
         >
           <template v-slot:prepend>
             <q-icon name="search" />
@@ -29,7 +30,7 @@
           </q-avatar>
         </div>
         <div class="col-9">
-          <div class="text-h6">Welcome Back</div>
+          <div class="text-subtitle1 text-grey-5">Welcome Back</div>
           <div class="text-h5">{{ getDoctorProfile.Name }}</div>
         </div>
       </div>

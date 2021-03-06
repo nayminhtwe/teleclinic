@@ -81,6 +81,24 @@
           :rules="[val => !!val || 'Field is required']"
         />
       </div>
+      <div class="text-center q-mb-xl">
+        <q-file
+          borderless
+          v-model="file"
+        >
+          <template v-slot:prepend>
+            <img
+              src="~assets/profile_upload.jpg"
+              style="width: 72px"
+              @click.stop
+            />
+          </template>
+        </q-file>
+      </div>
+
+      <div class="text-h6 q-py-sm">
+        Certificates
+      </div>
 
       <div class="col-lg-6 col-12 q-py-md">
 

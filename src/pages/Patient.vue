@@ -257,6 +257,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { constantes } from 'src/boot/constantes.js'
 import DetailHeader from 'src/layouts/partials/Header/DetailHeader.vue'
 export default {
   name: 'Patient',
@@ -312,7 +313,7 @@ export default {
   },
   methods: {
     getFile (path) {
-      return `http://188.166.217.32/${path}`
+      return `${constantes.SERVER_MEDIA}${path}`
     },
     visit () {
       this.$router.push(`/patient/${this.patientId}/visit`)

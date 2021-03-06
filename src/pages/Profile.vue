@@ -48,7 +48,7 @@
         </div>
         <div
           class="col-lg-6 col-12 q-py-md"
-          v-for="other_file in getDoctorProfile.File"
+          v-for="other_file in getDoctorProfile.Certificate_File"
           :key="other_file.id"
         >
           <div class="text-h6">
@@ -77,6 +77,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import { constantes } from 'src/boot/constantes.js'
 import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
 export default {
   name: 'Profile',
@@ -105,7 +106,7 @@ export default {
   },
   methods: {
     getFile (path) {
-      return `http://188.166.217.32/${path}`
+      return `${constantes.SERVER_MEDIA}${path}`
     },
     logout () {
       this.$store.dispatch('doctor/logout')

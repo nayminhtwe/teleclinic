@@ -1,8 +1,8 @@
 {
   "name": "hica_teleclinics",
   "version": "0.0.1",
-  "description": "HICA Teleclinics App",
-  "productName": "HICA Teleclinics",
+  "description": "EZ Care App",
+  "productName": "EZ Care",
   "author": "nayminhtwe<konayminhtwe@gmail.com>",
   "private": true,
   "scripts": {

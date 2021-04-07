@@ -24,9 +24,9 @@ const actions = {
     commit(types.PROFILE_REQUEST)
     api.defaults.headers.Authorization = `Bearer ${getters.getDoctorToken}`
     api.get(
-      'doctor_profile'
+      'profile'
     ).then((response) => {
-      commit(types.PROFILE_SUCCESS, response.data.data)
+      commit(types.PROFILE_SUCCESS, response.data)
     })
   },
   async login ({ commit }, formData) {

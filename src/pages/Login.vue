@@ -25,7 +25,7 @@
         <q-input
           color="teal"
           v-model="email"
-          label="Email"
+          label="Username"
           label-color="white"
           :rules="[val => !!val || 'Field is required']"
         >
@@ -113,7 +113,7 @@ export default {
   methods: {
     async submit () {
       const formData = new FormData()
-      formData.append('Email', this.email)
+      formData.append('name', this.email)
       formData.append('password', this.password)
 
       await this.$store.dispatch('doctor/login', formData)

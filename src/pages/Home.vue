@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <list-header />
+    <profile-header />
     <q-dialog v-model="alert">
       <q-card>
         <q-card-section>
@@ -21,6 +21,21 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+    <div class="q-py-lg">
+      <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
+        <q-input
+          rounded
+          outlined
+          placeholder="Search"
+          v-model="text"
+          :dense="dense"
+        >
+          <template v-slot:prepend>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </div>
+    </div>
     <div class="row q-ma-xs text-center">
       <div class="col-4 col-lg-2 q-mb-md">
         <!-- <q-avatar
@@ -56,7 +71,7 @@
           icon="apartment"
           label="Clinics"
           stack
-          @click="alert = true"
+          @click="$router.push('charity/clinic')"
           outline
           style="height: 7em; width: 7.5em"
         />
@@ -73,7 +88,7 @@
           icon="local_shipping"
           label="Ambulances"
           stack
-          @click="alert = true"
+          @click="$router.push('charity/ambulance')"
           outline
           style="height: 7em; width: 7.5em"
         />
@@ -90,7 +105,7 @@
           icon="local_pharmacy"
           label="Pharmacy"
           stack
-          @click="alert = true"
+          @click="$router.push('charity/pharmacy')"
           outline
           style="height: 7em; width: 7.5em"
         />
@@ -107,7 +122,7 @@
           icon="biotech"
           label="Lab"
           stack
-          @click="alert = true"
+          @click="$router.push('charity/lab')"
           outline
           style="height: 7em; width: 7.5em"
         />
@@ -122,9 +137,9 @@
         <q-btn
           class="text-black"
           icon="link"
-          label="connect"
+          label="Register"
           stack
-          @click="alert = true"
+          @click="$router.push('add_charity')"
           outline
           style="height: 7em; width: 7.5em"
         />
@@ -192,11 +207,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ListHeader from 'src/layouts/partials/Header/ListHeader.vue'
+import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
 export default {
   name: 'Home',
   components: {
-    ListHeader
+    ProfileHeader
   },
   computed: {
     ...mapGetters({

@@ -1,7 +1,7 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page>
     <profile-header />
-    <div class="q-pa-xs">
+    <div class="q-pa-xs row q-gutter-md">
       <q-banner
         inline-actions
         class="text-white bg-red"
@@ -17,7 +17,7 @@
           />
         </template>
       </q-banner>
-      <div class="col-lg-6 col-12">
+      <div class="col-lg-4 col-12">
         <q-input
           v-model="name"
           label="Name"
@@ -26,7 +26,7 @@
         />
       </div>
 
-      <div class="col-lg-6 col-12">
+      <div class="col-lg-4 col-12">
         <q-select
           v-model="charity"
           label="Your Charity Service"
@@ -36,7 +36,7 @@
         />
       </div>
 
-      <div class="col-lg-6 col-12">
+      <div class="col-lg-4 col-12">
         <q-input
           v-model="address"
           label="Address"
@@ -45,7 +45,7 @@
         />
       </div>
 
-      <div class="col-lg-6 col-12">
+      <div class="col-lg-4 col-12">
         <q-input
           v-model="phone"
           label="Contact Phone No."
@@ -54,7 +54,7 @@
         />
       </div>
 
-      <div class="col-lg-6 col-12">
+      <div class="col-lg-4 col-12">
         <q-input
           v-model="email"
           label="Email"
@@ -63,7 +63,7 @@
         />
       </div>
 
-      <div class="col-lg-6 col-12">
+      <div class="col-lg-4 col-12">
         <q-input
           v-model="time"
           label="Available Time"
@@ -72,7 +72,7 @@
         />
       </div>
 
-      <div class="col-lg-6 col-12">
+      <div class="col-lg-4 col-12">
         <q-input
           v-model="comment"
           label="Comment"

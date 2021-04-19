@@ -110,7 +110,7 @@
           <div class="col-2 column justify-center">
             <q-icon
               name="favorite"
-              class="text-black"
+              class="text-white border-icon"
               size="md"
             />
           </div>
@@ -185,3 +185,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.border-icon {
+  text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+}
+</style>

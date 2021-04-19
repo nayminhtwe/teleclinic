@@ -6,7 +6,8 @@
       full-width
     >
       <q-card class="my-card">
-        <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
+        <!-- <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" /> -->
+        <q-img :src="getFile(charity.profile_image)" />
 
         <q-card-section>
           <q-btn
@@ -69,11 +70,14 @@
           rounded
           outlined
           placeholder="Search"
-          v-model="text"
+          v-model="search"
           :dense="dense"
         >
           <template v-slot:prepend>
-            <q-icon name="search" />
+            <q-icon
+              name="search"
+              @click="filter"
+            />
           </template>
         </q-input>
       </div>
@@ -132,6 +136,7 @@ export default {
       card: false,
       charity: {},
       charities: [],
+      search: '',
       charity_type: this.$route.params.type
     }
   },
@@ -168,6 +173,14 @@ export default {
     popup (charity) {
       this.charity = charity
       this.card = true
+    },
+    filter () {
+      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+      this.$api.get(
+        `filter_${this.charity_type}?name=${this.search}`
+      ).then((response) => {
+        this.charities = response.data.data
+      })
     }
   }
 }

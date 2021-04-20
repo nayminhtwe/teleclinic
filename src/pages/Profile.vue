@@ -174,20 +174,19 @@
               </template>
             </q-file>
           </div>
-
-          <div class="q-py-md q-gutter-sm">
-            <q-btn
-              color="red"
-              style="width: 250px"
-              class="text-white"
-              rounded
-              @click="submit"
-            >
-              <div class="ellipsis">
-                Register
-              </div>
-            </q-btn>
-          </div>
+        </div>
+        <div class="q-py-md q-gutter-sm">
+          <q-btn
+            color="red"
+            style="width: 250px"
+            class="text-white"
+            rounded
+            @click="submit"
+          >
+            <div class="ellipsis">
+              Register
+            </div>
+          </q-btn>
         </div>
       </div>
     </div>

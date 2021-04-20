@@ -80,7 +80,6 @@
             <q-input
               v-model="other"
               label="Comment"
-              :rules="[val => !!val || 'Field is required']"
             />
           </div>
 

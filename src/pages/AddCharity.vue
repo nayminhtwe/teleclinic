@@ -77,7 +77,6 @@
           v-model="comment"
           label="Comment"
           label-color="black"
-          :rules="[val => !!val || 'Field is required']"
         />
       </div>
 

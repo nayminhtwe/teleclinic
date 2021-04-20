@@ -2,18 +2,47 @@
   <q-page>
     <profile-header />
     <q-dialog
+      v-model="alert"
+      full-width
+    >
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Success</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ this.message }}
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn
+            flat
+            label="OK"
+            color="primary"
+            v-close-popup
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <q-dialog
       v-model="card"
       full-width
     >
       <q-card class="my-card">
-        <!-- <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" /> -->
-        <q-img :src="getFile(charity.profile_image)" />
+        <q-img
+          :src="getFile(charity.profile_image)"
+          v-if="charity.profile_image"
+        />
 
+        <q-img
+          src="~assets/ezcare.png"
+          v-else
+        />
         <q-card-section>
           <q-btn
             fab
             color="primary"
-            icon="place"
+            icon="favorite"
             class="absolute"
             style="top: 0; right: 12px; transform: translateY(-50%);"
           />
@@ -22,44 +51,48 @@
             <div class="col text-h6 ellipsis">
               {{ charity.name }}
             </div>
-            <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
-              <q-icon name="place" />
+            <!-- <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
+              <q-icon name="favorite" />
               250 ft
-            </div>
+            </div> -->
           </div>
 
-          <q-rating
+          <!-- <q-rating
             v-model="stars"
             :max="5"
             size="32px"
-          />
+          /> -->
         </q-card-section>
 
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1">
             {{ charity.available_time }}
           </div>
-          <div class="text-caption text-grey">
+          <div class="text-subtitle1">
             {{ charity.address }}
           </div>
         </q-card-section>
 
         <q-separator />
 
-        <q-card-actions align="right">
-          <q-btn
-            v-close-popup
-            flat
-            color="primary"
-            label="Reserve"
-          />
-          <q-btn
-            v-close-popup
-            flat
-            color="primary"
-            round
-            icon="event"
-          />
+        <q-card-actions>
+          <div class="col-6">
+            <q-btn
+              v-close-popup
+              color="primary"
+              label="Call"
+              size="md"
+              :href="'tel:'+charity.contact_number"
+            />
+          </div>
+          <div class="col-6 column items-end">
+            <q-btn
+              v-close-popup
+              color="primary"
+              label="Message"
+              size="md"
+            />
+          </div>
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -87,31 +120,40 @@
         v-for="charity in charities"
         :key="charity.id"
       >
-        <div
-          class="row col-12"
-          @click="popup(charity)"
-        >
-          <div class="col-3 column justify-center">
+        <div class="row col-12">
+          <div
+            class="col-3 column justify-center"
+            @click="popup(charity)"
+          >
             <q-avatar size="60px">
               <img
                 :src="getFile(charity.profile_image)"
                 v-if="charity.profile_image"
               />
-              <img
+              <!-- <img
                 src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
+                v-else
+              /> -->
+              <img
+                src="~assets/ezcare.png"
                 v-else
               />
             </q-avatar>
           </div>
-          <div class="col-7">
+          <div
+            class="col-7"
+            @click="popup(charity)"
+          >
             <div class="text-h6">{{ charity.name }}</div>
             <div>{{ charity.address }}</div>
           </div>
           <div class="col-2 column justify-center">
             <q-icon
               name="favorite"
-              class="text-white border-icon"
+              class="border-icon"
+              :class="charity.favorite_status ? 'text-black' : 'text-white'"
               size="md"
+              @click="favourite(charity.id)"
             />
           </div>
         </div>
@@ -133,10 +175,12 @@ export default {
   data () {
     return {
       banner: false,
+      alert: false,
       card: false,
       charity: {},
       charities: [],
       search: '',
+      message: '',
       charity_type: this.$route.params.type
     }
   },
@@ -146,25 +190,7 @@ export default {
     })
   },
   created () {
-    this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-    this.$api.get(
-      `get_${this.charity_type}`
-    ).then((response) => {
-      this.charities = response.data.data
-    })
-
-    this.charities = [
-      {
-        id: 1,
-        name: 'Aung Aung',
-        address: 'tamwe'
-      },
-      {
-        id: 2,
-        name: 'Maung Maung',
-        address: 'pathein'
-      }
-    ]
+    this.getCharity()
   },
   methods: {
     getFile (path) {
@@ -178,6 +204,24 @@ export default {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
       this.$api.get(
         `filter_${this.charity_type}?name=${this.search}`
+      ).then((response) => {
+        this.charities = response.data.data
+      })
+    },
+    favourite (id) {
+      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+      this.$api.post(
+        `favorite_${this.charity_type}/${id}`
+      ).then((response) => {
+        this.message = response.data.message
+        this.alert = true
+        this.getCharity()
+      })
+    },
+    getCharity () {
+      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+      this.$api.get(
+        `get_${this.charity_type}`
       ).then((response) => {
         this.charities = response.data.data
       })

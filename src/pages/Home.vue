@@ -50,13 +50,12 @@
           icon="apps"
         /> -->
         <q-btn
-          class="text-black"
+          class="text-black menu-box"
           icon="person"
           label="Doctors"
           stack
           @click="alert = true"
           outline
-          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -67,7 +66,7 @@
           icon="local_hospital"
         /> -->
         <q-btn
-          class="text-black"
+          class="text-black menu-box"
           icon="apartment"
           label="Clinics"
           stack
@@ -84,7 +83,7 @@
           icon="history"
         /> -->
         <q-btn
-          class="text-black"
+          class="text-black menu-box"
           icon="local_shipping"
           label="Ambulances"
           stack
@@ -101,7 +100,7 @@
           icon="directions"
         /> -->
         <q-btn
-          class="text-black"
+          class="text-black menu-box"
           icon="local_pharmacy"
           label="Pharmacy"
           stack
@@ -118,7 +117,7 @@
           icon="local_hospital"
         /> -->
         <q-btn
-          class="text-black"
+          class="text-black menu-box"
           icon="biotech"
           label="Lab"
           stack
@@ -135,7 +134,7 @@
           icon="history"
         /> -->
         <q-btn
-          class="text-black"
+          class="text-black menu-box"
           icon="link"
           label="Register"
           stack
@@ -247,6 +246,13 @@ export default {
 }
 </script>
 <style scoped>
+.menu-box {
+  height: 7em;
+  width: 7.5em;
+  border-radius: 5px;
+  box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5;
+}
+
 .q-btn >>> .q-icon {
   font-size: 40px;
   color: purple;

@@ -21,6 +21,9 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+    <div class="q-py-xs">
+      <div class="text-h5">Hello {{ getDoctorProfile.name }},</div>
+    </div>
     <div class="q-py-lg">
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
@@ -214,6 +217,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      getDoctorProfile: 'doctor/getDoctorProfile',
       getDoctorToken: 'doctor/getDoctorToken'
     })
   },
@@ -225,6 +229,8 @@ export default {
     }
   },
   created () {
+    this.$store.dispatch('doctor/profile')
+
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
     this.$api.get(
       'waiting'

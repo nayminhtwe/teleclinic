@@ -2,7 +2,10 @@
   <q-page>
     <profile-header />
     <div>
-      <div class="q-pa-xs">
+      <div
+        class="q-pa-xs"
+        v-if="getDoctorProfile.status === 0"
+      >
         <div class="row q-gutter-md">
           <q-banner
             inline-actions
@@ -19,6 +22,9 @@
               />
             </template>
           </q-banner>
+          <div class="col-lg-4 col-12">
+            <div class="text-h6">Medical Doctor Register Only</div>
+          </div>
           <div class="col-lg-4 col-12">
             <q-input
               v-model="name"

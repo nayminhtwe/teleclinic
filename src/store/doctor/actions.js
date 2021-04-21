@@ -26,7 +26,7 @@ const actions = {
     api.get(
       'profile'
     ).then((response) => {
-      commit(types.PROFILE_SUCCESS, response.data)
+      commit(types.PROFILE_SUCCESS, response.data.data)
     })
   },
   async login ({ commit }, formData) {

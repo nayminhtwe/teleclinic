@@ -39,7 +39,7 @@
           </template>
         </q-input>
       </div>
-      <div class="col-lg-6 col-12 q-py-xs">
+      <!-- <div class="col-lg-6 col-12 q-py-xs">
         <q-banner
           inline-actions
           class="text-white bg-red q-mb-lg"
@@ -71,7 +71,7 @@
             />
           </template>
         </q-input>
-      </div>
+      </div> -->
       <div class="col-lg-6 col-12 q-py-xs">
         <q-input
           color="teal"

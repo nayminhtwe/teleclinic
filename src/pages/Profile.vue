@@ -83,7 +83,7 @@
             />
           </div>
 
-          <div class="col-lg-4 col-12">
+          <div class="col-lg-4 col-12 column items-center">
             <q-checkbox
               left-label
               v-model="hide"
@@ -91,7 +91,7 @@
             />
           </div>
         </div>
-        <div class="text-center q-my-lg">
+        <div class="q-my-lg">
           <q-file
             borderless
             v-model="profile_image"

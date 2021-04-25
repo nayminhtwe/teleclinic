@@ -257,10 +257,11 @@ export default {
   width: 7.5em;
   border-radius: 5px;
   box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5;
+  line-height: 200%;
 }
 
 .q-btn >>> .q-icon {
-  font-size: 40px;
+  font-size: 45px;
   color: purple;
 }
 

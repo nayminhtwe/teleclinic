@@ -54,8 +54,10 @@
         /> -->
         <q-btn
           class="text-black menu-box"
+          id="doctors"
           icon="person"
           label="Doctors"
+          no-caps
           stack
           @click="alert = true"
           outline
@@ -70,8 +72,10 @@
         /> -->
         <q-btn
           class="text-black menu-box"
+          id="clinics"
           icon="apartment"
           label="Clinics"
+          no-caps
           stack
           @click="$router.push('charity/clinic')"
           outline
@@ -87,8 +91,10 @@
         /> -->
         <q-btn
           class="text-black menu-box"
+          id="ambulances"
           icon="local_shipping"
           label="Ambulances"
+          no-caps
           stack
           @click="$router.push('charity/ambulance')"
           outline
@@ -104,8 +110,10 @@
         /> -->
         <q-btn
           class="text-black menu-box"
+          id="pharmacy"
           icon="local_pharmacy"
           label="Pharmacy"
+          no-caps
           stack
           @click="$router.push('charity/pharmacy')"
           outline
@@ -121,8 +129,10 @@
         /> -->
         <q-btn
           class="text-black menu-box"
+          id="labs"
           icon="biotech"
-          label="Lab"
+          label="Labs"
+          no-caps
           stack
           @click="$router.push('charity/lab')"
           outline
@@ -257,15 +267,34 @@ export default {
   width: 7.5em;
   border-radius: 5px;
   box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5;
-  line-height: 200%;
+  line-height: 270%;
 }
 
-.q-btn >>> .q-icon {
-  font-size: 45px;
-  color: purple;
+.menu-box >>> .q-icon {
+  font-size: 40px;
+}
+
+#doctors >>> .q-icon {
+  color: green;
+}
+
+#clinics >>> .q-icon {
+  color: pink;
+}
+
+#ambulances >>> .q-icon {
+  color: blue;
+}
+
+#pharmacy >>> .q-icon {
+  color: magenta;
+}
+
+#labs >>> .q-icon {
+  color: red;
 }
 
 .q-btn >>> .block {
-  font-size: 12px;
+  font-size: 14px;
 }
 </style>

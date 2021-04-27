@@ -1,6 +1,7 @@
 <template>
   <q-page>
-    <profile-header />
+    <!-- <profile-header /> -->
+    <home-header />
     <q-dialog v-model="alert">
       <q-card>
         <q-card-section>
@@ -219,11 +220,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
+// import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
+import HomeHeader from 'src/layouts/partials/Header/HomeHeader.vue'
 export default {
   name: 'Home',
   components: {
-    ProfileHeader
+    // ProfileHeader,
+    HomeHeader
   },
   computed: {
     ...mapGetters({

@@ -88,43 +88,41 @@
               label="Comment"
             />
           </div>
-
-          <div class="col-lg-4 col-12 column items-center">
+          <div class="col-12 offset-6 q-my-md">
+            <q-file
+              borderless
+              v-model="profile_image"
+            >
+              <template v-slot:prepend>
+                <img
+                  src="~assets/profile_upload.jpg"
+                  style="width: 72px"
+                  @click.stop
+                />
+              </template>
+            </q-file>
+          </div>
+          <div class="col-12 offset-6 q-my-md">
+            <q-file
+              borderless
+              v-model="sama_or_nrc"
+            >
+              <template v-slot:prepend>
+                <img
+                  src="~assets/certificate.png"
+                  style="width: 72px"
+                  @click.stop
+                />
+              </template>
+            </q-file>
+          </div>
+          <div class="col-lg-4 col-12 row justify-center">
             <q-checkbox
               left-label
               v-model="hide"
               label="Hide My Info"
             />
           </div>
-        </div>
-        <div class="q-my-lg">
-          <q-file
-            borderless
-            v-model="profile_image"
-          >
-            <template v-slot:prepend>
-              <img
-                src="~assets/profile_upload.jpg"
-                style="width: 72px"
-                @click.stop
-              />
-            </template>
-          </q-file>
-        </div>
-
-        <div class="text-center q-my-lg">
-          <q-file
-            borderless
-            v-model="sama_or_nrc"
-          >
-            <template v-slot:prepend>
-              <img
-                src="~assets/certificate.png"
-                style="width: 72px"
-                @click.stop
-              />
-            </template>
-          </q-file>
         </div>
 
         <div class="text-h6 q-py-sm">
@@ -184,7 +182,7 @@
         <div class="q-py-md q-gutter-sm">
           <q-btn
             color="red"
-            style="width: 250px"
+            style="width: 300px"
             class="text-white"
             rounded
             @click="submit"

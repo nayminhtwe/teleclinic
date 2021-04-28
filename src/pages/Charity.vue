@@ -82,6 +82,7 @@
               color="primary"
               label="Call"
               size="md"
+              type="a"
               :href="'tel:'+charity.contact_number"
             />
           </div>

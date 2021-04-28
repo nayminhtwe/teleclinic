@@ -163,6 +163,9 @@
         />
       </div>
     </div>
+    <div class="q-my-md q-ml-md">
+      <div class="text-h6">For Doctors</div>
+    </div>
     <div class="q-pa-md row items-start q-gutter-lg">
       <div class="col-12 text-h6">Patients In Waiting Room ({{ waiting_patients.length }})</div>
       <div

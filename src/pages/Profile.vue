@@ -23,7 +23,7 @@
             </template>
           </q-banner>
           <div class="col-lg-4 col-12">
-            <div class="text-h6">Medical Doctor Register Only</div>
+            <div class="text-h6">Medical Doctor Registration Only</div>
           </div>
           <div class="col-lg-4 col-12">
             <q-input

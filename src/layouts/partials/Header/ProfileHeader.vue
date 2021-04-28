@@ -1,7 +1,7 @@
 <template>
   <q-header
     elevated
-    class="bg-primary text-white"
+    class="bg-grey-2 text-red"
   >
     <q-toolbar>
       <div class="col-1">

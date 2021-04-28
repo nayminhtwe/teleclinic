@@ -1,7 +1,7 @@
 <template>
   <q-footer
     bordered
-    class="bg-primary text-white"
+    class="bg-grey-2 text-white"
   >
     <q-tabs
       no-caps

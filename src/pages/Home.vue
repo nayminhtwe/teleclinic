@@ -22,10 +22,10 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
-    <div class="q-py-xs">
+    <div class="q-my-sm q-ml-sm">
       <div class="text-h5">Hello {{ getDoctorProfile.name }},</div>
     </div>
-    <div class="q-py-lg">
+    <div class="q-py-sm">
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
           rounded
@@ -40,6 +40,11 @@
         </q-input>
       </div>
     </div>
+
+    <div class="q-my-sm q-ml-md">
+      <div class="text-h6">How can we help you?</div>
+    </div>
+
     <div class="row q-ma-xs text-center">
       <div class="col-4 col-lg-2 q-mb-md">
         <!-- <q-avatar

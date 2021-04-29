@@ -5,7 +5,7 @@
   >
     <q-tabs
       no-caps
-      active-color="primary"
+      active-color="deep-orange-10"
       indicator-color="transparent"
       class="text-grey"
       v-model="tab"
@@ -30,7 +30,7 @@
           @click="$router.push('/waitings')"
         />
       </q-tab>
-      <q-tab name="home">
+      <q-tab name="patients">
         <q-btn
           flat
           round
@@ -40,7 +40,7 @@
           @click="$router.push('/patients')"
         />
       </q-tab>
-      <q-tab name="home">
+      <q-tab name="profile">
         <q-btn
           flat
           round
@@ -58,7 +58,9 @@
 export default {
   name: 'Footer',
   data () {
-    return {}
+    return {
+      tab: 'home'
+    }
   }
 }
 </script>

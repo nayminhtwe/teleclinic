@@ -65,7 +65,7 @@
           label="Doctors"
           no-caps
           stack
-          @click="alert = true"
+          @click="$router.push('doctor')"
           outline
         />
       </div>

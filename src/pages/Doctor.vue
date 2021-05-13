@@ -180,8 +180,7 @@ export default {
       charity: {},
       charities: [],
       search: '',
-      message: '',
-      charity_type: this.$route.params.type
+      message: ''
     }
   },
   computed: {
@@ -221,7 +220,7 @@ export default {
     getCharity () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
       this.$api.get(
-        `get_${this.charity_type}`
+        'doctors'
       ).then((response) => {
         this.charities = response.data.data
       })

@@ -22,7 +22,7 @@
               />
             </template>
           </q-banner>
-          <div class="col-lg-4 col-12">
+          <div class="col-12">
             <div class="text-h6">Medical Doctor Registration Only</div>
           </div>
           <div class="col-lg-4 col-12">
@@ -116,7 +116,7 @@
               </template>
             </q-file>
           </div>
-          <div class="col-lg-4 col-12 row justify-center">
+          <div class="col-lg-4 col-12 offset-6 q-my-md">
             <q-checkbox
               left-label
               v-model="hide"

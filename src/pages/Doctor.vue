@@ -91,6 +91,7 @@
               color="primary"
               label="Message"
               size="md"
+              @click="$router.push(`/chat/${charity.app_user_id}`)"
             />
           </div>
         </q-card-actions>

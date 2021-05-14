@@ -9,6 +9,36 @@
           :text="[message.message]"
           :sent="message.sender_id != sender_id"
         />
+
+        <q-input
+          filled
+          bottom-slots
+          v-model="text"
+          label="Messages"
+          counter
+          maxlength="12"
+          :dense="dense"
+          @keyup.enter.native="sendMessage()"
+        >
+          <template v-slot:before>
+            <q-icon name="add" />
+          </template>
+
+          <template v-slot:hint>
+            Field hint
+          </template>
+
+          <template v-slot:append>
+            <q-btn
+              round
+              dense
+              flat
+              icon="send"
+              @click="sendMessage()"
+            />
+          </template>
+        </q-input>
+
       </div>
     </div>
   </q-page>
@@ -27,6 +57,7 @@ export default {
   },
   data () {
     return {
+      text: '',
       messages: [],
       sender_id: this.$route.params.user_id
     }
@@ -47,10 +78,10 @@ export default {
     },
     getMessages () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      const formData = new FormData()
-      formData.append('sender_id', this.sender_id)
+      // const formData = new FormData()
+      // formData.append('sender_id', this.sender_id)
       this.$api.post(
-        'messages', formData
+        'messages', { sender_id: this.sender_id }
       ).then((response) => {
         this.messages = response.data.data
       })
@@ -73,6 +104,18 @@ export default {
       })
       // End pusher listener
       this.getMessages()
+    },
+    sendMessage () {
+      if (this.text !== '') {
+        this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+        this.$api.post('messages/send', {
+          receiver_id: this.sender_id,
+          message: this.text
+        }).then((resp) => {
+          this.messages.push(resp.data)
+          this.text = ''
+        })
+      }
     }
   }
 }

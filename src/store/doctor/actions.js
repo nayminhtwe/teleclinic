@@ -20,10 +20,10 @@ const actions = {
         localStorage.removeItem('access_token') // if the request fails, remove any possible user token if possible
       })
   },
-  profile ({ commit, getters }) {
+  async profile ({ commit, getters }) {
     commit(types.PROFILE_REQUEST)
     api.defaults.headers.Authorization = `Bearer ${getters.getDoctorToken}`
-    api.get(
+    await api.get(
       'profile'
     ).then((response) => {
       commit(types.PROFILE_SUCCESS, response.data.data)

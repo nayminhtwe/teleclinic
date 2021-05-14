@@ -7,7 +7,7 @@
           v-for="message in messages"
           :key="message.id"
           :text="[message.message]"
-          :sent="message.sender_id == sender_id"
+          :sent="message.sender_id != sender_id"
         />
       </div>
     </div>
@@ -18,6 +18,7 @@
 import { mapGetters } from 'vuex'
 import { constantes } from 'src/boot/constantes.js'
 import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
+import Pusher from 'pusher-js' // import Pusher
 
 export default {
   name: 'Chat',
@@ -32,19 +33,17 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getDoctorToken: 'doctor/getDoctorToken'
+      getDoctorToken: 'doctor/getDoctorToken',
+      getDoctorProfile: 'doctor/getDoctorProfile'
     })
   },
-  created () {
-    this.getMessages()
+  async created () {
+    await this.$store.dispatch('doctor/profile')
+    this.subscribe()
   },
   methods: {
     getFile (path) {
       return `${constantes.SERVER_MEDIA}${path}`
-    },
-    popup (charity) {
-      this.charity = charity
-      this.card = true
     },
     getMessages () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
@@ -55,6 +54,25 @@ export default {
       ).then((response) => {
         this.messages = response.data.data
       })
+    },
+    subscribe () {
+      this.$store.dispatch('doctor/profile')
+      const app = this
+      // Start pusher listener
+      Pusher.logToConsole = true
+
+      var pusher = new Pusher('836d77ac3f3198d7cf6d', {
+        cluster: 'ap1',
+        forceTLS: true
+      })
+
+      var channel = pusher.subscribe('newMessage-' + this.sender_id + '-' + this.getDoctorProfile.id) // newMessage-[chatting-with-who]-[my-id]
+
+      channel.bind('App\\Events\\MessageSent', function (data) {
+        app.messages.push(data.message)
+      })
+      // End pusher listener
+      this.getMessages()
     }
   }
 }

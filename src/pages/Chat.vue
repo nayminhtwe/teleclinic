@@ -3,12 +3,24 @@
     <profile-header />
     <div class="q-pa-md row justify-center">
       <div style="width: 100%; max-width: 400px">
-        <q-chat-message
+        <div
           v-for="message in messages"
           :key="message.id"
-          :text="[message.message]"
-          :sent="message.sender_id != sender_id"
-        />
+        >
+          <q-chat-message
+            :text="[message.message]"
+            :sent="message.sender_id != sender_id"
+            v-if="message.type === 0"
+          />
+
+          <q-chat-message
+            :sent="message.sender_id != sender_id"
+            v-else
+          ><img
+              :src="getFile(message.message)"
+              width="200px"
+            /></q-chat-message>
+        </div>
 
         <q-input
           filled
@@ -20,15 +32,15 @@
           :dense="dense"
           @keyup.enter.native="sendMessage()"
         >
-          <template v-slot:before>
+          <!-- <template v-slot:before>
             <q-icon name="add" />
-          </template>
+          </template> -->
 
           <template v-slot:hint>
             Field hint
           </template>
 
-          <template v-slot:append>
+          <template v-slot:after>
             <q-btn
               round
               dense
@@ -38,6 +50,34 @@
             />
           </template>
         </q-input>
+
+        <q-file
+          filled
+          bottom-slots
+          v-model="file"
+          label="File"
+          counter
+        >
+          <template v-slot:prepend>
+            <q-icon
+              name="close"
+              @click.stop="file = null"
+              class="cursor-pointer"
+            />
+
+          </template>
+          <template v-slot:after>
+            <q-icon
+              name="send"
+              @click.stop
+              @click="sendFile()"
+            />
+          </template>
+
+          <template v-slot:hint>
+            Field hint
+          </template>
+        </q-file>
 
       </div>
     </div>
@@ -58,7 +98,9 @@ export default {
   data () {
     return {
       text: '',
+      file: '',
       messages: [],
+      type: 0,
       sender_id: this.$route.params.user_id
     }
   },
@@ -110,10 +152,27 @@ export default {
         this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
         this.$api.post('messages/send', {
           receiver_id: this.sender_id,
-          message: this.text
+          message: this.text,
+          type: this.type
         }).then((resp) => {
           this.messages.push(resp.data)
           this.text = ''
+          this.type = 0
+        })
+      }
+    },
+    sendFile () {
+      if (this.file !== '') {
+        const formData = new FormData()
+        formData.append('file', this.file)
+
+        this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+        this.$api.post('file_upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then((response) => {
+          if (response.data.error_code === '0') {
+            this.text = response.data.file
+            this.type = 1
+            this.sendMessage()
+          }
         })
       }
     }

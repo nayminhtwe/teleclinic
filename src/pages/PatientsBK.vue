@@ -8,7 +8,7 @@
         style="width: 10em; border: 1px solid grey;"
         v-for="patient in visited_patients"
         :key="patient.id"
-        @click="$router.push(`/chat/${patient.id}`)"
+        @click="patientdetail(patient.patient_id)"
       >
         <q-avatar
           size="5em"
@@ -18,9 +18,9 @@
         </q-avatar>
 
         <q-card-section>
-          <div class="text-weight-regular">{{ patient.name }}</div>
-          <!-- <div class="text-weight-regular">{{ patient.Gender }}, {{ patient.Age }}</div>
-          <div class="text-weight-regular">{{ patient.Contact_Number }}</div> -->
+          <div class="text-weight-regular">{{ patient.patient.Name }}</div>
+          <div class="text-weight-regular">{{ patient.patient.Gender }}, {{ patient.patient.Age }}</div>
+          <div class="text-weight-regular">{{ patient.patient.Contact_Number }}</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -47,13 +47,20 @@ export default {
   data () {
     return {
       alert: false,
-      visited_patients: []
+      visited_patients: [],
+      waiting_patients: []
     }
   },
   created () {
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
     this.$api.get(
-      'all_users'
+      'waiting'
+    ).then((response) => {
+      this.waiting_patients = response.data.data
+    })
+
+    this.$api.get(
+      'patients'
     ).then((response) => {
       this.visited_patients = response.data.data
     })

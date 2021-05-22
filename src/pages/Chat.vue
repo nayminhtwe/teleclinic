@@ -22,7 +22,52 @@
             /></q-chat-message>
         </div>
 
-        <q-input
+        <div class="row">
+          <div class="col-3">
+            <q-file
+              borderless
+              v-model="file"
+            >
+              <template v-slot:before>
+                <q-icon
+                  name="attach_file"
+                  @click.stop
+                />
+              </template>
+            </q-file>
+          </div>
+
+          <div class="col-9">
+            <q-input
+              filled
+              bottom-slots
+              v-model="text"
+              label="Messages"
+              counter
+              maxlength="12"
+              :dense="dense"
+              :readonly="!!file"
+              @keyup.enter.native="send"
+            >
+
+              <template v-slot:hint>
+                Field hint
+              </template>
+
+              <template v-slot:after>
+                <q-btn
+                  round
+                  dense
+                  flat
+                  icon="send"
+                  @click="send"
+                />
+              </template>
+            </q-input>
+          </div>
+        </div>
+
+        <!-- <q-input
           filled
           bottom-slots
           v-model="text"
@@ -32,9 +77,6 @@
           :dense="dense"
           @keyup.enter.native="sendMessage()"
         >
-          <!-- <template v-slot:before>
-            <q-icon name="add" />
-          </template> -->
 
           <template v-slot:hint>
             Field hint
@@ -77,7 +119,7 @@
           <template v-slot:hint>
             Field hint
           </template>
-        </q-file>
+        </q-file> -->
 
       </div>
     </div>
@@ -139,7 +181,7 @@ export default {
         forceTLS: true
       })
 
-      var channel = pusher.subscribe('newMessage-' + this.sender_id + '-' + this.getDoctorProfile.id) // newMessage-[chatting-with-who]-[my-id]
+      var channel = pusher.subscribe('newMessage-' + this.sender_id + '-' + this.getDoctorProfile.app_user_id) // newMessage-[chatting-with-who]-[my-id]
 
       channel.bind('App\\Events\\MessageSent', function (data) {
         app.messages.push(data.message)
@@ -161,7 +203,7 @@ export default {
         })
       }
     },
-    sendFile () {
+    send () {
       if (this.file !== '') {
         const formData = new FormData()
         formData.append('file', this.file)
@@ -169,12 +211,15 @@ export default {
         this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
         this.$api.post('file_upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then((response) => {
           if (response.data.error_code === '0') {
+            this.file = ''
             this.text = response.data.file
             this.type = 1
             this.sendMessage()
           }
         })
       }
+
+      this.sendMessage()
     }
   }
 }

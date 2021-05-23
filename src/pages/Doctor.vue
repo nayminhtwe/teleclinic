@@ -97,8 +97,32 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+    <div class="q-pa-sm">
+      <div class="q-gutter-y-xs">
+        <q-tabs
+          v-model="tab"
+          inline-label
+          dense
+          active-color="white"
+          active-bg-color="red"
+        >
+          <q-tab
+            name=""
+            label="All"
+            no-caps
+          />
+          <q-tab
+            v-for="specialization in specializations"
+            :key="specialization.id"
+            :name="specialization.Name"
+            :label="specialization.Name"
+            no-caps
+          />
+        </q-tabs>
+      </div>
+    </div>
     <div class="q-py-lg">
-      <div class="text-h5 q-mb-md">Find your {{ charity_type }}</div>
+      <!-- <div class="text-h5 q-mb-md">Find your {{ charity_type }}</div> -->
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
           rounded
@@ -142,11 +166,11 @@
             </q-avatar>
           </div>
           <div
-            class="col-7"
+            class="col-7 column justify-center"
             @click="popup(charity)"
           >
             <div class="text-h6">{{ charity.name }}</div>
-            <div>{{ charity.address }}</div>
+            <!-- <div>{{ charity.address }}</div> -->
           </div>
           <div class="col-2 column justify-center">
             <q-icon
@@ -181,7 +205,9 @@ export default {
       charity: {},
       charities: [],
       search: '',
-      message: ''
+      message: '',
+      specializations: [],
+      tab: ''
     }
   },
   computed: {
@@ -189,8 +215,19 @@ export default {
       getDoctorToken: 'doctor/getDoctorToken'
     })
   },
-  created () {
-    this.getCharity()
+  watch: {
+    tab: function (val) {
+      this.getDoctor()
+    }
+  },
+  async created () {
+    this.getDoctor()
+
+    await this.$api.get(
+      'specialization'
+    ).then((response) => {
+      this.specializations = response.data.data
+    })
   },
   methods: {
     getFile (path) {
@@ -218,10 +255,10 @@ export default {
         this.getCharity()
       })
     },
-    getCharity () {
+    getDoctor () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
       this.$api.get(
-        'doctors'
+        `doctors?specialization=${this.tab}`
       ).then((response) => {
         this.charities = response.data.data
       })

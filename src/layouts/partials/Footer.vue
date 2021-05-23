@@ -10,44 +10,52 @@
       class="text-grey"
       v-model="tab"
     >
-      <q-tab name="home">
+      <q-tab
+        name="home"
+        @click="$router.push('/')"
+      >
         <q-btn
           flat
           round
           dense
           icon="home"
           class="q-mr-md"
-          @click="$router.push('/')"
         />
       </q-tab>
-      <q-tab name="waiting">
+      <q-tab
+        name="patients"
+        @click="$router.push('/patients')"
+      >
         <q-btn
           flat
           round
           dense
           icon="history"
           class="q-mr-md"
-          @click="$router.push('/waitings')"
         />
       </q-tab>
-      <q-tab name="patients">
+      <q-tab
+        name="inbox"
+        @click="$router.push('/inbox')"
+      >
         <q-btn
           flat
           round
           dense
-          icon="local_hospital"
+          icon="chat"
           class="q-mr-md"
-          @click="$router.push('/patients')"
         />
       </q-tab>
-      <q-tab name="profile">
+      <q-tab
+        name="profile"
+        @click="$router.push('/profile')"
+      >
         <q-btn
           flat
           round
           dense
           icon="account_circle"
           class="q-mr-md"
-          @click="$router.push('/profile')"
         />
       </q-tab>
     </q-tabs>

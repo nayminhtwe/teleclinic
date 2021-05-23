@@ -138,10 +138,7 @@
           :dense="dense"
         >
           <template v-slot:prepend>
-            <q-icon
-              name="search"
-              @click="filter"
-            />
+            <q-icon name="search" />
           </template>
         </q-input>
       </div>
@@ -188,10 +185,8 @@
           <div class="col-2 column justify-center">
             <q-icon
               name="favorite"
-              class="border-icon"
-              :class="charity.favorite_status ? 'text-black' : 'text-white'"
+              class="border-icon text-white"
               size="md"
-              @click="favourite(charity.id)"
             />
           </div>
         </div>

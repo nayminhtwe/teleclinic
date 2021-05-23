@@ -163,10 +163,16 @@
         />
       </div>
     </div>
-    <div class="q-my-md q-ml-md">
+    <div
+      class="q-my-md q-ml-md"
+      v-if="getDoctorProfile.status === '1'"
+    >
       <div class="text-h6">For Doctors</div>
     </div>
-    <div class="q-pa-md row items-start q-gutter-lg">
+    <div
+      class="q-pa-md row items-start q-gutter-lg"
+      v-if="getDoctorProfile.status === '1'"
+    >
       <div class="col-12 text-h6">Patients In Waiting Room ({{ waiting_patients.length }})</div>
       <div
         v-for="patient in waiting_patients"
@@ -196,7 +202,10 @@
         </q-card>
       </div>
     </div>
-    <div class="q-pa-md row items-start q-gutter-lg">
+    <div
+      class="q-pa-md row items-start q-gutter-lg"
+      v-if="getDoctorProfile.status === '1'"
+    >
       <div class="col-12 text-h6">Your Patients ({{ visited_patients.length }})</div>
       <q-card
         class="my-card"
@@ -253,17 +262,20 @@ export default {
     this.$store.dispatch('doctor/profile')
 
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-    this.$api.get(
-      'waiting'
-    ).then((response) => {
-      this.waiting_patients = response.data.data
-    })
 
-    this.$api.get(
-      'patients'
-    ).then((response) => {
-      this.visited_patients = response.data.data
-    })
+    if (this.getDoctorProfile.status === '1') {
+      this.$api.get(
+        'waiting'
+      ).then((response) => {
+        this.waiting_patients = response.data.data
+      })
+
+      this.$api.get(
+        'patients'
+      ).then((response) => {
+        this.visited_patients = response.data.data
+      })
+    }
   },
   methods: {
     patientdetail (id) {

@@ -1,7 +1,10 @@
 <template>
   <q-page>
     <list-header />
-    <div class="q-pa-md row items-start q-gutter-lg">
+    <div
+      class="q-pa-md row items-start q-gutter-lg"
+      v-if="getDoctorProfile.status === '1'"
+    >
       <div class="col-12 text-h6">Your Patients ({{ visited_patients.length }})</div>
       <q-card
         class="my-card text-center"
@@ -18,9 +21,9 @@
         </q-avatar>
 
         <q-card-section>
-          <div class="text-weight-regular">{{ patient.name }}</div>
-          <!-- <div class="text-weight-regular">{{ patient.Gender }}, {{ patient.Age }}</div>
-          <div class="text-weight-regular">{{ patient.Contact_Number }}</div> -->
+          <div class="text-weight-regular">{{ patient.patient_info.name }}</div>
+          <div class="text-weight-regular">{{ patient.patient_info.age }}, {{ patient.Age }}</div>
+          <div class="text-weight-regular">{{ patient.patient_info.gender }}</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -41,6 +44,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      getDoctorProfile: 'doctor/getDoctorProfile',
       getDoctorToken: 'doctor/getDoctorToken'
     })
   },

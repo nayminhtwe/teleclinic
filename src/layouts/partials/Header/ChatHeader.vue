@@ -42,7 +42,14 @@
         </q-avatar>
       </div>
       <div class="col-8 offset-1">
-        <div class="text-h5">{{ user.name }}</div>
+        <div
+          class="text-h5"
+          v-if="!user.hide_my_info"
+        >{{ user.name }}</div>
+        <div
+          class="text-h5"
+          v-else
+        >EZCare Doctor {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(user.id) }}</div>
         <div class="text-h6">{{ user.qualifications }}</div>
         <div class="text-h6">{{ user.specialization }}</div>
       </div>

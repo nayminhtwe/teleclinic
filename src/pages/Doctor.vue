@@ -48,13 +48,18 @@
           />
 
           <div class="row no-wrap items-center">
-            <div class="col text-h6 ellipsis">
+            <div
+              class="col text-h6 ellipsis"
+              v-if="!charity.hide_my_info"
+            >
               {{ charity.name }}
             </div>
-            <!-- <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
-              <q-icon name="favorite" />
-              250 ft
-            </div> -->
+            <div
+              class="col text-h6 ellipsis"
+              v-else
+            >
+              EZCare Doctor {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(charity.id) }}
+            </div>
           </div>
 
           <!-- <q-rating
@@ -76,7 +81,7 @@
         <q-separator />
 
         <q-card-actions>
-          <div class="col-6">
+          <!-- <div class="col-6">
             <q-btn
               v-close-popup
               color="primary"
@@ -84,8 +89,8 @@
               size="md"
               :href="'tel:'+charity.contact_number"
             />
-          </div>
-          <div class="col-6 column items-end">
+          </div> -->
+          <div class="col column items-center">
             <q-btn
               v-close-popup
               color="primary"
@@ -169,7 +174,14 @@
             class="col-7 column justify-center"
             @click="popup(charity)"
           >
-            <div class="text-h6">{{ charity.name }}</div>
+            <div
+              class="text-h6"
+              v-if="!charity.hide_my_info"
+            >{{ charity.name }}</div>
+            <div
+              class="text-h6"
+              v-else
+            >EZCare Doctor {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(charity.id) }}</div>
             <!-- <div>{{ charity.address }}</div> -->
           </div>
           <div class="col-2 column justify-center">

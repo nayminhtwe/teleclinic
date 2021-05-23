@@ -28,7 +28,7 @@ const routes = [
       { path: 'add_charity', component: () => import('pages/AddCharity.vue'), beforeEnter: ifAuthenticated },
       { path: 'charity/:type', component: () => import('src/pages/Charity.vue'), beforeEnter: ifAuthenticated },
       { path: 'doctor', component: () => import('src/pages/Doctor.vue'), beforeEnter: ifAuthenticated },
-      { path: 'chat/:user_id', component: () => import('src/pages/Chat.vue'), beforeEnter: ifAuthenticated }
+      { path: 'chat/:user_id', name: 'chat', component: () => import('src/pages/Chat.vue'), beforeEnter: ifAuthenticated }
     ]
   },
   {

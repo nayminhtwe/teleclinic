@@ -30,7 +30,7 @@
     >
       <q-card class="my-card">
         <q-img
-          :src="getFile(charity.profile_image)"
+          :src="getFile(charity.profile_image.profile_picture)"
           v-if="charity.profile_image"
         />
 
@@ -91,7 +91,7 @@
               color="primary"
               label="Message"
               size="md"
-              @click="$router.push(`/chat/${charity.app_user_id}`)"
+              @click="$router.push({ name: 'chat', params: { user_id: charity.app_user_id, user: charity } })"
             />
           </div>
         </q-card-actions>
@@ -128,7 +128,7 @@
           >
             <q-avatar size="60px">
               <img
-                :src="getFile(charity.profile_image)"
+                :src="getFile(charity.profile_image.profile_picture)"
                 v-if="charity.profile_image"
               />
               <!-- <img
@@ -169,7 +169,7 @@ import { constantes } from 'src/boot/constantes.js'
 import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
 
 export default {
-  name: 'AddCharity',
+  name: 'Doctor',
   components: {
     ProfileHeader
   },

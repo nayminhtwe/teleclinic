@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <profile-header />
+    <chat-header />
     <div class="q-pa-md row justify-center">
       <div style="width: 100%; max-width: 400px">
         <div
@@ -129,13 +129,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import { constantes } from 'src/boot/constantes.js'
-import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
+import ChatHeader from 'src/layouts/partials/Header/ChatHeader.vue'
 import Pusher from 'pusher-js' // import Pusher
 
 export default {
   name: 'Chat',
   components: {
-    ProfileHeader
+    ChatHeader
   },
   data () {
     return {

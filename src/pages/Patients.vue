@@ -8,7 +8,7 @@
         style="width: 10em; border: 1px solid grey;"
         v-for="patient in visited_patients"
         :key="patient.id"
-        @click="$router.push({ name: 'chat', params: { user_id: patient.app_user_id, user: patient } })"
+        @click="$router.push({ name: 'chat', params: { user_id: patient.app_user_id, user: patient.patient_info } })"
       >
         <q-avatar
           size="5em"

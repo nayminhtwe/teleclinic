@@ -65,7 +65,7 @@
           label="Doctors"
           no-caps
           stack
-          @click="$router.push('doctor')"
+          @click="treatment"
           outline
         />
       </div>
@@ -268,6 +268,14 @@ export default {
   methods: {
     patientdetail (id) {
       this.$router.push(`/patient/${id}`)
+    },
+
+    treatment () {
+      if (this.getDoctorProfile.status === 0) {
+        this.$router.push('profile')
+      } else {
+        this.$router.push('doctor')
+      }
     }
   }
 }

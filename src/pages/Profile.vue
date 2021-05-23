@@ -3,7 +3,289 @@
     <profile-header />
     <div
       class="q-pa-xs"
-      v-if="getDoctorProfile.status === 0"
+      v-if="getDoctorProfile.status == 0"
+    >
+      <div class="q-pa-md q-gutter-sm">
+        <q-btn
+          color="white"
+          text-color="black"
+          label="Patient"
+          @click="register = 0"
+        />
+        <q-btn
+          color="primary"
+          label="Doctor"
+          @click="register = 1"
+        />
+      </div>
+
+      <div v-if="register == 0">
+        <div class="row q-gutter-md">
+          <q-banner
+            inline-actions
+            class="text-white bg-red"
+            v-if="banner"
+          >
+            {{ message }}
+            <template v-slot:action>
+              <q-btn
+                flat
+                color="white"
+                icon="error"
+                @click="banner = false"
+              />
+            </template>
+          </q-banner>
+          <div class="col-12 q-py-md">
+            <div class="text-h6">Patient Registration</div>
+          </div>
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="patient_name"
+              label="Name"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="patient_age"
+              label="Age"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="patient_gender"
+              label="Gender"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="patient_address"
+              label="Adress"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="patient_phone"
+              label="Phone"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+        </div>
+        <div class="q-py-md q-gutter-sm">
+          <q-btn
+            color="red"
+            class="text-white full-width"
+            rounded
+            @click="patient"
+          >
+            <div class="ellipsis">
+              Register
+            </div>
+          </q-btn>
+        </div>
+      </div>
+
+      <div v-if="register == 1">
+        <div class="row q-gutter-md">
+          <q-banner
+            inline-actions
+            class="text-white bg-red"
+            v-if="banner"
+          >
+            {{ message }}
+            <template v-slot:action>
+              <q-btn
+                flat
+                color="white"
+                icon="error"
+                @click="banner = false"
+              />
+            </template>
+          </q-banner>
+          <div class="col-12 q-py-md">
+            <div class="text-h6">Medical Doctor Registration</div>
+          </div>
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="name"
+              label="Name"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="sama_number"
+              label="SAMA No."
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="qualifications"
+              label="Qualifications"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-select
+              v-model="specialization"
+              label="Specializations"
+              :options="specializations"
+              :rules="[val => !!val || 'Field is required']"
+              :option-label="(item) => item === null ? null : item.Name"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="contact_number"
+              label="Phone No."
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="email"
+              label="Email"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="time"
+              label="Available Time"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
+            <q-input
+              v-model="other"
+              label="Comment"
+            />
+          </div>
+          <div class="col-12 offset-6 q-my-md">
+            <q-file
+              borderless
+              v-model="profile_image"
+            >
+              <template v-slot:prepend>
+                <img
+                  src="~assets/profile_upload.jpg"
+                  style="width: 72px"
+                  @click.stop
+                />
+              </template>
+            </q-file>
+          </div>
+          <div class="col-12 offset-6 q-my-md">
+            <q-file
+              borderless
+              v-model="sama_or_nrc"
+            >
+              <template v-slot:prepend>
+                <img
+                  src="~assets/certificate.png"
+                  style="width: 72px"
+                  @click.stop
+                />
+              </template>
+            </q-file>
+          </div>
+          <div class="col-lg-4 col-12 offset-6 q-my-md">
+            <q-checkbox
+              left-label
+              v-model="hide"
+              label="Hide My Info"
+            />
+          </div>
+        </div>
+
+        <div class="text-h6 q-py-sm">
+          Certificates
+        </div>
+
+        <div class="col-lg-4 col-12 q-py-md">
+
+          <q-btn
+            round
+            color="primary"
+            icon="add"
+            @click="addInput"
+          />
+
+        </div>
+        <div
+          class="row"
+          v-for="(file, id) in files"
+          :key="id"
+        >
+          <div class="col-6 col-lg-4">
+            <q-input
+              v-model="file.name"
+              label="Name"
+              label-color="white"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+          <div class="col-6 col-lg-4">
+            <q-file
+              filled
+              bottom-slots
+              v-model="file.data"
+              label="File"
+              label-color="white"
+              counter
+              :rules="[val => !!val || 'Field is required']"
+            >
+              <template v-slot:prepend>
+                <q-icon
+                  name="cloud_upload"
+                  color="white"
+                  @click.stop
+                />
+              </template>
+              <template v-slot:append>
+                <q-icon
+                  name="close"
+                  @click.prevent="clearInput(id)"
+                  class="cursor-pointer"
+                />
+              </template>
+            </q-file>
+          </div>
+        </div>
+        <div class="q-py-md q-gutter-sm">
+          <q-btn
+            color="red"
+            class="text-white full-width"
+            rounded
+            @click="submit"
+          >
+            <div class="ellipsis">
+              Register
+            </div>
+          </q-btn>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="q-pa-xs"
+      v-if="getDoctorProfile.status == 2"
     >
       <div class="row q-gutter-md">
         <q-banner
@@ -21,175 +303,49 @@
             />
           </template>
         </q-banner>
-        <div class="col-12">
-          <div class="text-h6">Medical Doctor Registration Only</div>
+        <div class="col-12 q-py-md">
+          <div class="text-h6">Patient Profile</div>
         </div>
         <div class="col-lg-4 col-12">
           <q-input
-            v-model="name"
+            :value="getDoctorProfile.name"
             label="Name"
-            :rules="[val => !!val || 'Field is required']"
+            readonly
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
-            v-model="sama_number"
-            label="SAMA No."
-            :rules="[val => !!val || 'Field is required']"
+            :value="getDoctorProfile.age"
+            label="Age"
+            readonly
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
-            v-model="qualifications"
-            label="Qualifications"
-            :rules="[val => !!val || 'Field is required']"
-          />
-        </div>
-
-        <div class="col-lg-4 col-12">
-          <q-select
-            v-model="specialization"
-            label="Specializations"
-            :options="specializations"
-            :rules="[val => !!val || 'Field is required']"
-            :option-label="(item) => item === null ? null : item.Name"
+            :value="getDoctorProfile.gender"
+            label="Gender"
+            readonly
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
-            v-model="contact_number"
-            label="Phone No."
-            :rules="[val => !!val || 'Field is required']"
+            :value="getDoctorProfile.address"
+            label="Adress"
+            readonly
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
-            v-model="email"
-            label="Email"
-            :rules="[val => !!val || 'Field is required']"
-          />
-        </div>
-        <div class="col-lg-4 col-12">
-          <q-input
-            v-model="time"
-            label="Available Time"
-            :rules="[val => !!val || 'Field is required']"
+            :value="getDoctorProfile.contact_number"
+            label="Phone"
+            readonly
           />
         </div>
 
-        <div class="col-lg-4 col-12">
-          <q-input
-            v-model="other"
-            label="Comment"
-          />
-        </div>
-        <div class="col-12 offset-6 q-my-md">
-          <q-file
-            borderless
-            v-model="profile_image"
-          >
-            <template v-slot:prepend>
-              <img
-                src="~assets/profile_upload.jpg"
-                style="width: 72px"
-                @click.stop
-              />
-            </template>
-          </q-file>
-        </div>
-        <div class="col-12 offset-6 q-my-md">
-          <q-file
-            borderless
-            v-model="sama_or_nrc"
-          >
-            <template v-slot:prepend>
-              <img
-                src="~assets/certificate.png"
-                style="width: 72px"
-                @click.stop
-              />
-            </template>
-          </q-file>
-        </div>
-        <div class="col-lg-4 col-12 offset-6 q-my-md">
-          <q-checkbox
-            left-label
-            v-model="hide"
-            label="Hide My Info"
-          />
-        </div>
-      </div>
-
-      <div class="text-h6 q-py-sm">
-        Certificates
-      </div>
-
-      <div class="col-lg-4 col-12 q-py-md">
-
-        <q-btn
-          round
-          color="primary"
-          icon="add"
-          @click="addInput"
-        />
-
-      </div>
-      <div
-        class="row"
-        v-for="(file, id) in files"
-        :key="id"
-      >
-        <div class="col-6 col-lg-4">
-          <q-input
-            v-model="file.name"
-            label="Name"
-            label-color="white"
-            :rules="[val => !!val || 'Field is required']"
-          />
-        </div>
-        <div class="col-6 col-lg-4">
-          <q-file
-            filled
-            bottom-slots
-            v-model="file.data"
-            label="File"
-            label-color="white"
-            counter
-            :rules="[val => !!val || 'Field is required']"
-          >
-            <template v-slot:prepend>
-              <q-icon
-                name="cloud_upload"
-                color="white"
-                @click.stop
-              />
-            </template>
-            <template v-slot:append>
-              <q-icon
-                name="close"
-                @click.prevent="clearInput(id)"
-                class="cursor-pointer"
-              />
-            </template>
-          </q-file>
-        </div>
-      </div>
-      <div class="q-py-md q-gutter-sm">
-        <q-btn
-          color="red"
-          style="width: 300px"
-          class="text-white"
-          rounded
-          @click="submit"
-        >
-          <div class="ellipsis">
-            Register
-          </div>
-        </q-btn>
       </div>
     </div>
     <div
@@ -216,7 +372,13 @@
           <div
             class="text-h6 text-red"
             v-if="getDoctorProfile.status == 3"
-          >Please wait Admin Apporoval</div>
+          >Please wait Admin Apporoval
+          </div>
+          <div
+            class="text-h6 text-red"
+            v-if="getDoctorProfile.status == 1"
+          >Doctor Profle
+          </div>
         </div>
         <div class="col-lg-4 col-12">
           <q-input
@@ -326,7 +488,13 @@ export default {
       profile_image: '',
       sama_or_nrc: '',
       hide: false,
-      specializations: []
+      specializations: [],
+      register: '',
+      patient_name: '',
+      patient_age: '',
+      patient_gender: '',
+      patient_address: '',
+      patient_phone: ''
     }
   },
   components: {
@@ -366,6 +534,22 @@ export default {
       setTimeout(() => {
         this.$router.push('/login/login')
       }, 2000)
+    },
+    patient () {
+      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+      this.$api.post('patient_create', {
+        name: this.patient_name,
+        age: this.patient_age,
+        gender: this.patient_gender,
+        address: this.patient_address,
+        contact_number: this.patient_phone
+      }).then((response) => {
+        if (response.data.error_code === '0') {
+          this.$router.push('/')
+        }
+      }).catch(err => {
+        console.log(err.response.data)
+      })
     },
     async submit () {
       const formData = new FormData()

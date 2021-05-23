@@ -92,6 +92,7 @@
           </div> -->
           <div class="col column items-center">
             <q-btn
+              v-if="getDoctorProfile.status == 2"
               v-close-popup
               color="primary"
               label="Message"
@@ -224,6 +225,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      getDoctorProfile: 'doctor/getDoctorProfile',
       getDoctorToken: 'doctor/getDoctorToken'
     })
   },
@@ -233,6 +235,8 @@ export default {
     }
   },
   async created () {
+    this.$store.dispatch('doctor/profile')
+
     this.getDoctor()
 
     await this.$api.get(
@@ -248,24 +252,6 @@ export default {
     popup (charity) {
       this.charity = charity
       this.card = true
-    },
-    filter () {
-      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      this.$api.get(
-        `filter_${this.charity_type}?name=${this.search}`
-      ).then((response) => {
-        this.charities = response.data.data
-      })
-    },
-    favourite (id) {
-      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      this.$api.post(
-        `favorite_${this.charity_type}/${id}`
-      ).then((response) => {
-        this.message = response.data.message
-        this.alert = true
-        this.getCharity()
-      })
     },
     getDoctor () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`

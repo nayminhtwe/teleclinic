@@ -21,8 +21,9 @@
               width="200px"
             /></q-chat-message>
         </div>
+        <div class="q-py-xl" />
 
-        <div class="row">
+        <div class="row absolute-bottom">
           <div class="col-3">
             <q-file
               borderless

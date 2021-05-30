@@ -11,7 +11,7 @@
           <q-expansion-item
             group="somegroup"
             icon="explore"
-            :label="visit.doctor.Name +'  '+visit.doctor.Qualifications"
+            :label="visit.doctor.name +'  '+visit.doctor.qualifications"
             header-class="text-primary"
           >
             <q-card class="bg-teal-2">

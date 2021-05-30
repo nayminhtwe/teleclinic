@@ -22,6 +22,85 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+    <q-dialog v-model="register">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Patient Registration</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="row q-gutter-md">
+            <q-banner
+              inline-actions
+              class="text-white bg-red"
+              v-if="banner"
+            >
+              {{ message }}
+              <template v-slot:action>
+                <q-btn
+                  flat
+                  color="white"
+                  icon="error"
+                  @click="banner = false"
+                />
+              </template>
+            </q-banner>
+            <div class="col-lg-4 col-12">
+              <q-input
+                v-model="patient_name"
+                label="Name"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+
+            <div class="col-lg-4 col-12">
+              <q-input
+                v-model="patient_age"
+                label="Age"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+
+            <div class="col-lg-4 col-12">
+              <q-input
+                v-model="patient_gender"
+                label="Gender"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+
+            <div class="col-lg-4 col-12">
+              <q-input
+                v-model="patient_address"
+                label="Adress"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+
+            <div class="col-lg-4 col-12">
+              <q-input
+                v-model="patient_phone"
+                label="Phone"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+
+          </div>
+          <div class="q-py-md q-gutter-sm">
+            <q-btn
+              color="red"
+              class="text-white full-width"
+              rounded
+              @click="patient"
+            >
+              <div class="ellipsis">
+                Register
+              </div>
+            </q-btn>
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
     <div class="q-my-sm q-ml-sm">
       <div class="text-h5">Hello {{ getDoctorProfile.name }},</div>
     </div>
@@ -254,6 +333,12 @@ export default {
   data () {
     return {
       alert: false,
+      register: false,
+      patient_name: '',
+      patient_age: '',
+      patient_gender: '',
+      patient_address: '',
+      patient_phone: '',
       visited_patients: [],
       waiting_patients: []
     }
@@ -284,10 +369,27 @@ export default {
 
     treatment () {
       if (this.getDoctorProfile.status === 0) {
-        this.$router.push('profile')
+        this.register = true
       } else {
         this.$router.push('doctor')
       }
+    },
+    async patient () {
+      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+      await this.$api.post('patient_create', {
+        name: this.patient_name,
+        age: this.patient_age,
+        gender: this.patient_gender,
+        address: this.patient_address,
+        contact_number: this.patient_phone
+      }).then((response) => {
+        if (response.data.error_code === '0') {
+          this.$store.dispatch('doctor/profile')
+          this.register = false
+        }
+      }).catch(err => {
+        console.log(err.response.data)
+      })
     }
   }
 }

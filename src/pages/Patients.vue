@@ -5,7 +5,7 @@
       class="q-pa-md row items-start q-gutter-lg"
       v-if="getDoctorProfile.status === '1'"
     >
-      <div class="col-12 text-h6">Your Patients ({{ visited_patients.length }})</div>
+      <div class="col-12 text-h6">All Patients ({{ visited_patients.length }})</div>
       <q-card
         class="my-card text-center"
         style="width: 10em; border: 1px solid grey;"
@@ -22,7 +22,7 @@
 
         <q-card-section>
           <div class="text-weight-regular">{{ patient.patient_info.name }}</div>
-          <div class="text-weight-regular">{{ patient.patient_info.age }}, {{ patient.Age }}</div>
+          <div class="text-weight-regular">{{ patient.patient_info.gender }}, {{ patient.patient_info.age }}</div>
           <div class="text-weight-regular">{{ patient.patient_info.gender }}</div>
         </q-card-section>
 
@@ -54,7 +54,9 @@ export default {
       visited_patients: []
     }
   },
-  created () {
+  async created () {
+    await this.$store.dispatch('doctor/profile')
+
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
     this.$api.get(
       'all_users'

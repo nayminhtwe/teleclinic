@@ -270,9 +270,9 @@
           </q-avatar>
 
           <q-card-section>
-            <div class="text-weight-regular">{{ patient.patient.Name }}</div>
-            <div class="text-weight-regular">{{ patient.patient.Gender }}, {{ patient.patient.Age }}</div>
-            <div class="text-weight-regular">{{ patient.patient.Contact_Number }}</div>
+            <div class="text-weight-regular">{{ patient.patient.name }}</div>
+            <div class="text-weight-regular">{{ patient.patient.gender }}, {{ patient.patient.age }}</div>
+            <div class="text-weight-regular">{{ patient.patient.contact_number }}</div>
           </q-card-section>
 
           <q-card-section class="q-pt-none">
@@ -301,9 +301,9 @@
         </q-avatar>
 
         <q-card-section>
-          <div class="text-weight-regular">{{ patient.patient.Name }}</div>
-          <div class="text-weight-regular">{{ patient.patient.Gender }}, {{ patient.patient.Age }}</div>
-          <div class="text-weight-regular">{{ patient.patient.Contact_Number }}</div>
+          <div class="text-weight-regular">{{ patient.patient.name }}</div>
+          <div class="text-weight-regular">{{ patient.patient.gender }}, {{ patient.patient.age }}</div>
+          <div class="text-weight-regular">{{ patient.patient.contact_number }}</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">

@@ -2,14 +2,36 @@
   <q-page>
     <!-- <profile-header /> -->
     <home-header />
-    <q-dialog v-model="alert">
+    <q-dialog
+      v-model="alert"
+      full-width
+    >
       <q-card>
         <q-card-section>
-          <div class="text-h6">Sorry</div>
+          <div class="text-h6">Donate</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          This features will add soon. We will add in next update
+          <div class="text-subtitle1">
+            Kpay
+          </div>
+          <div class="text-subtitle2">
+            09971701240 Naw Caroline<br />
+          </div>
+          <div class="text-subtitle2">
+            09256078233 Man Sian Dim<br />
+          </div>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            KBZ ATM
+          </div>
+          <div class="text-subtitle2">
+            999 307 999 552 54101<br />
+          </div>
+          <div class="text-subtitle2">
+            Man Sian Dim<br />
+          </div>
         </q-card-section>
 
         <q-card-actions align="right">
@@ -164,7 +186,6 @@
           stack
           @click="$router.push('charity/clinic')"
           outline
-          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -183,7 +204,6 @@
           stack
           @click="$router.push('charity/ambulance')"
           outline
-          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -202,7 +222,6 @@
           stack
           @click="$router.push('charity/pharmacy')"
           outline
-          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -221,7 +240,6 @@
           stack
           @click="$router.push('charity/lab')"
           outline
-          style="height: 7em; width: 7.5em"
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
@@ -238,7 +256,6 @@
           stack
           @click="$router.push('add_charity')"
           outline
-          style="height: 7em; width: 7.5em"
         />
       </div>
     </div>
@@ -249,6 +266,77 @@
       <div class="text-h6">For Doctors</div>
     </div>
     <div
+      class="row q-ma-xs text-center"
+      v-if="getDoctorProfile.status === '1'"
+    >
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-btn
+          class="text-black doctor-box"
+          id="new"
+          icon="receipt_long"
+          label="New Patients Record"
+          no-caps
+          stack
+          @click="record"
+          outline
+        />
+      </div>
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-btn
+          class="text-black doctor-box"
+          id="waitings"
+          icon="medical_services"
+          label="Waiting Patients"
+          no-caps
+          stack
+          @click="$router.push('waitings')"
+          outline
+        />
+      </div>
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-btn
+          class="text-black doctor-box"
+          id="patients"
+          icon="home"
+          label="My Patients "
+          no-caps
+          stack
+          @click="$router.push('visited')"
+          outline
+        />
+      </div>
+    </div>
+
+    <div class="q-my-md q-ml-md">
+      <div class="text-h6">For Telecommunications</div>
+    </div>
+    <div class="row q-ma-xs text-center">
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-btn
+          class="text-black doctor-box"
+          id="profile"
+          icon="manage_accounts "
+          label="My EZ Care"
+          no-caps
+          stack
+          @click="$router.push('profile')"
+          outline
+        />
+      </div>
+      <div class="col-4 col-lg-2 q-mb-md">
+        <q-btn
+          class="text-black doctor-box"
+          id="donate"
+          icon="account_balance_wallet"
+          label="Donate"
+          no-caps
+          stack
+          @click="alert = true"
+          outline
+        />
+      </div>
+    </div>
+    <!-- <div
       class="q-pa-md row items-start q-gutter-lg"
       v-if="getDoctorProfile.status === '1'"
     >
@@ -310,7 +398,7 @@
           {{ lorem }}
         </q-card-section>
       </q-card>
-    </div>
+    </div> -->
   </q-page>
 </template>
 
@@ -334,6 +422,7 @@ export default {
     return {
       alert: false,
       register: false,
+      patient_create: 'patient_create',
       patient_name: '',
       patient_age: '',
       patient_gender: '',
@@ -349,6 +438,8 @@ export default {
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
 
     if (this.getDoctorProfile.status === '1') {
+      this.patient_create = 'patient_create_from_doctor'
+
       this.$api.get(
         'waiting'
       ).then((response) => {
@@ -374,9 +465,15 @@ export default {
         this.$router.push('doctor')
       }
     },
+
+    record () {
+      if (this.getDoctorProfile.status === '1') {
+        this.register = true
+      }
+    },
     async patient () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      await this.$api.post('patient_create', {
+      await this.$api.post(this.patient_create, {
         name: this.patient_name,
         age: this.patient_age,
         gender: this.patient_gender,
@@ -403,8 +500,20 @@ export default {
   line-height: 270%;
 }
 
+.doctor-box {
+  height: 8.5em;
+  width: 7.5em;
+  border-radius: 5px;
+  box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5;
+  line-height: 120%;
+}
+
 .menu-box >>> .q-icon {
   font-size: 40px;
+}
+
+.doctor-box >>> .q-icon {
+  font-size: 30px;
 }
 
 #doctors >>> .q-icon {
@@ -427,7 +536,30 @@ export default {
   color: red;
 }
 
-.q-btn >>> .block {
+#new >>> .q-icon {
+  color: blue;
+}
+
+#waitings >>> .q-icon {
+  color: red;
+}
+
+#patients >>> .q-icon {
+  color: green;
+}
+
+#profile >>> .q-icon {
+  color: red;
+}
+
+#donate >>> .q-icon {
+  color: green;
+}
+.menu-box >>> .block {
   font-size: 14px;
+}
+
+.doctor-box >>> .block {
+  font-size: 12px;
 }
 </style>

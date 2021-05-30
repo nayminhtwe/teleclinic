@@ -258,8 +258,8 @@ export default {
       waiting_patients: []
     }
   },
-  created () {
-    this.$store.dispatch('doctor/profile')
+  async created () {
+    await this.$store.dispatch('doctor/profile')
 
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
 

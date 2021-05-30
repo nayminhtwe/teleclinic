@@ -76,7 +76,7 @@
         <q-separator />
 
         <q-card-actions>
-          <div class="col-6">
+          <div class="col column items-center">
             <q-btn
               v-close-popup
               color="primary"
@@ -84,14 +84,6 @@
               size="md"
               type="a"
               :href="'tel:'+charity.contact_number"
-            />
-          </div>
-          <div class="col-6 column items-end">
-            <q-btn
-              v-close-popup
-              color="primary"
-              label="Message"
-              size="md"
             />
           </div>
         </q-card-actions>

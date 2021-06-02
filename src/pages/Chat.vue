@@ -186,6 +186,13 @@ export default {
 
       channel.bind('App\\Events\\MessageSent', function (data) {
         app.messages.push(data.message)
+
+        app.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+        app.$api.post(
+          'message_receive', { sender_id: this.sender_id }
+        ).then((response) => {
+          this.messages = response.data.data
+        })
       })
       // End pusher listener
       this.getMessages()

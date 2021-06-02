@@ -445,6 +445,7 @@
         <div class="col-12">
           <img
             :src="getFile(getDoctorProfile.profile_image.profile_picture)"
+            v-if="getDoctorProfile.profile_image"
             width="200px"
           >
         </div>

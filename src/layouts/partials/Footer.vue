@@ -45,6 +45,11 @@
           icon="chat"
           class="q-mr-md"
         />
+        <q-badge
+          color="red"
+          floating
+          v-if="noti"
+        >{{ noti }}</q-badge>
       </q-tab>
       <q-tab
         name="profile"
@@ -63,12 +68,58 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import Pusher from 'pusher-js' // import Pusher
+
 export default {
   name: 'Footer',
   data () {
     return {
-      tab: 'home'
+      tab: 'home',
+      noti: 0
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getDoctorToken: 'doctor/getDoctorToken',
+      getDoctorProfile: 'doctor/getDoctorProfile'
+    })
+  },
+  async created () {
+    await this.$store.dispatch('doctor/profile')
+    this.subscribe()
+  },
+  methods: {
+    getNoti () {
+      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+      this.$api.get(
+        'message_unread_count'
+      ).then((response) => {
+        if (response.data.error_code === '0') {
+          this.noti = response.data.noti
+        }
+      })
+    },
+    subscribe () {
+      this.$store.dispatch('doctor/profile')
+      const app = this
+      // Start pusher listener
+      Pusher.logToConsole = true
+
+      var pusher = new Pusher('836d77ac3f3198d7cf6d', {
+        cluster: 'ap1',
+        forceTLS: true
+      })
+
+      var channel = pusher.subscribe('chatNoti-' + this.getDoctorProfile.app_user_id) // newMessage-[chatting-with-who]-[my-id]
+
+      channel.bind('App\\Events\\ChatNoti', function (data) {
+        app.noti = data.noti.unread_count
+      })
+      // End pusher listener
+      this.getNoti()
     }
   }
+
 }
 </script>

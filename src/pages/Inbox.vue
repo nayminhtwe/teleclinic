@@ -25,8 +25,9 @@
       >
         <div v-if="getDoctorProfile.status === '1'">
           <div
+            :class="chat.doctor_unread_status === 1 ? 'text-green' : ''"
             class="row col-12"
-            @click="$router.push({ name: 'chat', params: { user_id: chat.patient_info.app_user_id, user: chat.patient_info } })"
+            @click="$router.push({ name: 'chat', params: { user_id: chat.patient_info.app_user_id, user: chat.patient_info, last_message_id: chat.id } })"
           >
             <div class="col-3 column justify-center">
               <q-avatar size="60px">
@@ -48,8 +49,9 @@
         </div>
         <div v-if="getDoctorProfile.status === '2'">
           <div
+            :class="chat.patient_unread_status === 1 ? 'text-green' : ''"
             class="row col-12"
-            @click="$router.push({ name: 'chat', params: { user_id: chat.doctor_info.app_user_id, user: chat.doctor_info } })"
+            @click="$router.push({ name: 'chat', params: { user_id: chat.doctor_info.app_user_id, user: chat.doctor_info, last_message_id: chat.id } })"
           >
             <div class="col-3 column justify-center">
               <q-avatar size="60px">
@@ -100,7 +102,8 @@ export default {
       chats: [],
       search: '',
       message: '',
-      charity_type: this.$route.params.type
+      charity_type: this.$route.params.type,
+      last_message_id: this.$route.params.last_message_id
     }
   },
   computed: {
@@ -109,8 +112,8 @@ export default {
       getDoctorToken: 'doctor/getDoctorToken'
     })
   },
-  created () {
-    this.$store.dispatch('doctor/profile')
+  async created () {
+    await this.$store.dispatch('doctor/profile')
     this.getChat()
   },
   methods: {

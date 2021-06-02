@@ -308,7 +308,7 @@
     </div>
 
     <div class="q-my-md q-ml-md">
-      <div class="text-h6">For Telecommunications</div>
+      <div class="text-h6">For Tele-Consultations</div>
     </div>
     <div class="row q-ma-xs text-center">
       <div class="col-4 col-lg-2 q-mb-md">

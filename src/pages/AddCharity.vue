@@ -33,6 +33,7 @@
           label-color="black"
           :options="charties"
           :rules="[val => !!val || 'Field is required']"
+          :display-value="charity"
         />
       </div>
 
@@ -133,10 +134,10 @@ export default {
       comment: '',
       file: '',
       charties: [
-        'ambulance',
-        'pharmacy',
-        'lab',
-        'clinic'
+        'Ambulance',
+        'Pharmacy',
+        'Lab',
+        'Clinic'
       ]
     }
   },
@@ -149,7 +150,7 @@ export default {
     async submit () {
       const formData = new FormData()
       formData.append('name', this.name)
-      formData.append('charity_service', this.charity)
+      formData.append('charity_service', this.charity.toLowerCase())
       formData.append('address', this.address)
       formData.append('contact_number', this.phone)
       formData.append('email', this.email)
@@ -158,7 +159,7 @@ export default {
       formData.append('profile_image', this.file)
 
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      this.$api.post(this.charity, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+      this.$api.post(this.charity.toLocaleLowerCase(), formData, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((response) => {
           if (response.data.error_code === '0') {
             this.$router.push('/')

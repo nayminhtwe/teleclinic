@@ -319,7 +319,7 @@
           label="My EZ Care"
           no-caps
           stack
-          @click="$router.push('profile')"
+          @click="$router.push('favourited')"
           outline
         />
       </div>

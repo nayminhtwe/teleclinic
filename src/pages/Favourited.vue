@@ -92,7 +92,7 @@
     <div class="q-pa-sm">
       <div class="q-gutter-y-xs">
         <q-tabs
-          v-model="tab"
+          v-model="charity_type"
           inline-label
           dense
           active-color="white"
@@ -100,20 +100,30 @@
           @click="getCharity()"
         >
           <q-tab
-            name="all"
-            label="All"
+            name="clinic"
+            label="Clinics"
             no-caps
           />
           <q-tab
-            name="favourite"
-            label="Favourite"
+            name="ambulance"
+            label="Ambulances"
+            no-caps
+          />
+          <q-tab
+            name="pharmacy"
+            label="Pharmacy"
+            no-caps
+          />
+          <q-tab
+            name="lab"
+            label="Labs"
             no-caps
           />
         </q-tabs>
       </div>
     </div>
     <div class="q-py-lg">
-      <div class="text-h5 q-mb-md">Find your {{ charity_type }}</div>
+      <div class="text-h5 q-mb-md">Find your favourited</div>
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
           rounded
@@ -198,8 +208,8 @@ export default {
       charities: [],
       search: '',
       message: '',
-      tab: 'all',
-      charity_type: this.$route.params.type
+      tab: '',
+      charity_type: 'clinic'
     }
   },
   computed: {
@@ -209,6 +219,11 @@ export default {
   },
   created () {
     this.getCharity()
+  },
+  watch: {
+    charity_type: function (val) {
+      this.getCharity()
+    }
   },
   methods: {
     getFile (path) {
@@ -220,20 +235,11 @@ export default {
     },
     filter () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      if (this.tab === 'all') {
-        this.$api.get(
-          `filter_${this.charity_type}?name=${this.search}`
-        ).then((response) => {
-          this.charities = response.data.data
-        })
-      }
-      if (this.tab === 'favourite') {
-        this.$api.get(
-          `get_favorite_${this.charity_type}?name=${this.search}`
-        ).then((response) => {
-          this.charities = response.data.data
-        })
-      }
+      this.$api.get(
+        `get_favorite_${this.charity_type}?name=${this.search}`
+      ).then((response) => {
+        this.charities = response.data.data
+      })
     },
     favourite (id) {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
@@ -248,20 +254,11 @@ export default {
     getCharity () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
       this.search = ''
-      if (this.tab === 'all') {
-        this.$api.get(
-          `get_${this.charity_type}`
-        ).then((response) => {
-          this.charities = response.data.data
-        })
-      }
-      if (this.tab === 'favourite') {
-        this.$api.get(
-          `get_favorite_${this.charity_type}?name=${this.search}`
-        ).then((response) => {
-          this.charities = response.data.data
-        })
-      }
+      this.$api.get(
+        `get_favorite_${this.charity_type}?name=${this.search}`
+      ).then((response) => {
+        this.charities = response.data.data
+      })
     }
   }
 }

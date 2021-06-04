@@ -30,7 +30,8 @@ const routes = [
       { path: 'charity/:type', component: () => import('src/pages/Charity.vue'), beforeEnter: ifAuthenticated },
       { path: 'doctor', component: () => import('src/pages/Doctor.vue'), beforeEnter: ifAuthenticated },
       { path: 'inbox', component: () => import('src/pages/Inbox.vue'), beforeEnter: ifAuthenticated },
-      { path: 'chat/:user_id', name: 'chat', component: () => import('src/pages/Chat.vue'), beforeEnter: ifAuthenticated }
+      { path: 'chat/:user_id', name: 'chat', component: () => import('src/pages/Chat.vue'), beforeEnter: ifAuthenticated },
+      { path: 'favourited', component: () => import('src/pages/Favourited.vue'), beforeEnter: ifAuthenticated }
     ]
   },
   {

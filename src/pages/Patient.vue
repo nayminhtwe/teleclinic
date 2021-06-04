@@ -154,7 +154,7 @@
         />
         <q-btn
           color="blue"
-          label="Referal"
+          label="Refer"
           icon="visibility"
           @click="prompt = true"
         />
@@ -267,9 +267,9 @@ export default {
       selected: [],
       filter: '',
       columns: [
-        { name: 'name', align: 'left', label: 'Name', field: 'Name', sortable: true },
-        { name: 'qualifications', label: 'Qualifications', field: 'Qualifications', sortable: true },
-        { name: 'contact number', label: 'Contact Number', field: 'Contact_Number' }
+        { name: 'name', align: 'left', label: 'Name', field: 'name', sortable: true },
+        { name: 'qualifications', label: 'Qualifications', field: 'qualifications', sortable: true },
+        { name: 'contact number', label: 'Contact Number', field: 'contact_number' }
       ],
       data: [],
       visits: [],

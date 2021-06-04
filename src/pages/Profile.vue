@@ -5,7 +5,32 @@
       class="q-pa-xs"
       v-if="getDoctorProfile.status == 0"
     >
-      <div class="q-pa-md q-gutter-sm">
+      <div
+        class="q-pa-sm"
+        v-if="register == 0"
+      >
+        <div class="q-gutter-y-xs">
+          <q-tabs
+            v-model="user_type"
+            inline-label
+            dense
+            active-color="white"
+            active-bg-color="red"
+          >
+            <q-tab
+              name="patient"
+              label="Patient"
+              no-caps
+            />
+            <q-tab
+              name="doctor"
+              label="Doctor"
+              no-caps
+            />
+          </q-tabs>
+        </div>
+      </div>
+      <!-- <div class="q-pa-md q-gutter-sm">
         <q-btn
           color="white"
           text-color="black"
@@ -17,9 +42,9 @@
           label="Doctor"
           @click="register = 1"
         />
-      </div>
+      </div> -->
 
-      <div v-if="register == 0">
+      <div v-if="user_type == 'patient'">
         <div class="row q-gutter-md">
           <q-banner
             inline-actions
@@ -94,7 +119,7 @@
         </div>
       </div>
 
-      <div v-if="register == 1">
+      <div v-if="user_type == 'doctor'">
         <div class="row q-gutter-md">
           <q-banner
             inline-actions
@@ -491,6 +516,7 @@ export default {
       hide: false,
       specializations: [],
       register: '',
+      user_type: 'patient',
       patient_name: '',
       patient_age: '',
       patient_gender: '',

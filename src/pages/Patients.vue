@@ -14,6 +14,7 @@
         @click="$router.push({ name: 'chat', params: { user_id: patient.app_user_id, user: patient.patient_info } })"
       >
         <q-avatar
+          class="q-mt-md"
           size="5em"
           style="border-radius: 1em;"
         >

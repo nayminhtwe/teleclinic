@@ -11,6 +11,7 @@
         @click="patientdetail(patient.patient_id)"
       >
         <q-avatar
+          class="q-mt-md"
           size="5em"
           style="border-radius: 1em;"
         >

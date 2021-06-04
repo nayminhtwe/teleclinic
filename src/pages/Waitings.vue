@@ -13,6 +13,7 @@
           style="width: 10em; border: 1px solid grey;"
         >
           <q-avatar
+            class="q-mt-md"
             size="5em"
             style="border-radius: 1em;"
           >

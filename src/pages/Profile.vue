@@ -454,7 +454,7 @@
 
     <div class="q-py-md q-gutter-sm">
       <q-btn
-        color="primary"
+        color="deep-orange-10"
         class="full-width"
         @click="logout"
       >

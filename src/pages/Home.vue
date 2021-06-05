@@ -106,6 +106,20 @@
                 :rules="[val => !!val || 'Field is required']"
               />
             </div>
+            <div class="col-12 offset-6 q-my-md">
+              <q-file
+                borderless
+                v-model="patient_profile_image"
+              >
+                <template v-slot:prepend>
+                  <img
+                    src="~assets/profile_upload.jpg"
+                    style="width: 72px"
+                    @click.stop
+                  />
+                </template>
+              </q-file>
+            </div>
 
           </div>
           <div class="q-py-md q-gutter-sm">
@@ -428,6 +442,7 @@ export default {
       patient_gender: '',
       patient_address: '',
       patient_phone: '',
+      patient_profile_image: '',
       visited_patients: [],
       waiting_patients: []
     }
@@ -473,20 +488,24 @@ export default {
     },
     async patient () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      await this.$api.post(this.patient_create, {
-        name: this.patient_name,
-        age: this.patient_age,
-        gender: this.patient_gender,
-        address: this.patient_address,
-        contact_number: this.patient_phone
-      }).then((response) => {
-        if (response.data.error_code === '0') {
-          this.$store.dispatch('doctor/profile')
-          this.register = false
-        }
-      }).catch(err => {
-        console.log(err.response.data)
-      })
+      const formData = new FormData()
+      formData.append('name', this.patient_name)
+      formData.append('age', this.patient_age)
+      formData.append('gender', this.patient_gender)
+      formData.append('address', this.patient_address)
+      formData.append('contact_number', this.patient_phone)
+      if (this.patient_profile_image) {
+        formData.append('profile_image', this.patient_profile_image)
+      }
+      await this.$api.post('patient_create', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+        .then((response) => {
+          if (response.data.error_code === '0') {
+            this.$store.dispatch('doctor/profile')
+            this.register = false
+          }
+        }).catch(err => {
+          console.log(err.response.data)
+        })
     }
   }
 }

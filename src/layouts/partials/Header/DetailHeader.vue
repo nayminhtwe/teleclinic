@@ -35,8 +35,8 @@
       <!-- <div class="row"> -->
       <div class="col-3 col-lg-1">
         <q-avatar size="72px">
-          <!-- <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" /> -->
-          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
+          <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
+          <!-- <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" /> -->
         </q-avatar>
         <!-- <div class="text-h6 q-ml-sm">EZ {{ patient.id }}</div> -->
         <div class="text-h6 q-ml-sm">EZ {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(patient.id) }}</div>

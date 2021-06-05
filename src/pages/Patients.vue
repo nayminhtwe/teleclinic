@@ -18,7 +18,7 @@
           size="5em"
           style="border-radius: 1em;"
         >
-          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" />
+          <img src="~assets/patient.png" />
         </q-avatar>
 
         <q-card-section>

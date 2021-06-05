@@ -35,18 +35,24 @@
       <!-- <div class="row"> -->
       <div class="col-3 col-lg-1">
         <q-avatar size="72px">
-          <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
-          <!-- <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" /> -->
+          <img
+            :src="getFile(patient.profile_image)"
+            v-if="patient.profile_image"
+          >
+          <img
+            src="~assets/patient.png"
+            v-else
+          />
         </q-avatar>
         <!-- <div class="text-h6 q-ml-sm">EZ {{ patient.id }}</div> -->
         <div class="text-h6 q-ml-sm">EZ {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(patient.id) }}</div>
       </div>
       <div class="col-8 col-lg-4">
-        <div class="text-h6">{{ patient.Name }}</div>
-        <div class="text-subtitle2">{{ patient.Age}} years</div>
-        <div class="text-subtitle2">{{ patient.Gender }}</div>
-        <div class="text-weight-regular">{{ patient.Address }}</div>
-        <div class="text-weight-regular">{{ patient.Contact_Number}}</div>
+        <div class="text-h6">{{ patient.name }}</div>
+        <div class="text-subtitle2">{{ patient.age}} years</div>
+        <div class="text-subtitle2">{{ patient.gender }}</div>
+        <div class="text-weight-regular">{{ patient.address }}</div>
+        <div class="text-weight-regular">{{ patient.contact_number}}</div>
       </div>
       <!-- </div> -->
     </q-toolbar>
@@ -55,6 +61,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { constantes } from 'src/boot/constantes.js'
 
 export default {
   data () {
@@ -74,6 +81,11 @@ export default {
     ).then((response) => {
       this.patient = response.data.data
     })
+  },
+  methods: {
+    getFile (path) {
+      return `${constantes.SERVER_MEDIA}${path}`
+    }
   }
 }
 </script>

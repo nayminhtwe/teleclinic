@@ -497,7 +497,7 @@ export default {
       if (this.patient_profile_image) {
         formData.append('profile_image', this.patient_profile_image)
       }
-      await this.$api.post('patient_create', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+      await this.$api.post('patient_create_from_doctor', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((response) => {
           if (response.data.error_code === '0') {
             this.$store.dispatch('doctor/profile')

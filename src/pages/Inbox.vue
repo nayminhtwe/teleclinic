@@ -32,8 +32,8 @@
             <div class="col-3 column justify-center">
               <q-avatar size="60px">
                 <img
-                  :src="getFile(chat.profile_image)"
-                  v-if="chat.profile_image"
+                  :src="getFile(chat.patient_info.profile_image)"
+                  v-if="chat.patient_info.profile_image"
                 />
                 <img
                   src="~assets/ezcare.png"

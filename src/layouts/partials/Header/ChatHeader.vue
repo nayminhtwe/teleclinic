@@ -30,15 +30,29 @@
       <div class="col-2 offset-1">
         <q-avatar
           size="72px"
-          v-if="user.profile_image"
+          v-if="user.status == 1"
         >
-          <img :src="getFile(user.profile_image.profile_picture)" />
+          <img
+            :src="getFile(user.profile_image.profile_picture)"
+            v-if="user.profile_image"
+          />
+          <img
+            src="~assets/ezcare.png"
+            v-else
+          />
         </q-avatar>
         <q-avatar
           size="72px"
-          v-else
+          v-if="user.status == 2"
         >
-          <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
+          <img
+            :src="getFile(user.profile_image)"
+            v-if="user.profile_image"
+          />
+          <img
+            src="~assets/patient.png"
+            v-else
+          />
         </q-avatar>
       </div>
       <div class="col-8 offset-1">

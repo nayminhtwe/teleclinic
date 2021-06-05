@@ -25,8 +25,14 @@
       <div class="row">
         <div class="col-9">
           <q-avatar size="72px">
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
-            <!-- <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg" /> -->
+            <img
+              :src="getFile(getDoctorProfile.profile_image.profile_picture)"
+              v-if="getDoctorProfile.profile_image"
+            />
+            <img
+              src="~assets/ezcare.png"
+              v-else
+            />
           </q-avatar>
         </div>
         <div class="col-9">
@@ -40,6 +46,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { constantes } from 'src/boot/constantes.js'
 export default {
   data () {
     return {}
@@ -49,9 +56,14 @@ export default {
       getDoctorProfile: 'doctor/getDoctorProfile'
     })
   },
-  created () {
+  async created () {
     if (this.getDoctorProfile === null) {
-      this.$store.dispatch('doctor/profile')
+      await this.$store.dispatch('doctor/profile')
+    }
+  },
+  methods: {
+    getFile (path) {
+      return `${constantes.SERVER_MEDIA}${path}`
     }
   }
 }

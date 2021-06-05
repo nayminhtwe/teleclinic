@@ -17,7 +17,14 @@
             size="5em"
             style="border-radius: 1em;"
           >
-            <img src="~assets/patient.png" />
+            <img
+              :src="getFile(patient.patient.profile_image)"
+              v-if="patient.patient.profile_image"
+            >
+            <img
+              src="~assets/patient.png"
+              v-else
+            />
           </q-avatar>
 
           <q-card-section>
@@ -37,6 +44,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { constantes } from 'src/boot/constantes.js'
 import ListHeader from 'src/layouts/partials/Header/ListHeader.vue'
 export default {
   name: 'Home',
@@ -70,6 +78,9 @@ export default {
     })
   },
   methods: {
+    getFile (path) {
+      return `${constantes.SERVER_MEDIA}${path}`
+    },
     patientdetail (id) {
       this.$router.push(`/patient/${id}`)
     }

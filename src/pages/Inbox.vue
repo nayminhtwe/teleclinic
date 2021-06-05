@@ -57,7 +57,7 @@
               <q-avatar size="60px">
                 <img
                   :src="getFile(chat.doctor_info.profile_image.profile_picture)"
-                  v-if="chat.profile_image"
+                  v-if="chat.doctor_info.profile_image"
                 />
                 <img
                   src="~assets/ezcare.png"

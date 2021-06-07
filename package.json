@@ -1,9 +1,9 @@
 {
-  "name": "hica_teleclinics",
+  "name": "ez_care",
   "version": "0.0.1",
   "description": "EZ Care App",
   "productName": "EZ Care",
-  "author": "nayminhtwe<konayminhtwe@gmail.com>",
+  "author": "EZCare Tech<tech@ez-care.org>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",

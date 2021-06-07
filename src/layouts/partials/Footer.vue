@@ -22,7 +22,7 @@
           class="q-mr-md"
         />
       </q-tab>
-      <q-tab
+      <!-- <q-tab
         name="patients"
         @click="$router.push('/patients')"
       >
@@ -33,7 +33,7 @@
           icon="history"
           class="q-mr-md"
         />
-      </q-tab>
+      </q-tab> -->
       <q-tab
         name="inbox"
         @click="$router.push('/inbox')"

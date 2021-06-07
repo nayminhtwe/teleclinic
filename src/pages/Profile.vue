@@ -421,7 +421,7 @@
           <div
             class="text-h6 text-red"
             v-if="getDoctorProfile.status == 1"
-          >Doctor Profle
+          >Doctor Profile
           </div>
         </div>
         <div class="col-lg-4 col-12">

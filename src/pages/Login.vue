@@ -107,7 +107,8 @@ export default {
       errors: state => state.doctor.errors
     }),
     ...mapGetters({
-      status: 'doctor/status'
+      status: 'doctor/status',
+      getDoctorToken: 'doctor/getDoctorToken'
     })
   },
   methods: {
@@ -118,7 +119,23 @@ export default {
 
       await this.$store.dispatch('doctor/login', formData)
       if (this.status === 'success') {
-        this.$router.push('/')
+        if (this.$q.platform.is.cordova) {
+          await this.$store.dispatch('doctor/profile')
+
+          await cordova.plugins.firebase.messaging.getToken().then(token => {
+            this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+            this.$api.post('deviceToken', {
+              device_token: token
+            }
+            ).then(() => {
+              this.$router.push('/')
+            })
+          }).catch(error => {
+            console.log(error)
+          })
+        } else {
+          this.$router.push('/')
+        }
       }
 
       if (this.status === 'error') {

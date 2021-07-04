@@ -138,7 +138,10 @@
       </q-card>
     </q-dialog>
     <div class="q-my-sm q-ml-sm">
-      <div class="text-h5">Hello {{ getDoctorProfile.name }},</div>
+      <div
+        class="text-h5"
+        v-if="getDoctorProfile"
+      >Hello {{ getDoctorProfile.name }},</div>
     </div>
     <div class="q-py-sm">
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
@@ -448,11 +451,11 @@ export default {
     }
   },
   async created () {
-    cordova.plugins.firebase.messaging.getToken().then(function (token) {
-      console.log('Got device token: ', token)
-    }).catch(error => {
-      console.log(error)
-    })
+    // cordova.plugins.firebase.messaging.getToken().then(function (token) {
+    //   console.log('Got device token: ', token)
+    // }).catch(error => {
+    //   console.log(error)
+    // })
 
     await this.$store.dispatch('doctor/profile')
 

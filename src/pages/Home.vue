@@ -448,6 +448,12 @@ export default {
     }
   },
   async created () {
+    cordova.plugins.firebase.messaging.getToken().then(function (token) {
+      console.log('Got device token: ', token)
+    }).catch(error => {
+      console.log(error)
+    })
+
     await this.$store.dispatch('doctor/profile')
 
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`

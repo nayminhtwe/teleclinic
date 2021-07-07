@@ -251,8 +251,8 @@
         <q-btn
           class="text-black menu-box"
           id="labs"
-          icon="biotech"
-          label="Labs"
+          icon="support"
+          label="Oxygen"
           no-caps
           stack
           @click="$router.push('charity/lab')"

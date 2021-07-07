@@ -113,7 +113,18 @@
       </div>
     </div>
     <div class="q-py-lg">
-      <div class="text-h5 q-mb-md">Find your {{ charity_type }}</div>
+      <div
+        class="text-h5 q-mb-md"
+        v-if="charity_type =='lab'"
+      >
+        Find your Oxygen
+      </div>
+      <div
+        class="text-h5 q-mb-md"
+        v-else
+      >
+        Find your {{ charity_type }}
+      </div>
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
           rounded

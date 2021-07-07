@@ -167,7 +167,7 @@ export default {
       formData.append('email', this.email)
       formData.append('password', this.password)
 
-      await this.$store.dispatch('doctor/login', formData)
+      await this.$store.dispatch('doctor/register', formData)
       if (this.status === 'success') {
         if (this.$q.platform.is.cordova) {
           await this.$store.dispatch('doctor/profile')

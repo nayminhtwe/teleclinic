@@ -2,7 +2,7 @@
   <q-page>
     <list-header />
     <div class="q-pa-md row items-start q-gutter-lg">
-      <div class="col-12 text-h6">Your Patients ({{ visited_patients.length }})</div>
+      <div class="col-12 text-h6">My Patients ({{ visited_patients.length }})</div>
       <q-card
         class="my-card text-center"
         style="width: 10em; border: 1px solid grey;"

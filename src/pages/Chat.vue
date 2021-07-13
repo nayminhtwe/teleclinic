@@ -24,7 +24,7 @@
         <div class="q-py-xl" />
 
         <div class="row absolute-bottom">
-          <div class="col-3">
+          <div class="col-2">
             <q-file
               borderless
               v-model="file"
@@ -46,9 +46,8 @@
               label="Messages"
               counter
               maxlength="120"
-              :dense="dense"
+              dense="dense"
               :readonly="!!file"
-              @keyup.enter.native="send"
             >
 
               <template v-slot:hint>

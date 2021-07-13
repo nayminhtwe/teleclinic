@@ -41,10 +41,11 @@
         <q-card-section>
           <q-btn
             fab
-            color="primary"
+            :color="charity.favorite_status ? 'primary' : 'black'"
             icon="favorite"
             class="absolute"
             style="top: 0; right: 12px; transform: translateY(-50%);"
+            @click="favourite(charity.id)"
           />
 
           <div class="row no-wrap items-center">
@@ -217,7 +218,10 @@ export default {
   computed: {
     ...mapGetters({
       getDoctorToken: 'doctor/getDoctorToken'
-    })
+    }),
+    getFavouriteStatus () {
+      return this.charity.favorite_status ? 'black' : 'primary'
+    }
   },
   created () {
     this.getCharity()
@@ -261,8 +265,9 @@ export default {
         `favorite_${this.charity_type}/${id}`
       ).then((response) => {
         this.message = response.data.message
-        this.alert = true
+        // this.alert = true
         this.getCharity()
+        this.charity.favorite_status = !this.charity.favorite_status
       })
     },
     getCharity () {

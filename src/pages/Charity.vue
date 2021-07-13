@@ -132,6 +132,7 @@
           placeholder="Search"
           v-model="search"
           @keyup="inserted"
+          dense="dense"
         >
           <template v-slot:prepend>
             <q-icon

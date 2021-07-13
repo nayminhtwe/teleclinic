@@ -45,7 +45,7 @@
               v-model="text"
               label="Messages"
               counter
-              maxlength="40"
+              maxlength="120"
               :dense="dense"
               :readonly="!!file"
               @keyup.enter.native="send"

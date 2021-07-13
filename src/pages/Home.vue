@@ -295,13 +295,13 @@
     </div>
     <div
       class="q-my-md q-ml-md"
-      v-if="getDoctorProfile.status === '1'"
+      v-if="getDoctorProfile && getDoctorProfile.status === '1'"
     >
       <div class="text-h6">For Doctors</div>
     </div>
     <div
       class="row q-ma-xs text-center"
-      v-if="getDoctorProfile.status === '1'"
+      v-if="getDoctorProfile && getDoctorProfile.status === '1'"
     >
       <div class="col-4 col-lg-2 q-mb-md">
         <q-btn

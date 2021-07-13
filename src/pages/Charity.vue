@@ -131,8 +131,7 @@
           outlined
           placeholder="Search"
           v-model="search"
-          :dense="dense"
-          @blur="filter"
+          @keyup="inserted"
         >
           <template v-slot:prepend>
             <q-icon
@@ -208,6 +207,7 @@ export default {
       charity: {},
       charities: [],
       search: '',
+      timeout: null,
       message: '',
       tab: 'all',
       charity_type: this.$route.params.type
@@ -245,6 +245,14 @@ export default {
           this.charities = response.data.data
         })
       }
+    },
+    inserted () {
+      // clear timeout variable
+      clearTimeout(this.timeout)
+
+      this.timeout = setTimeout(() => {
+        this.filter()
+      }, 1000)
     },
     favourite (id) {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`

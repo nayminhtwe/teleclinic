@@ -20,10 +20,21 @@
             :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
             :text-color="message.sender_id != sender_id ? 'white' : 'black'"
             v-else
-          ><img
-              :src="getFile(message.message)"
-              width="200px"
-            /></q-chat-message>
+          >
+            <figure>
+              <q-zoom
+                background-color="blue-grey-1"
+                scale
+              >
+                <img
+                  :src="getFile(message.message)"
+                  width="200px"
+                  class="my-image"
+                />
+              </q-zoom>
+              <!-- <figcaption>This is the "figcaption"</figcaption> -->
+            </figure>
+          </q-chat-message>
         </div>
         <div class="q-py-xl" />
 
@@ -245,5 +256,12 @@ export default {
 #chat-input {
   border: 1px solid red;
   border-radius: 3em;
+}
+.my-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
 }
 </style>

@@ -27,7 +27,10 @@
         </div>
         <div class="q-py-xl" />
 
-        <div class="row absolute-bottom">
+        <div
+          class="row q-pt-sm justify-center absolute-bottom"
+          id="chat-input"
+        >
           <div class="col-2">
             <q-file
               borderless
@@ -42,21 +45,20 @@
             </q-file>
           </div>
 
-          <div class="col-9">
+          <div class="col-9 q-mt-sm">
             <q-input
-              filled
+              borderless
               bottom-slots
               v-model="text"
               label="Messages"
-              counter
               maxlength="120"
               dense="dense"
               :readonly="!!file"
             >
 
-              <template v-slot:hint>
+              <!-- <template v-slot:hint>
                 Field hint
-              </template>
+              </template> -->
 
               <template v-slot:after>
                 <q-btn
@@ -239,5 +241,9 @@ export default {
 <style scoped>
 .border-icon {
   text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+}
+#chat-input {
+  border: 1px solid red;
+  border-radius: 3em;
 }
 </style>

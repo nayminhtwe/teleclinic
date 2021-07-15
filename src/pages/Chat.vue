@@ -10,11 +10,15 @@
           <q-chat-message
             :text="[message.message]"
             :sent="message.sender_id != sender_id"
+            :bg-color="message.sender_id != sender_id ? 'primary' : 'amber-7'"
+            :text-color="message.sender_id != sender_id ? 'white' : 'black'"
             v-if="message.type === 0"
           />
 
           <q-chat-message
             :sent="message.sender_id != sender_id"
+            :bg-color="message.sender_id != sender_id ? 'primary' : 'amber-7'"
+            :text-color="message.sender_id != sender_id ? 'white' : 'black'"
             v-else
           ><img
               :src="getFile(message.message)"

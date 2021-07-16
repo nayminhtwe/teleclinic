@@ -160,10 +160,10 @@
         </q-card-section>
       </q-card>
     </q-dialog>
-    <div class="q-my-sm q-ml-sm">
+    <div class="q-ma-md">
       <div class="text-h5">Hello {{ getDoctorProfile.name }},</div>
     </div>
-    <div class="q-my-sm">
+    <div class="q-ma-sm">
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
           rounded

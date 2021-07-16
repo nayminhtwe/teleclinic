@@ -101,9 +101,15 @@
             </div>
 
             <div class="col-lg-4 col-12">
-              <q-input
+              <!-- <q-input
                 v-model="patient_gender"
                 label="Gender"
+                :rules="[val => !!val || 'Field is required']"
+              /> -->
+              <q-select
+                v-model="patient_gender"
+                label="Gender"
+                :options="genders"
                 :rules="[val => !!val || 'Field is required']"
               />
             </div>
@@ -155,10 +161,7 @@
       </q-card>
     </q-dialog>
     <div class="q-my-sm q-ml-sm">
-      <div
-        class="text-h5"
-        v-if="getDoctorProfile"
-      >Hello {{ getDoctorProfile.name }},</div>
+      <div class="text-h5">Hello {{ getDoctorProfile.name }},</div>
     </div>
     <div class="q-my-sm">
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
@@ -295,13 +298,13 @@
     </div>
     <div
       class="q-my-md q-ml-md"
-      v-if="getDoctorProfile && getDoctorProfile.status === '1'"
+      v-if="getDoctorProfile.status === '1'"
     >
       <div class="text-h6">For Doctors</div>
     </div>
     <div
       class="row q-ma-xs text-center"
-      v-if="getDoctorProfile && getDoctorProfile.status === '1'"
+      v-if="getDoctorProfile.status === '1'"
     >
       <div class="col-4 col-lg-2 q-mb-md">
         <q-btn
@@ -456,6 +459,10 @@ export default {
     return {
       alert: false,
       register: false,
+      genders: ['Male', 'Female', 'Other'],
+      text: '',
+      banner: '',
+      message: '',
       patient_create: 'patient_create',
       patient_name: '',
       patient_age: '',
@@ -500,11 +507,12 @@ export default {
     },
 
     treatment () {
-      if (this.getDoctorProfile.status === 0) {
-        this.register = true
-      } else {
-        this.$router.push('doctor')
-      }
+      // if (this.getDoctorProfile.status === 0) {
+      //   this.register = true
+      // } else {
+      //   this.$router.push('doctor')
+      // }
+      this.$router.push('doctor')
     },
 
     record () {

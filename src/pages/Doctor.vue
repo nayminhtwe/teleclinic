@@ -99,8 +99,115 @@
               size="md"
               @click="$router.push({ name: 'chat', params: { user_id: charity.app_user_id, user: charity } })"
             />
+            <q-btn
+              v-if="getDoctorProfile.status == 0"
+              v-close-popup
+              color="primary"
+              label="Message"
+              size="md"
+              @click="register = true"
+            />
           </div>
         </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="register">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Patient Registration</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="row q-gutter-md">
+            <q-banner
+              inline-actions
+              class="text-white bg-red"
+              v-if="banner"
+            >
+              {{ message }}
+              <template v-slot:action>
+                <q-btn
+                  flat
+                  color="white"
+                  icon="error"
+                  @click="banner = false"
+                />
+              </template>
+            </q-banner>
+            <div class="col-lg-4 col-12">
+              <q-input
+                v-model="patient_name"
+                label="Name"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+
+            <div class="col-lg-4 col-12">
+              <q-input
+                v-model="patient_age"
+                label="Age"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+
+            <div class="col-lg-4 col-12">
+              <!-- <q-input
+                v-model="patient_gender"
+                label="Gender"
+                :rules="[val => !!val || 'Field is required']"
+              /> -->
+              <q-select
+                v-model="patient_gender"
+                label="Gender"
+                :options="genders"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+
+            <div class="col-lg-4 col-12">
+              <q-input
+                v-model="patient_address"
+                label="Adress"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+
+            <div class="col-lg-4 col-12">
+              <q-input
+                v-model="patient_phone"
+                label="Phone"
+                :rules="[val => !!val || 'Field is required']"
+              />
+            </div>
+            <div class="col-12 offset-6 q-my-md">
+              <q-file
+                borderless
+                v-model="patient_profile_image"
+              >
+                <template v-slot:prepend>
+                  <img
+                    src="~assets/profile_upload.jpg"
+                    style="width: 72px"
+                    @click.stop
+                  />
+                </template>
+              </q-file>
+            </div>
+
+          </div>
+          <div class="q-py-md q-gutter-sm">
+            <q-btn
+              color="red"
+              class="text-white full-width"
+              rounded
+              @click="patient"
+            >
+              <div class="ellipsis">
+                Register
+              </div>
+            </q-btn>
+          </div>
+        </q-card-section>
       </q-card>
     </q-dialog>
     <div class="q-pa-sm">
@@ -135,7 +242,7 @@
           outlined
           placeholder="Search"
           v-model="search"
-          :dense="dense"
+          dense="dense"
         >
           <template v-slot:prepend>
             <q-icon name="search" />
@@ -210,8 +317,17 @@ export default {
       banner: false,
       alert: false,
       card: false,
+      register: false,
       charity: {},
       charities: [],
+      genders: ['Male', 'Female', 'Other'],
+      patient_create: 'patient_create',
+      patient_name: '',
+      patient_age: '',
+      patient_gender: '',
+      patient_address: '',
+      patient_phone: '',
+      patient_profile_image: '',
       search: '',
       message: '',
       specializations: [],
@@ -230,7 +346,7 @@ export default {
     }
   },
   async created () {
-    this.$store.dispatch('doctor/profile')
+    await this.$store.dispatch('doctor/profile')
 
     this.getDoctor()
 
@@ -255,6 +371,27 @@ export default {
       ).then((response) => {
         this.charities = response.data.data
       })
+    },
+    async patient () {
+      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+      const formData = new FormData()
+      formData.append('name', this.patient_name)
+      formData.append('age', this.patient_age)
+      formData.append('gender', this.patient_gender)
+      formData.append('address', this.patient_address)
+      formData.append('contact_number', this.patient_phone)
+      if (this.patient_profile_image) {
+        formData.append('profile_image', this.patient_profile_image)
+      }
+      await this.$api.post(this.patient_create, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+        .then((response) => {
+          if (response.data.error_code === '0') {
+            this.$store.dispatch('doctor/profile')
+            this.register = false
+          }
+        }).catch(err => {
+          console.log(err.response.data)
+        })
     }
   }
 }

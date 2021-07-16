@@ -78,9 +78,15 @@
           </div>
 
           <div class="col-lg-4 col-12">
-            <q-input
+            <!-- <q-input
               v-model="patient_gender"
               label="Gender"
+              :rules="[val => !!val || 'Field is required']"
+            /> -->
+            <q-select
+              v-model="patient_gender"
+              label="Gender"
+              :options="genders"
               :rules="[val => !!val || 'Field is required']"
             />
           </div>
@@ -536,6 +542,7 @@ export default {
       specializations: [],
       register: '',
       user_type: 'patient',
+      genders: ['Male', 'Female', 'Other'],
       patient_name: '',
       patient_age: '',
       patient_gender: '',

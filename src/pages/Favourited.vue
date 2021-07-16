@@ -130,7 +130,7 @@
           outlined
           placeholder="Search"
           v-model="search"
-          :dense="dense"
+          dense="dense"
           @blur="filter"
         >
           <template v-slot:prepend>

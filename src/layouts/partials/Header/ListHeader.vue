@@ -10,7 +10,7 @@
           outlined
           placeholder="Search"
           v-model="text"
-          :dense="dense"
+          dense="dense"
         >
           <template v-slot:prepend>
             <q-icon name="search" />

@@ -476,6 +476,15 @@
         </div>
 
         <div class="col-lg-4 col-12">
+          <p
+            v-for="language in getDoctorProfile.available_language"
+            :key="language.id"
+          >
+            {{ language.language }}
+          </p>
+        </div>
+
+        <div class="col-lg-4 col-12">
           <q-input
             :value="getDoctorProfile.contact_number"
             label="Phone No."

@@ -134,6 +134,7 @@ export default {
             console.log(error)
           })
         } else {
+          await this.$store.dispatch('doctor/profile')
           this.$router.push('/')
         }
       }

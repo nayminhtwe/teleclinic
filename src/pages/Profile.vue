@@ -191,6 +191,19 @@
           </div>
 
           <div class="col-lg-4 col-12">
+            <q-select
+              multiple
+              v-model="prfered_languages"
+              use-chips
+              stack-label
+              label="Language"
+              :options="languages"
+              :option-label="(item) => item === null ? null : item.language"
+              :rules="[val => !!val || 'Field is required']"
+            />
+          </div>
+
+          <div class="col-lg-4 col-12">
             <q-input
               v-model="contact_number"
               label="Phone No."
@@ -529,6 +542,7 @@ export default {
       sama_number: '',
       qualifications: '',
       specialization: '',
+      prfered_languages: [],
       contact_number: '',
       email: '',
       time: '',
@@ -540,6 +554,7 @@ export default {
       sama_or_nrc: '',
       hide: false,
       specializations: [],
+      languages: [],
       register: '',
       user_type: 'patient',
       genders: ['Male', 'Female', 'Other'],
@@ -573,6 +588,12 @@ export default {
       'specialization'
     ).then((response) => {
       this.specializations = response.data.data
+    })
+
+    await this.$api.get(
+      'languages'
+    ).then((response) => {
+      this.languages = response.data.data
     })
   },
   methods: {
@@ -617,6 +638,9 @@ export default {
       formData.append('sama_number', this.sama_number)
       formData.append('Qualifications', this.qualifications)
       formData.append('specialization_id', this.specialization.id)
+      for (const language of this.prfered_languages) {
+        formData.append('available_language_id[]', language.id)
+      }
       formData.append('Contact_Number', this.contact_number)
       formData.append('start_date', this.contact_number)
       formData.append('end_date', this.contact_number)

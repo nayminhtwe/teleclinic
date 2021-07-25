@@ -76,6 +76,16 @@
           <div class="text-subtitle1">
             {{ charity.address }}
           </div>
+          <div class="q-py-sm q-gutter-sm">
+            <q-btn
+              v-for="language in charity.available_language"
+              :key="language.id"
+              color="primary"
+              size="xs"
+              :label="language.language"
+            />
+          </div>
+
         </q-card-section>
 
         <q-separator />

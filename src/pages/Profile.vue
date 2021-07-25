@@ -475,13 +475,20 @@
           />
         </div>
 
-        <div class="col-lg-4 col-12">
-          <p
+        <div class="col-lg-4 col-12 q-gutter-sm">
+          <q-btn
+            v-for="language in getDoctorProfile.available_language"
+            :key="language.id"
+            color="primary"
+            size="xs"
+            :label="language.language"
+          />
+          <!-- <p
             v-for="language in getDoctorProfile.available_language"
             :key="language.id"
           >
             {{ language.language }}
-          </p>
+          </p> -->
         </div>
 
         <div class="col-lg-4 col-12">

@@ -98,6 +98,30 @@
           dense
           active-color="white"
           active-bg-color="red"
+        >
+          <q-tab
+            name=""
+            label="All"
+            no-caps
+          />
+          <q-tab
+            v-for="region in regions"
+            :key="region.id"
+            :name="region.id"
+            :label="region.Region"
+            no-caps
+          />
+        </q-tabs>
+      </div>
+    </div>
+    <!-- <div class="q-pa-sm">
+      <div class="q-gutter-y-xs">
+        <q-tabs
+          v-model="tab"
+          inline-label
+          dense
+          active-color="white"
+          active-bg-color="red"
           @click="getCharity()"
         >
           <q-tab
@@ -112,7 +136,7 @@
           />
         </q-tabs>
       </div>
-    </div>
+    </div> -->
     <div class="q-py-lg">
       <div
         class="text-h5 q-mb-md"
@@ -197,7 +221,7 @@ import { constantes } from 'src/boot/constantes.js'
 import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
 
 export default {
-  name: 'AddCharity',
+  name: 'Charity',
   components: {
     ProfileHeader
   },
@@ -208,10 +232,11 @@ export default {
       card: false,
       charity: {},
       charities: [],
+      regions: [],
       search: '',
       timeout: null,
       message: '',
-      tab: 'all',
+      tab: '',
       charity_type: this.$route.params.type
     }
   },
@@ -228,7 +253,19 @@ export default {
     if (!this.getDoctorProfile.app_user_id) {
       await this.$store.dispatch('doctor/profile')
     }
-    this.getCharity()
+
+    await this.$api.get(
+      'regions'
+    ).then((response) => {
+      this.regions = response.data.data
+    })
+
+    await this.filter()
+  },
+  watch: {
+    tab: function (val) {
+      this.filter()
+    }
   },
   methods: {
     getFile (path) {
@@ -238,22 +275,27 @@ export default {
       this.charity = charity
       this.card = true
     },
-    filter () {
+    async filter () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      if (this.tab === 'all') {
-        this.$api.get(
-          `filter_${this.charity_type}?name=${this.search}`
-        ).then((response) => {
-          this.charities = response.data.data
-        })
-      }
-      if (this.tab === 'favourite') {
-        this.$api.get(
-          `get_favorite_${this.charity_type}?name=${this.search}`
-        ).then((response) => {
-          this.charities = response.data.data
-        })
-      }
+      await this.$api.get(
+        `filter_${this.charity_type}?name=${this.search}&region_id=${this.tab}`
+      ).then((response) => {
+        this.charities = response.data.data
+      })
+      // if (this.tab === 'all') {
+      //   this.$api.get(
+      //     `filter_${this.charity_type}?name=${this.search}`
+      //   ).then((response) => {
+      //     this.charities = response.data.data
+      //   })
+      // }
+      // if (this.tab === 'favourite') {
+      //   this.$api.get(
+      //     `get_favorite_${this.charity_type}?name=${this.search}`
+      //   ).then((response) => {
+      //     this.charities = response.data.data
+      //   })
+      // }
     },
     inserted () {
       // clear timeout variable
@@ -270,11 +312,11 @@ export default {
       ).then((response) => {
         this.message = response.data.message
         // this.alert = true
-        this.getCharity()
+        this.filter()
         this.charity.favorite_status = !this.charity.favorite_status
       })
     },
-    getCharity () {
+    async getCharity () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
       this.search = ''
       if (this.tab === 'all') {

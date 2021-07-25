@@ -217,13 +217,17 @@ export default {
   },
   computed: {
     ...mapGetters({
+      getDoctorProfile: 'doctor/getDoctorProfile',
       getDoctorToken: 'doctor/getDoctorToken'
     }),
     getFavouriteStatus () {
       return this.charity.favorite_status ? 'black' : 'primary'
     }
   },
-  created () {
+  async created () {
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
     this.getCharity()
   },
   methods: {

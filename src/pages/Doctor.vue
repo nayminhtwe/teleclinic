@@ -346,7 +346,9 @@ export default {
     }
   },
   async created () {
-    await this.$store.dispatch('doctor/profile')
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
 
     this.getDoctor()
 

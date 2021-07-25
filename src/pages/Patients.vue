@@ -64,10 +64,12 @@ export default {
     }
   },
   async created () {
-    await this.$store.dispatch('doctor/profile')
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
 
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-    this.$api.get(
+    await this.$api.get(
       'all_users'
     ).then((response) => {
       this.visited_patients = response.data.data

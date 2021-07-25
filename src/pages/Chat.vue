@@ -167,30 +167,31 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getDoctorToken: 'doctor/getDoctorToken',
-      getDoctorProfile: 'doctor/getDoctorProfile'
+      getDoctorProfile: 'doctor/getDoctorProfile',
+      getDoctorToken: 'doctor/getDoctorToken'
     })
   },
   async created () {
-    await this.$store.dispatch('doctor/profile')
-    this.subscribe()
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
+    await this.subscribe()
   },
   methods: {
     getFile (path) {
       return `${constantes.SERVER_MEDIA}${path}`
     },
-    getMessages () {
+    async getMessages () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
       // const formData = new FormData()
       // formData.append('sender_id', this.sender_id)
-      this.$api.post(
+      await this.$api.post(
         'messages', { sender_id: this.sender_id }
       ).then((response) => {
         this.messages = response.data.data
       })
     },
-    subscribe () {
-      this.$store.dispatch('doctor/profile')
+    async subscribe () {
       const app = this
       // Start pusher listener
       Pusher.logToConsole = true
@@ -213,7 +214,7 @@ export default {
         })
       })
       // End pusher listener
-      this.getMessages()
+      await this.getMessages()
     },
     sendMessage () {
       if (this.text !== '') {

@@ -564,10 +564,12 @@ export default {
     })
   },
   async created () {
-    await this.$store.dispatch('doctor/profile')
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
 
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-    this.$api.get(
+    await this.$api.get(
       'specialization'
     ).then((response) => {
       this.specializations = response.data.data

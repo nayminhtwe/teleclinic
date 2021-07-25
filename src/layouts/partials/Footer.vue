@@ -86,13 +86,15 @@ export default {
     })
   },
   async created () {
-    await this.$store.dispatch('doctor/profile')
-    this.subscribe()
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
+    await this.subscribe()
   },
   methods: {
-    getNoti () {
+    async getNoti () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      this.$api.get(
+      await this.$api.get(
         'message_unread_count'
       ).then((response) => {
         if (response.data.error_code === '0') {
@@ -100,8 +102,7 @@ export default {
         }
       })
     },
-    subscribe () {
-      this.$store.dispatch('doctor/profile')
+    async subscribe () {
       const app = this
       // Start pusher listener
       Pusher.logToConsole = true
@@ -117,7 +118,7 @@ export default {
         app.noti = data.noti.unread_count
       })
       // End pusher listener
-      this.getNoti()
+      await this.getNoti()
     }
   }
 

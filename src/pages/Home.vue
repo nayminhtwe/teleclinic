@@ -481,20 +481,22 @@ export default {
     //   console.log(error)
     // })
 
-    await this.$store.dispatch('doctor/profile')
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
 
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
 
     if (this.getDoctorProfile.status === '1') {
       this.patient_create = 'patient_create_from_doctor'
 
-      this.$api.get(
+      await this.$api.get(
         'waiting'
       ).then((response) => {
         this.waiting_patients = response.data.data
       })
 
-      this.$api.get(
+      await this.$api.get(
         'patients'
       ).then((response) => {
         this.visited_patients = response.data.data

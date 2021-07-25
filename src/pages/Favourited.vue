@@ -214,10 +214,14 @@ export default {
   },
   computed: {
     ...mapGetters({
+      getDoctorProfile: 'doctor/getDoctorProfile',
       getDoctorToken: 'doctor/getDoctorToken'
     })
   },
-  created () {
+  async created () {
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
     this.getCharity()
   },
   watch: {

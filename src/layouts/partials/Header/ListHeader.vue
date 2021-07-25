@@ -45,21 +45,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { constantes } from 'src/boot/constantes.js'
 export default {
   data () {
     return {}
-  },
-  computed: {
-    ...mapGetters({
-      getDoctorProfile: 'doctor/getDoctorProfile'
-    })
-  },
-  async created () {
-    if (this.getDoctorProfile === null) {
-      await this.$store.dispatch('doctor/profile')
-    }
   },
   methods: {
     getFile (path) {

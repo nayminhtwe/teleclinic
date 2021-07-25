@@ -50,6 +50,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      getDoctorProfile: 'doctor/getDoctorProfile',
       getDoctorToken: 'doctor/getDoctorToken'
     })
   },
@@ -60,7 +61,10 @@ export default {
       waiting_patients: []
     }
   },
-  created () {
+  async created () {
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
     this.$api.get(
       'waiting'

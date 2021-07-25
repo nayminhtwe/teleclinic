@@ -281,18 +281,22 @@ export default {
   },
   computed: {
     ...mapGetters({
+      getDoctorProfile: 'doctor/getDoctorProfile',
       getDoctorToken: 'doctor/getDoctorToken'
     })
   },
-  created () {
+  async created () {
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-    this.$api.get(
+    await this.$api.get(
       `patient_detail/${this.patientId}`
     ).then((response) => {
       this.visits = response.data.data
     })
 
-    this.$api.get(
+    await this.$api.get(
       'doctors'
     ).then((response) => {
       this.data = response.data.data

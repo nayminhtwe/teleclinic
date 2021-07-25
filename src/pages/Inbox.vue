@@ -113,24 +113,26 @@ export default {
     })
   },
   async created () {
-    await this.$store.dispatch('doctor/profile')
-    this.getChat()
+    if (!this.getDoctorProfile.app_user_id) {
+      await this.$store.dispatch('doctor/profile')
+    }
+    await this.getChat()
   },
   methods: {
     getFile (path) {
       return `${constantes.SERVER_MEDIA}${path}`
     },
-    getChat () {
+    async getChat () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
       if (this.getDoctorProfile.status === '1') {
-        this.$api.get(
+        await this.$api.get(
           'last_message_list'
         ).then((response) => {
           this.chats = response.data.data
         })
       }
       if (this.getDoctorProfile.status === '2') {
-        this.$api.get(
+        await this.$api.get(
           'patient_last_message_list'
         ).then((response) => {
           this.chats = response.data.data

@@ -363,7 +363,7 @@ export default {
     this.getDoctor()
 
     await this.$api.get(
-      'specialization'
+      'specialization_has_doctor'
     ).then((response) => {
       this.specializations = response.data.data
     })

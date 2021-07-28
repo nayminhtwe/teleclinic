@@ -50,7 +50,7 @@
             v-if="user.profile_image"
           />
           <img
-            src="~assets/patient.png"
+            src="~assets/ezcare.png"
             v-else
           />
         </q-avatar>

@@ -78,7 +78,7 @@
               >
                 EZCare Doctor {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(chat.doctor_info.id) }}
               </div>
-              <div>{{ chat.last_message }}</div>
+              <div class="last_message">{{ chat.last_message }}</div>
             </div>
           </div>
         </div>
@@ -146,5 +146,8 @@ export default {
 <style scoped>
 .border-icon {
   text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+}
+.last_message {
+  overflow: hidden;
 }
 </style>

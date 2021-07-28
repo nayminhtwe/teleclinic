@@ -1,8 +1,8 @@
 <template>
-  <q-page>
+  <q-page style="overflow: hidden;">
     <profile-header />
     <div
-      class="q-pa-xs"
+      class="q-pa-md"
       v-if="getDoctorProfile.status == 0"
     >
       <div class="q-pa-sm">
@@ -339,7 +339,7 @@
     </div>
 
     <div
-      class="q-pa-xs"
+      class="q-pa-md"
       v-if="getDoctorProfile.status == 2"
     >
       <div class="row q-gutter-md">
@@ -412,7 +412,7 @@
       </div>
     </div>
     <div
-      class="q-pa-xs"
+      class="q-pa-md"
       v-if="getDoctorProfile.status == 1 || getDoctorProfile.status == 3"
     >
       <div class="row q-gutter-md">

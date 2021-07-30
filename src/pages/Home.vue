@@ -160,8 +160,17 @@
         </q-card-section>
       </q-card>
     </q-dialog>
-    <div class="q-ma-md">
-      <div class="text-h5">Hello {{ getDoctorProfile.name }},</div>
+    <div
+      class="q-ma-md"
+      v-if="getDoctorProfile.hide_my_info"
+    >
+      <div class="text-h6">Hello {{ getDoctorProfile.name }} ({{ new Intl.NumberFormat('en', { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(getDoctorProfile.id)}}),</div>
+    </div>
+    <div
+      class="q-ma-md"
+      v-else
+    >
+      <div class="text-h6">Hello {{ getDoctorProfile.name }},</div>
     </div>
     <div class="q-ma-sm">
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">

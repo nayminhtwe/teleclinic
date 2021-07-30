@@ -443,6 +443,16 @@
           >Doctor Profile
           </div>
         </div>
+        <div
+          class="col-lg-4 col-12"
+          v-if="getDoctorProfile.hide_my_info"
+        >
+          <q-input
+            :value="new Intl.NumberFormat('en', { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(getDoctorProfile.id)"
+            label="ID"
+            readonly
+          />
+        </div>
         <div class="col-lg-4 col-12">
           <q-input
             :value="getDoctorProfile.name"

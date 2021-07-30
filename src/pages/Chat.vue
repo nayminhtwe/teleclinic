@@ -41,13 +41,14 @@
         <div class="q-py-xl" />
 
         <div
-          class="row q-pt-sm justify-center absolute-bottom"
+          class="row justify-center items-center absolute-bottom q-py-xs"
           id="chat-input"
         >
           <div class="col-2">
             <q-file
               borderless
               v-model="file"
+              dense
             >
               <template v-slot:before>
                 <q-icon
@@ -58,10 +59,9 @@
             </q-file>
           </div>
 
-          <div class="col-9 q-mt-sm">
+          <div class=" col-9">
             <q-input
               borderless
-              bottom-slots
               v-model="text"
               label="Messages"
               maxlength="120"

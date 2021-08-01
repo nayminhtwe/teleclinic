@@ -2,7 +2,34 @@
   <q-page>
     <profile-header />
     <div class="q-py-lg">
-      <!-- <div class="text-h5 q-mb-md">Find your {{ charity_type }}</div> -->
+      <q-dialog
+        v-model="dialog"
+        position="bottom"
+        full-width
+      >
+        <q-card>
+
+          <q-card-section>
+            <div class="q-py-md">
+              <q-btn
+                color="primary"
+                class="full-width"
+                label="Delete"
+                @click="deleteChat"
+              />
+            </div>
+
+            <div class="q-py-md">
+              <q-btn
+                color="primary"
+                class="full-width"
+                label="Cancel"
+                @click="dialog = false"
+              />
+            </div>
+          </q-card-section>
+        </q-card>
+      </q-dialog>
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
           rounded
@@ -41,9 +68,18 @@
                 />
               </q-avatar>
             </div>
-            <div class="col-9">
+            <div class="col-8">
               <div class="text-h6">{{ chat.patient_info.name }}</div>
               <div>{{ chat.last_message }}</div>
+            </div>
+            <div
+              class="col-1 column justify-center"
+              @click="confirm(chat.app_user_patient_id)"
+            >
+              <q-btn
+                flat
+                icon="more_vert"
+              />
             </div>
           </div>
         </div>
@@ -51,9 +87,11 @@
           <div
             :class="chat.patient_unread_status === 1 ? 'text-green' : ''"
             class="row col-12"
-            @click="$router.push({ name: 'chat', params: { user_id: chat.doctor_info.app_user_id, user: chat.doctor_info, last_message_id: chat.id } })"
           >
-            <div class="col-3 column justify-center">
+            <div
+              class="col-3 column justify-center"
+              @click="$router.push({ name: 'chat', params: { user_id: chat.doctor_info.app_user_id, user: chat.doctor_info, last_message_id: chat.id } })"
+            >
               <q-avatar size="60px">
                 <img
                   :src="getFile(chat.doctor_info.profile_image.profile_picture)"
@@ -65,7 +103,10 @@
                 />
               </q-avatar>
             </div>
-            <div class="col-9">
+            <div
+              class="col-8"
+              @click="$router.push({ name: 'chat', params: { user_id: chat.doctor_info.app_user_id, user: chat.doctor_info, last_message_id: chat.id } })"
+            >
               <div
                 class="text-h6"
                 v-if="!chat.doctor_info.hide_my_info"
@@ -80,6 +121,31 @@
               </div>
               <div class="last_message">{{ chat.last_message }}</div>
             </div>
+            <div
+              class="col-1 column justify-center"
+              @click="confirm(chat.app_user_doctor_id)"
+            >
+              <q-btn
+                flat
+                icon="more_vert"
+              />
+            </div>
+            <!-- <div class="col-1">
+              <q-fab
+                color="primary"
+                text-color="white"
+                icon="keyboard_arrow_left"
+                direction="left"
+                padding="xs"
+              >
+                <q-fab-action
+                  color="primary"
+                  text-color="white"
+                  @click="deleteChat(chat.app_user_doctor_id)"
+                  icon="delete"
+                />
+              </q-fab>
+            </div> -->
           </div>
         </div>
       </div>
@@ -100,9 +166,10 @@ export default {
   data () {
     return {
       chats: [],
+      chat_user_id: '',
       search: '',
       message: '',
-      charity_type: this.$route.params.type,
+      dialog: false,
       last_message_id: this.$route.params.last_message_id
     }
   },
@@ -138,6 +205,18 @@ export default {
           this.chats = response.data.data
         })
       }
+    },
+    confirm (userId) {
+      this.chat_user_id = userId
+      this.dialog = true
+    },
+    async deleteChat () {
+      await this.$api.delete(
+        `chat_delete_whole_conversation?receiver_id=${this.chat_user_id}`
+      ).then((response) => {
+        this.getChat()
+        this.dialog = false
+      })
     }
   }
 }

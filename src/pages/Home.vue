@@ -38,7 +38,7 @@
             AYA iBanking
           </div>
           <div class="text-subtitle2">
-            0059201010103105 Nung Mun Thawn
+            20021383009 Nung Mun Thawn
           </div>
         </q-card-section>
 

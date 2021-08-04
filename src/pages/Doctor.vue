@@ -80,9 +80,11 @@
             <q-btn
               v-for="language in charity.available_language"
               :key="language.id"
-              color="primary"
-              size="xs"
+              color="grey-4"
+              text-color="black"
+              size="sm"
               :label="language.language"
+              disable
             />
           </div>
 

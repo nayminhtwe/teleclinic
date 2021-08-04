@@ -51,6 +51,15 @@
           </div>
         </q-card-section>
 
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            Wave Pay
+          </div>
+          <div class="text-subtitle2">
+            09256078233
+          </div>
+        </q-card-section>
+
         <q-card-actions align="right">
           <q-btn
             flat

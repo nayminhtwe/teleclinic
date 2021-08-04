@@ -78,8 +78,18 @@
                   round
                   dense
                   flat
+                  disable
                   icon="send"
                   @click="send"
+                  v-if="sending"
+                />
+                <q-btn
+                  round
+                  dense
+                  flat
+                  icon="send"
+                  @click="send"
+                  v-else
                 />
               </template>
             </q-input>
@@ -162,6 +172,7 @@ export default {
       file: '',
       messages: [],
       type: 0,
+      sending: false,
       sender_id: this.$route.params.user_id
     }
   },
@@ -227,10 +238,12 @@ export default {
           this.messages.push(resp.data)
           this.text = ''
           this.type = 0
+          this.sending = false
         })
       }
     },
     send () {
+      this.sending = true
       if (this.file !== '') {
         const formData = new FormData()
         formData.append('file', this.file)

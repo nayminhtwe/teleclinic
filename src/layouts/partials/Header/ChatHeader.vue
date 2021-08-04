@@ -1,6 +1,7 @@
 <template>
   <q-header
     elevated
+    reveal
     class="bg-red text-white"
   >
     <q-toolbar>

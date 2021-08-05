@@ -26,7 +26,7 @@
             <figure>
               <q-zoom
                 background-color="blue-grey-1"
-                scale
+                restore-on-scroll
               >
                 <img
                   :src="getFile(message.message)"

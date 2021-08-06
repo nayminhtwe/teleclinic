@@ -187,6 +187,8 @@ export default {
       await this.$store.dispatch('doctor/profile')
     }
     await this.subscribe()
+
+    window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight)
   },
   methods: {
     getFile (path) {

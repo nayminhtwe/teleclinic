@@ -10,7 +10,7 @@
           <q-chat-message
             :text="[message.message]"
             :sent="message.sender_id != sender_id"
-            :stamp="message.created_at"
+            :stamp="moment(message.created_at).format('D-M H:M')"
             :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
             :text-color="message.sender_id != sender_id ? 'white' : 'black'"
             v-if="message.type === 0"
@@ -18,7 +18,7 @@
 
           <q-chat-message
             :sent="message.sender_id != sender_id"
-            :stamp="message.created_at"
+            :stamp="moment(message.created_at).format('D-M H:M')"
             :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
             :text-color="message.sender_id != sender_id ? 'white' : 'black'"
             v-else

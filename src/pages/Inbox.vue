@@ -37,7 +37,6 @@
           placeholder="Search"
           v-model="search"
           dense="dense"
-          @blur="filter"
         >
           <template v-slot:prepend>
             <q-icon name="search" />

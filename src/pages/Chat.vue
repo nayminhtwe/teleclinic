@@ -64,7 +64,7 @@
               borderless
               v-model="text"
               label="Messages"
-              maxlength="120"
+              maxlength="1500"
               dense="dense"
               :readonly="!!file"
             >

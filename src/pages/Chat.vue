@@ -1,42 +1,85 @@
 <template>
   <q-page>
     <chat-header />
+    <q-dialog
+      v-model="dialog"
+      seamless
+      position="bottom"
+      full-width
+    >
+      <q-card>
+
+        <q-card-section>
+          <div class="q-py-md">
+            <q-btn
+              color="primary"
+              class="full-width"
+              label="Delete"
+              @click="deleteChat"
+            />
+          </div>
+
+          <div class="q-py-md">
+            <q-btn
+              color="primary"
+              class="full-width"
+              label="Cancel"
+              @click="dialog = false"
+            />
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
     <div class="q-pa-md row justify-center">
       <div style="width: 100%; max-width: 400px">
         <div
+          class="row"
           v-for="message in messages"
           :key="message.id"
         >
-          <q-chat-message
-            :text="[message.message]"
-            :sent="message.sender_id != sender_id"
-            :stamp="moment(message.created_at).format('D-M H:M')"
-            :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
-            :text-color="message.sender_id != sender_id ? 'white' : 'black'"
-            v-if="message.type === 0"
-          />
+          <div class="col-11">
+            <q-chat-message
+              :text="[message.message]"
+              :sent="message.sender_id != sender_id"
+              :stamp="moment(message.created_at).format('D-M H:M')"
+              :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
+              :text-color="message.sender_id != sender_id ? 'white' : 'black'"
+              v-if="message.type === 0"
+            ></q-chat-message>
 
-          <q-chat-message
-            :sent="message.sender_id != sender_id"
-            :stamp="moment(message.created_at).format('D-M H:M')"
-            :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
-            :text-color="message.sender_id != sender_id ? 'white' : 'black'"
-            v-else
+            <q-chat-message
+              :sent="message.sender_id != sender_id"
+              :stamp="moment(message.created_at).format('D-M H:M')"
+              :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
+              :text-color="message.sender_id != sender_id ? 'white' : 'black'"
+              v-else
+            >
+              <figure>
+                <q-zoom
+                  background-color="blue-grey-1"
+                  restore-on-scroll
+                >
+                  <img
+                    :src="getFile(message.message)"
+                    width="200px"
+                    class="my-image"
+                  />
+                </q-zoom>
+                <!-- <figcaption>This is the "figcaption"</figcaption> -->
+              </figure>
+            </q-chat-message>
+          </div>
+          <div
+            class="col-1"
+            v-if="dialog"
           >
-            <figure>
-              <q-zoom
-                background-color="blue-grey-1"
-                restore-on-scroll
-              >
-                <img
-                  :src="getFile(message.message)"
-                  width="200px"
-                  class="my-image"
-                />
-              </q-zoom>
-              <!-- <figcaption>This is the "figcaption"</figcaption> -->
-            </figure>
-          </q-chat-message>
+            <q-checkbox
+              v-model="selection"
+              :val="message.id"
+              color="red"
+              v-if="message.sender_id != sender_id"
+            />
+          </div>
         </div>
         <div class="q-py-xl" />
 
@@ -173,7 +216,9 @@ export default {
       messages: [],
       type: 0,
       sending: false,
-      sender_id: this.$route.params.user_id
+      dialog: false,
+      sender_id: this.$route.params.user_id,
+      selection: []
     }
   },
   computed: {

@@ -15,7 +15,7 @@
               color="primary"
               class="full-width"
               label="Delete"
-              @click="deleteChat"
+              @click="deleteMessage"
             />
           </div>
 
@@ -44,6 +44,7 @@
               :stamp="moment(message.created_at).format('D-M H:M')"
               :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
               :text-color="message.sender_id != sender_id ? 'white' : 'black'"
+              v-touch-hold.mouse="handleHold"
               v-if="message.type === 0"
             ></q-chat-message>
 
@@ -52,6 +53,7 @@
               :stamp="moment(message.created_at).format('D-M H:M')"
               :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
               :text-color="message.sender_id != sender_id ? 'white' : 'black'"
+              v-touch-hold.mouse="handleHold"
               v-else
             >
               <figure>
@@ -307,6 +309,27 @@ export default {
       }
 
       this.sendMessage()
+    },
+    handleHold ({ evt, ...info }) {
+      this.dialog = info.touch
+    },
+    async deleteMessage () {
+      if (this.selection.length) {
+        const formData = new FormData()
+        for (const s of this.selection) {
+          formData.append('message_id[]', s)
+        }
+
+        this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+        await this.$api.post('chat_delete_single_conversation', formData).then((response) => {
+          console.log(response)
+          if (response.data.error_code === '0') {
+            this.selection = []
+            this.dialog = false
+            this.getMessages()
+          }
+        })
+      }
     }
   }
 }

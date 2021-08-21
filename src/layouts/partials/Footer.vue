@@ -119,6 +119,24 @@ export default {
       })
       // End pusher listener
       await this.getNoti()
+
+      var presence = new Pusher('836d77ac3f3198d7cf6d', {
+        cluster: 'ap1',
+        forceTLS: true,
+        authEndpoint: 'http://188.166.217.32/broadcasting/auth',
+        auth: { headers: { Authorization: `Bearer ${this.getDoctorToken}` } }
+
+      })
+
+      var presenceChannel = presence.subscribe('presence-online')
+
+      presenceChannel.bind('pusher:member_added', async member => {
+        console.log(member)
+      })
+
+      presenceChannel.bind('pusher:member_removed', async member => {
+        console.log(member)
+      })
     }
   }
 

@@ -33,6 +33,18 @@
           size="72px"
           v-if="user.status == 1"
         >
+          <q-badge
+            rounded
+            floating
+            color="green"
+            v-if="online"
+          />
+          <q-badge
+            rounded
+            floating
+            color="black"
+            v-else
+          />
           <img
             :src="getFile(user.profile_image.profile_picture)"
             v-if="user.profile_image"
@@ -46,6 +58,18 @@
           size="72px"
           v-if="user.status == 2"
         >
+          <q-badge
+            rounded
+            floating
+            color="black"
+            v-if="online"
+          />
+          <q-badge
+            rounded
+            floating
+            color="grey"
+            v-else
+          />
           <img
             :src="getFile(user.profile_image)"
             v-if="user.profile_image"
@@ -82,6 +106,7 @@
 <script>
 import { constantes } from 'src/boot/constantes.js'
 export default {
+  props: ['online'],
   data () {
     return {
       user: this.$route.params.user

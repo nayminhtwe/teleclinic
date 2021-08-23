@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <chat-header />
+    <chat-header :online=online />
     <q-dialog
       v-model="dialog"
       seamless
@@ -216,6 +216,7 @@ export default {
       text: '',
       file: '',
       messages: [],
+      online: '',
       type: 0,
       sending: false,
       dialog: false,
@@ -248,13 +249,14 @@ export default {
       await this.$api.post(
         'messages', { sender_id: this.sender_id }
       ).then((response) => {
+        this.online = response.data.online_status
         this.messages = response.data.data
       })
     },
     async subscribe () {
       const app = this
       // Start pusher listener
-      Pusher.logToConsole = true
+      // Pusher.logToConsole = true
 
       var pusher = new Pusher('836d77ac3f3198d7cf6d', {
         cluster: 'ap1',
@@ -272,6 +274,16 @@ export default {
         ).then((response) => {
           this.messages = response.data.data
         })
+      })
+
+      var online = pusher.subscribe('online-' + this.sender_id)
+
+      online.bind('App\\Events\\UserOnline', function (data) {
+        app.online = 1
+      })
+
+      online.bind('App\\Events\\UserOffline', function (data) {
+        app.online = 2
       })
       // End pusher listener
       await this.getMessages()

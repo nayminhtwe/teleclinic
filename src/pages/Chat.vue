@@ -81,6 +81,7 @@
             >
               <video
                 controls
+                width="200px"
                 :src="getFile(message.message)"
               />
             </q-chat-message>

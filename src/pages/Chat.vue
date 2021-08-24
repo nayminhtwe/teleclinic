@@ -95,6 +95,7 @@
             >
               <audio
                 controls
+                style="width: 200px;"
                 :src="getFile(message.message)"
               />
             </q-chat-message>
@@ -253,6 +254,12 @@
     >
       <q-btn
         fab
+        icon="delete"
+        color="primary"
+        @click="cancelRecord()"
+      />
+      <q-btn
+        fab
         icon="stop"
         color="negative"
         @click="stop()"
@@ -286,7 +293,8 @@ export default {
       selection: [],
       mediaRecorder: null,
       chunks: [],
-      btnStop: false
+      btnStop: false,
+      record_cancel: false
     }
   },
   computed: {
@@ -426,17 +434,19 @@ export default {
             }
 
             this.mediaRecorder.onstop = (e) => {
-              const blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' })
-              const formData = new FormData()
-              formData.append('file', blob)
-              this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-              this.$api.post('file_upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then((response) => {
-                if (response.data.error_code === '0') {
-                  this.file = ''
-                  this.text = response.data.file
-                  this.type = 3
-                }
-              })
+              if (!this.record_cancel) {
+                const blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' })
+                const formData = new FormData()
+                formData.append('file', blob)
+                this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+                this.$api.post('file_upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then((response) => {
+                  if (response.data.error_code === '0') {
+                    this.file = ''
+                    this.text = response.data.file
+                    this.type = 3
+                  }
+                })
+              }
             }
           })
           .catch(function (err) {
@@ -456,6 +466,13 @@ export default {
       this.btnStop = true
     },
     stop () {
+      this.record_cancel = false
+      this.mediaRecorder.stop()
+      this.$q.loading.hide()
+      this.btnStop = false
+    },
+    cancelRecord () {
+      this.record_cancel = true
       this.mediaRecorder.stop()
       this.$q.loading.hide()
       this.btnStop = false

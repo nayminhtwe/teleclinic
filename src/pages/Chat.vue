@@ -71,6 +71,19 @@
               </figure>
             </q-chat-message>
             <q-chat-message
+              :sent="message.send_id != sender_id"
+              :stamp="moment(message.created_at).format('D-M H:M')"
+              :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
+              :text-color="message.sender_id != sender_id ? 'white' : 'black'"
+              v-touch-hold.mouse="handleHold"
+              v-if="message.type === 2"
+            >
+              <video
+                controls
+                :src="getFile(message.message)"
+              />
+            </q-chat-message>
+            <q-chat-message
               :sent="message.sender_id != sender_id"
               :stamp="moment(message.created_at).format('D-M H:M')"
               :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
@@ -364,9 +377,14 @@ export default {
         this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
         this.$api.post('file_upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then((response) => {
           if (response.data.error_code === '0') {
-            this.file = ''
+            if (this.file.type.split('/')[0] === 'image') {
+              this.type = 1
+            }
+            if (this.file.type.split('/')[0] === 'video') {
+              this.type = 2
+            }
             this.text = response.data.file
-            this.type = 1
+            this.file = ''
             this.sendMessage()
           }
         })

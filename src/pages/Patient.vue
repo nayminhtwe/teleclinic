@@ -309,9 +309,10 @@ export default {
       this.$api.post(
         'referral', formData
       ).then((response) => {
+        this.$q.notify(response.data.message)
         this.$router.push('/')
       }).catch(err => {
-        console.log(err.response.data)
+        this.$q.notify(err.response.data.message)
       })
     })
   },

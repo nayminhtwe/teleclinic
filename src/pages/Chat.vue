@@ -54,7 +54,7 @@
               :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
               :text-color="message.sender_id != sender_id ? 'white' : 'black'"
               v-touch-hold.mouse="handleHold"
-              v-else
+              v-if="message.type === 1"
             >
               <figure>
                 <q-zoom
@@ -69,6 +69,19 @@
                 </q-zoom>
                 <!-- <figcaption>This is the "figcaption"</figcaption> -->
               </figure>
+            </q-chat-message>
+            <q-chat-message
+              :sent="message.sender_id != sender_id"
+              :stamp="moment(message.created_at).format('D-M H:M')"
+              :bg-color="message.sender_id != sender_id ? 'blue-grey-6' : 'red-4'"
+              :text-color="message.sender_id != sender_id ? 'white' : 'black'"
+              v-touch-hold.mouse="handleHold"
+              v-if="message.type === 3"
+            >
+              <audio
+                controls
+                :src="getFile(message.message)"
+              />
             </q-chat-message>
           </div>
           <div
@@ -89,6 +102,26 @@
           class="row justify-center items-center absolute-bottom q-py-xs"
           id="chat-input"
         >
+          <div class="col-1">
+            <q-icon
+              name="mic"
+              size="sm"
+              color="red"
+              @click="record()"
+            />
+            <!-- <q-file
+              borderless
+              v-model="file"
+              dense
+            >
+              <template v-slot:before>
+                <q-icon
+                  name="attach_file"
+                  @click.stop
+                />
+              </template>
+            </q-file> -->
+          </div>
           <div class="col-2">
             <q-file
               borderless
@@ -104,7 +137,7 @@
             </q-file>
           </div>
 
-          <div class=" col-9">
+          <div class=" col-8">
             <q-input
               borderless
               v-model="text"
@@ -197,6 +230,19 @@
 
       </div>
     </div>
+    <q-page-sticky
+      v-if="btnStop"
+      position="bottom-right"
+      :offset="[15, 18]"
+      style="z-index: 10000"
+    >
+      <q-btn
+        fab
+        icon="stop"
+        color="negative"
+        @click="stop()"
+      />
+    </q-page-sticky>
   </q-page>
 </template>
 
@@ -205,6 +251,7 @@ import { mapGetters } from 'vuex'
 import { constantes } from 'src/boot/constantes.js'
 import ChatHeader from 'src/layouts/partials/Header/ChatHeader.vue'
 import Pusher from 'pusher-js' // import Pusher
+import { QSpinnerBars } from 'quasar'
 
 export default {
   name: 'Chat',
@@ -221,7 +268,10 @@ export default {
       sending: false,
       dialog: false,
       sender_id: this.$route.params.user_id,
-      selection: []
+      selection: [],
+      mediaRecorder: null,
+      chunks: [],
+      btnStop: false
     }
   },
   computed: {
@@ -235,6 +285,8 @@ export default {
       await this.$store.dispatch('doctor/profile')
     }
     await this.subscribe()
+
+    this.init()
 
     window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight)
   },
@@ -342,6 +394,51 @@ export default {
           }
         })
       }
+    },
+    init () {
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+          .then((stream) => {
+            this.mediaRecorder = new MediaRecorder(stream)
+
+            this.mediaRecorder.ondataavailable = (e) => {
+              this.chunks.push(e.data)
+            }
+
+            this.mediaRecorder.onstop = (e) => {
+              const blob = new Blob(this.chunks, { type: 'audio/ogg; codecs=opus' })
+              const formData = new FormData()
+              formData.append('file', blob)
+              this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+              this.$api.post('file_upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then((response) => {
+                if (response.data.error_code === '0') {
+                  this.file = ''
+                  this.text = response.data.file
+                  this.type = 3
+                }
+              })
+            }
+          })
+          .catch(function (err) {
+            console.log('The following getUserMedia error occured: ' + err)
+          })
+      } else {
+        alert('getUserMedia not supported on your browser!')
+      }
+    },
+    record () {
+      this.mediaRecorder.start()
+      this.$q.loading.show({
+        spinner: QSpinnerBars,
+        spinnerColor: 'white',
+        backgroundColor: 'primary'
+      })
+      this.btnStop = true
+    },
+    stop () {
+      this.mediaRecorder.stop()
+      this.$q.loading.hide()
+      this.btnStop = false
     }
   }
 }

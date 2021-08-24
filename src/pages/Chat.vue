@@ -46,6 +46,7 @@
               :text-color="message.sender_id != sender_id ? 'white' : 'black'"
               v-touch-hold.mouse="handleHold"
               v-if="message.type === 0"
+              class="burmese"
             ></q-chat-message>
 
             <q-chat-message
@@ -476,5 +477,8 @@ export default {
   max-width: 100%;
   max-height: 100%;
   margin: auto;
+}
+.burmese {
+  font-family: "Pyidaungsu";
 }
 </style>

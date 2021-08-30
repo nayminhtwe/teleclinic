@@ -112,10 +112,10 @@
             />
           </div>
         </div>
-        <div class="q-py-xl" />
+        <div class="q-py-sm" />
 
         <div
-          class="row justify-center items-center absolute-bottom q-py-xs"
+          class="row justify-center items-center q-py-xs"
           id="chat-input"
         >
           <div class="col-1">
@@ -153,13 +153,15 @@
             </q-file>
           </div>
 
-          <div class=" col-8">
+          <div class=" col-7">
             <q-input
               borderless
               v-model="text"
               label="Messages"
               maxlength="1500"
               dense="dense"
+              autogrow
+              @keyup.enter="onEnter"
               :readonly="!!file"
             >
 
@@ -167,7 +169,7 @@
                 Field hint
               </template> -->
 
-              <template v-slot:after>
+              <!-- <template v-slot:after>
                 <q-btn
                   round
                   dense
@@ -185,8 +187,21 @@
                   @click="send"
                   v-else
                 />
-              </template>
+              </template> -->
             </q-input>
+          </div>
+          <div class="col-1">
+            <q-icon
+              name="send"
+              size="sm"
+              v-if="sending"
+            />
+            <q-icon
+              name="send"
+              size="sm"
+              @click="send"
+              v-else
+            />
           </div>
         </div>
 
@@ -398,9 +413,12 @@ export default {
             this.sendMessage()
           }
         })
+      } else {
+        if (this.type === 0) {
+          this.text = this.text.replaceAll('\n', '<br />')
+        }
+        this.sendMessage()
       }
-
-      this.sendMessage()
     },
     handleHold ({ evt, ...info }) {
       this.dialog = info.touch

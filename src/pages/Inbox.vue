@@ -57,6 +57,22 @@
           >
             <div class="col-3 column justify-center">
               <q-avatar size="60px">
+                <q-badge
+                  rounded
+                  floating
+                  color="green"
+                  text-color="green"
+                  label="1"
+                  v-if="chat.online_status.online_status"
+                />
+                <q-badge
+                  rounded
+                  floating
+                  color="black"
+                  text-color="black"
+                  label="0"
+                  v-else
+                />
                 <img
                   :src="getFile(chat.patient_info.profile_image)"
                   v-if="chat.patient_info.profile_image"
@@ -92,6 +108,22 @@
               @click="$router.push({ name: 'chat', params: { user_id: chat.doctor_info.app_user_id, user: chat.doctor_info, last_message_id: chat.id } })"
             >
               <q-avatar size="60px">
+                <q-badge
+                  rounded
+                  floating
+                  color="green"
+                  text-color="green"
+                  label="1"
+                  v-if="chat.online_status.online_status"
+                />
+                <q-badge
+                  rounded
+                  floating
+                  color="black"
+                  text-color="black"
+                  label="0"
+                  v-else
+                />
                 <img
                   :src="getFile(chat.doctor_info.profile_image.profile_picture)"
                   v-if="chat.doctor_info.profile_image"
@@ -183,6 +215,8 @@ export default {
       await this.$store.dispatch('doctor/profile')
     }
     await this.getChat()
+
+    await this.subscribe()
   },
   methods: {
     getFile (path) {
@@ -216,7 +250,31 @@ export default {
         this.getChat()
         this.dialog = false
       })
+    },
+    async subscribe () {
+      this.$root.$on('pusher_member_added', member => {
+        if (this.getDoctorProfile.status === '1' && member.info.doctor_status === 2) {
+          const chat = this.chats.filter(chat => chat.app_user_patient_id === member.info.id)
+          chat[0].online_status.online_status = 1
+        }
+        if (this.getDoctorProfile.status === '2' && member.info.doctor_status === 1) {
+          const chat = this.chats.filter(chat => chat.app_user_doctor_id === member.info.id)
+          chat[0].online_status.online_status = 1
+        }
+      })
+
+      this.$root.$on('pusher_member_removed', member => {
+        if (this.getDoctorProfile.status === '1' && member.info.doctor_status === 2) {
+          const chat = this.chats.filter(chat => chat.app_user_patient_id === member.info.id)
+          chat[0].online_status.online_status = 0
+        }
+        if (this.getDoctorProfile.status === '2' && member.info.doctor_status === 1) {
+          const chat = this.chats.filter(chat => chat.app_user_doctor_id === member.info.id)
+          chat[0].online_status.online_status = 0
+        }
+      })
     }
+
   }
 }
 </script>

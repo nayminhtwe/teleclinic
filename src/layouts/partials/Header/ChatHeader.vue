@@ -37,12 +37,16 @@
             rounded
             floating
             color="green"
+            text-color="green"
+            label="1"
             v-if="online"
           />
           <q-badge
             rounded
             floating
             color="black"
+            text-color="black"
+            label="0"
             v-else
           />
           <img
@@ -61,13 +65,17 @@
           <q-badge
             rounded
             floating
-            color="black"
+            color="green"
+            text-color="green"
+            label="1"
             v-if="online"
           />
           <q-badge
             rounded
             floating
-            color="grey"
+            color="black"
+            text-color="black"
+            label="0"
             v-else
           />
           <img

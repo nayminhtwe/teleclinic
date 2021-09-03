@@ -131,11 +131,11 @@ export default {
       var presenceChannel = presence.subscribe('presence-online')
 
       presenceChannel.bind('pusher:member_added', async member => {
-        console.log(member)
+        this.$root.$emit('pusher_member_added', member)
       })
 
       presenceChannel.bind('pusher:member_removed', async member => {
-        console.log(member)
+        this.$root.$emit('pusher_member_removed', member)
       })
     }
   }

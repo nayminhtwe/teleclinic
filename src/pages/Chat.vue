@@ -160,6 +160,7 @@
               label="Messages"
               maxlength="1500"
               dense="dense"
+              ref="message"
               autogrow
               @keyup.enter="onEnter"
               :readonly="!!file"
@@ -378,10 +379,10 @@ export default {
       // End pusher listener
       await this.getMessages()
     },
-    sendMessage () {
+    async sendMessage () {
       if (this.text !== '') {
         this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-        this.$api.post('messages/send', {
+        await this.$api.post('messages/send', {
           receiver_id: this.sender_id,
           message: this.text,
           type: this.type
@@ -391,6 +392,8 @@ export default {
           this.type = 0
           this.sending = false
         })
+        window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight)
+        this.$refs.message.focus()
       }
     },
     send () {

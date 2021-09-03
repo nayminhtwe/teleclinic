@@ -255,22 +255,22 @@ export default {
       this.$root.$on('pusher_member_added', member => {
         if (this.getDoctorProfile.status === '1' && member.info.doctor_status === 2) {
           const chat = this.chats.filter(chat => chat.app_user_patient_id === member.info.id)
-          chat[0].online_status.online_status = 1
+          if (chat.length) chat[0].online_status.online_status = 1
         }
         if (this.getDoctorProfile.status === '2' && member.info.doctor_status === 1) {
           const chat = this.chats.filter(chat => chat.app_user_doctor_id === member.info.id)
-          chat[0].online_status.online_status = 1
+          if (chat.length) chat[0].online_status.online_status = 1
         }
       })
 
       this.$root.$on('pusher_member_removed', member => {
         if (this.getDoctorProfile.status === '1' && member.info.doctor_status === 2) {
           const chat = this.chats.filter(chat => chat.app_user_patient_id === member.info.id)
-          chat[0].online_status.online_status = 0
+          if (chat.length) chat[0].online_status.online_status = 0
         }
         if (this.getDoctorProfile.status === '2' && member.info.doctor_status === 1) {
           const chat = this.chats.filter(chat => chat.app_user_doctor_id === member.info.id)
-          chat[0].online_status.online_status = 0
+          if (chat.length) chat[0].online_status.online_status = 0
         }
       })
     }

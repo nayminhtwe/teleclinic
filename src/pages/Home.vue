@@ -568,16 +568,24 @@ export default {
 .menu-box {
   height: 7em;
   width: 7.5em;
-  border-radius: 5px;
-  box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5;
+  /* border-radius: 5px;
+  box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5; */
+  box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: visible;
+  border-radius: 10px;
   line-height: 270%;
 }
 
 .doctor-box {
   height: 8.5em;
   width: 7.5em;
-  border-radius: 5px;
-  box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5;
+  /* border-radius: 5px;
+  box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5; */
+  box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: visible;
+  border-radius: 10px;
   line-height: 120%;
 }
 
@@ -633,6 +641,7 @@ export default {
 }
 
 .doctor-box >>> .block {
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 300%;
 }
 </style>

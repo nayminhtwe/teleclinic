@@ -292,12 +292,15 @@
               </template>
             </q-file>
           </div>
-          <div class="col-lg-4 col-12 offset-6 q-my-md">
-            <q-checkbox
-              left-label
-              v-model="hide"
-              label="Hide My Info"
-            />
+        </div>
+        <div class="row q-py-md">
+          <div class="col-4 offset-2 col-lg-4">
+            <div class="text-subtitle1 q-py-sm">
+              Hide My Info
+            </div>
+          </div>
+          <div class="col-6 col-lg-4">
+            <q-toggle v-model="hide" />
           </div>
         </div>
 

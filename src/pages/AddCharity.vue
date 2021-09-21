@@ -102,7 +102,7 @@
         />
       </div>
 
-      <div class="text-center q-my-lg">
+      <div class="col-12 offset-6 q-mt-xl">
         <q-file
           borderless
           v-model="file"
@@ -117,18 +117,20 @@
         </q-file>
       </div>
 
-      <div class="q-py-md q-gutter-sm">
-        <q-btn
-          color="red"
-          style="width: 250px"
-          class="text-white"
-          rounded
-          @click="submit"
-        >
-          <div class="ellipsis">
-            Register
-          </div>
-        </q-btn>
+      <div class="col-lg-4 col-12">
+        <div class="q-py-md q-gutter-sm">
+          <q-btn
+            color="red"
+            style="width: 250px"
+            class="text-white full-width"
+            rounded
+            @click="submit"
+          >
+            <div class="ellipsis">
+              Register
+            </div>
+          </q-btn>
+        </div>
       </div>
     </div>
   </q-page>
@@ -222,13 +224,21 @@ export default {
       formData.append('profile_image', this.file)
 
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
-      this.$api.post(this.charity.value.toLocaleLowerCase(), formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+      this.$api.post(this.charity.value.toLowerCase(), formData, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((response) => {
           if (response.data.error_code === '0') {
+            this.$q.notify({
+              type: 'positive',
+              message: 'Your registration is successful'
+            })
             this.$router.push('/')
           }
         }).catch(err => {
           console.log(err.response.data)
+          this.$q.notify({
+            type: 'negative',
+            message: err.response.data.message
+          })
         })
     }
   }

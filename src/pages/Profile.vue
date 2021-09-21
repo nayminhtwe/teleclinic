@@ -652,6 +652,7 @@ export default {
       this.$api.post('patient_create', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((response) => {
           if (response.data.error_code === '0') {
+            this.$q.notify('Your registration is successful. The EZ Care admin team will review your registration. Thank you.')
             this.$router.push('/')
           }
         }).catch(err => {
@@ -687,6 +688,7 @@ export default {
       this.$api.post('doctor_register', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((response) => {
           if (response.data.error_code === '0') {
+            this.$q.notify('Your registration is successful. You can now search and talk with EZ care doctors.')
             this.$router.push('/')
           }
         }).catch(err => {

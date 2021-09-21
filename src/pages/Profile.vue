@@ -5,6 +5,38 @@
       class="q-pa-md"
       v-if="getDoctorProfile.status == 0"
     >
+      <q-dialog
+        full-width
+        v-model="tor_popup"
+        persistent
+      >
+        <q-card>
+          <q-card-section>
+            <div class="text-h6">{{ tor.heading}}</div>
+          </q-card-section>
+
+          <q-card-section
+            class="q-pt-none"
+            v-html="tor.body"
+          />
+
+          <q-card-actions align="right">
+            <q-btn
+              flat
+              label="Cancel"
+              color="primary"
+              v-close-popup
+            />
+            <q-btn
+              flat
+              label="Confrim"
+              color="primary"
+              @click="submit"
+              v-close-popup
+            />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
       <div class="q-pa-sm">
         <div class="q-gutter-y-xs">
           <q-tabs
@@ -328,7 +360,7 @@
             color="red"
             class="text-white full-width"
             rounded
-            @click="submit"
+            @click="checkTOR"
           >
             <div class="ellipsis">
               Register
@@ -579,6 +611,8 @@ export default {
       profile_image: '',
       sama_or_nrc: '',
       hide: false,
+      tor_popup: false,
+      tor: {},
       specializations: [],
       languages: [],
       register: '',
@@ -708,6 +742,15 @@ export default {
             message: err.response.data.message
           })
         })
+    },
+    async checkTOR () {
+      await this.$api.get('terms_of_reference')
+        .then((response) => {
+          this.tor = response.data.data
+        }).catch(err => {
+          console.log(err.response.data)
+        })
+      this.tor_popup = true
     }
   }
 }

@@ -100,6 +100,11 @@
           @click="getCharity()"
         >
           <q-tab
+            name="doctor"
+            label="Doctors"
+            no-caps
+          />
+          <q-tab
             name="clinic"
             label="Clinics"
             no-caps
@@ -122,7 +127,7 @@
         </q-tabs>
       </div>
     </div>
-    <div class="q-py-lg">
+    <!-- <div class="q-py-lg">
       <div class="text-h5 q-mb-md">Find your favourited</div>
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
@@ -141,8 +146,65 @@
           </template>
         </q-input>
       </div>
+    </div> -->
+    <div
+      class="q-pa-xs q-gutter-md"
+      v-if="charity_type == 'doctor'"
+    >
+      <div
+        v-for="charity in charities"
+        :key="charity.id"
+      >
+        <div class="row col-12">
+          <div
+            class="col-3 column justify-center"
+            @click="popup(charity)"
+          >
+            <q-avatar size="60px">
+              <img
+                :src="getFile(charity.profile_image.profile_picture)"
+                v-if="charity.profile_image"
+              />
+              <!-- <img
+                src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
+                v-else
+              /> -->
+              <img
+                src="~assets/ezcare.png"
+                v-else
+              />
+            </q-avatar>
+          </div>
+          <div
+            class="col-7 column justify-center"
+            @click="popup(charity)"
+          >
+            <div
+              class="text-h6"
+              v-if="!charity.hide_my_info"
+            >{{ charity.name }}</div>
+            <div
+              class="text-h6"
+              v-else
+            >EZCare Doctor {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(charity.id) }}</div>
+            <!-- <div>{{ charity.address }}</div> -->
+          </div>
+          <div class="col-2 column justify-center">
+            <q-icon
+              name="favorite"
+              class="border-icon text-white"
+              :class="charity.favorite_status ? 'text-black' : 'text-white'"
+              size="md"
+              @click="favourite(charity.id)"
+            />
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="q-pa-xs q-gutter-md">
+    <div
+      class="q-pa-xs q-gutter-md"
+      v-else
+    >
       <div
         v-for="charity in charities"
         :key="charity.id"
@@ -209,7 +271,7 @@ export default {
       search: '',
       message: '',
       tab: '',
-      charity_type: 'clinic'
+      charity_type: 'doctor'
     }
   },
   computed: {

@@ -313,7 +313,7 @@ export default {
         this.message = response.data.message
         // this.alert = true
         this.filter()
-        this.charity.favorite_status = !this.charity.favorite_status
+        if (this.charity.id === id) this.charity.favorite_status = !this.charity.favorite_status
       })
     },
     async getCharity () {

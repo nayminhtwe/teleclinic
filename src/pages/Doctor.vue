@@ -41,10 +41,11 @@
         <q-card-section>
           <q-btn
             fab
-            color="primary"
+            :color="charity.favorite_status ? 'primary' : 'black'"
             icon="favorite"
             class="absolute"
             style="top: 0; right: 12px; transform: translateY(-50%);"
+            @click="favourite(charity.id)"
           />
 
           <div class="row no-wrap items-center">
@@ -305,7 +306,9 @@
             <q-icon
               name="favorite"
               class="border-icon text-white"
+              :class="charity.favorite_status ? 'text-black' : 'text-white'"
               size="md"
+              @click="favourite(charity.id)"
             />
           </div>
         </div>
@@ -377,6 +380,17 @@ export default {
     popup (charity) {
       this.charity = charity
       this.card = true
+    },
+    favourite (id) {
+      this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+      this.$api.post(
+        `favorite_doctor/${id}`
+      ).then((response) => {
+        this.message = response.data.message
+        // this.alert = true
+        this.getDoctor()
+        if (this.charity.id === id) this.charity.favorite_status = !this.charity.favorite_status
+      })
     },
     getDoctor () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`

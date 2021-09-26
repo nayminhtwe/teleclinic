@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <!-- <profile-header /> -->
-    <home-header />
+    <home-header :images=cover_images />
     <q-dialog
       v-model="alert"
       full-width
@@ -489,7 +489,8 @@ export default {
       patient_phone: '',
       patient_profile_image: '',
       visited_patients: [],
-      waiting_patients: []
+      waiting_patients: [],
+      cover_images: []
     }
   },
   async created () {
@@ -504,6 +505,13 @@ export default {
     }
 
     this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+
+    await this.$api.get(
+      'cover_images'
+    ).then((response) => {
+      console.log(response)
+      this.cover_images = response.data.data
+    })
 
     if (this.getDoctorProfile.status === '1') {
       this.patient_create = 'patient_create_from_doctor'

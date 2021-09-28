@@ -549,6 +549,13 @@
                   label="Comment"
                 />
               </div>
+              <div class="col-12">
+                <img
+                  :src="getFile(getDoctorProfile.profile_image.profile_picture)"
+                  v-if="getDoctorProfile.profile_image"
+                  width="200px"
+                >
+              </div>
               <div class="col-12 offset-6 q-my-md">
                 <q-file
                   borderless
@@ -563,7 +570,7 @@
                   </template>
                 </q-file>
               </div>
-              <div class="col-12 offset-6 q-my-md">
+              <!-- <div class="col-12 offset-6 q-my-md">
                 <q-file
                   borderless
                   v-model="sama_or_nrc"
@@ -576,7 +583,7 @@
                     />
                   </template>
                 </q-file>
-              </div>
+              </div> -->
             </div>
           </q-card-section>
           <q-card-actions align="right">
@@ -848,6 +855,7 @@ export default {
       this.$api.post('patient_create', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((response) => {
           if (response.data.error_code === '0') {
+            this.$store.dispatch('doctor/profile')
             // this.$q.notify('Your registration is successful. The EZ Care admin team will review your registration. Thank you.')
             this.$q.notify({
               type: 'positive',
@@ -866,6 +874,7 @@ export default {
       this.$api.post('doctor_register', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((response) => {
           if (response.data.error_code === '0') {
+            this.$store.dispatch('doctor/profile')
             // this.$q.notify('Your registration is successful. You can now search and talk with EZ care doctors.')
             this.$q.notify({
               type: 'positive',
@@ -939,6 +948,7 @@ export default {
       this.$api.post(`doctor_edit/${this.getDoctorProfile.id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((response) => {
           if (response.data.error_code === '0') {
+            this.$store.dispatch('doctor/profile')
             this.$q.notify({
               type: 'positive',
               message: 'Your Profile is successful updated',

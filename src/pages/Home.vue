@@ -162,7 +162,7 @@
               @click="patient"
             >
               <div class="ellipsis">
-                Register
+                {{ $t('Register') }}
               </div>
             </q-btn>
           </div>
@@ -179,7 +179,7 @@
       class="q-ma-md"
       v-else
     >
-      <div class="text-h6">Hello {{ getDoctorProfile.name }},</div>
+      <div class="text-h6">{{$t('Hello') }} {{ getDoctorProfile.name }},</div>
     </div>
     <div class="q-ma-sm">
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
@@ -198,7 +198,7 @@
     </div>
 
     <div class="q-my-sm q-ml-md">
-      <div class="text-h6">How can we help you?</div>
+      <div class="text-h6">{{ $t('How can we help you?') }}</div>
     </div>
 
     <div class="row q-ma-xs text-center">
@@ -363,7 +363,7 @@
     </div>
 
     <div class="q-my-md q-ml-md">
-      <div class="text-h6">For Tele-Consultations</div>
+      <div class="text-h6">{{ $t('For tele-consultation') }}</div>
     </div>
     <div class="row q-ma-xs text-center">
       <div class="col-4 col-lg-2 q-mb-md">

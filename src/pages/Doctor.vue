@@ -216,7 +216,7 @@
               @click="patient"
             >
               <div class="ellipsis">
-                Register
+                {{ $t('Register') }}
               </div>
             </q-btn>
           </div>
@@ -234,21 +234,20 @@
         >
           <q-tab
             name=""
-            label="All"
+            :label="$t('All')"
             no-caps
           />
           <q-tab
             v-for="specialization in specializations"
             :key="specialization.id"
             :name="specialization.Name"
-            :label="specialization.Name"
+            :label="$t(specialization.Name)"
             no-caps
           />
         </q-tabs>
       </div>
     </div>
-    <div class="q-py-lg">
-      <!-- <div class="text-h5 q-mb-md">Find your {{ charity_type }}</div> -->
+    <!-- <div class="q-py-lg">
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
           rounded
@@ -262,7 +261,7 @@
           </template>
         </q-input>
       </div>
-    </div>
+    </div> -->
     <div class="q-pa-xs q-gutter-md">
       <div
         v-for="charity in charities"

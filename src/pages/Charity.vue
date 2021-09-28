@@ -101,14 +101,14 @@
         >
           <q-tab
             name=""
-            label="All"
+            :label="$t('All')"
             no-caps
           />
           <q-tab
             v-for="region in regions"
             :key="region.id"
             :name="region.id"
-            :label="region.Region"
+            :label="$t(region.Region)"
             no-caps
           />
         </q-tabs>

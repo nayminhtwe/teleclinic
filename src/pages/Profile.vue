@@ -187,7 +187,7 @@
             @click="patient"
           >
             <div class="ellipsis">
-              Register
+              {{ $t('Register') }}
             </div>
           </q-btn>
         </div>
@@ -391,7 +391,7 @@
             @click="checkTOR"
           >
             <div class="ellipsis">
-              Register
+              {{ $t('Register') }}
             </div>
           </q-btn>
         </div>
@@ -794,10 +794,21 @@
         @click="checkHelp"
       >
         <div class="ellipsis">
-          Help
+          {{ $t('Help') }}
         </div>
       </q-btn>
     </div>
+    <q-select
+      v-model="lang"
+      :options="langOptions"
+      label="Quasar Language"
+      dense
+      borderless
+      emit-value
+      map-options
+      options-dense
+      style="min-width: 150px"
+    />
   </q-page>
 </template>
 
@@ -841,7 +852,12 @@ export default {
       doctor_edit: false,
       noti: true,
       help_popup: false,
-      help: {}
+      help: {},
+      lang: this.$i18n.locale,
+      langOptions: [
+        { value: 'en-us', label: 'English' },
+        { value: 'mm', label: 'Myanmar' }
+      ]
     }
   },
   components: {
@@ -890,6 +906,9 @@ export default {
       }).catch(err => {
         console.log(err.response.data)
       })
+    },
+    lang (lang) {
+      this.$i18n.locale = lang
     }
   },
   methods: {

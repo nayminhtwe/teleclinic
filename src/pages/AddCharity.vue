@@ -127,7 +127,7 @@
             @click="submit"
           >
             <div class="ellipsis">
-              Register
+              {{ $t('Register') }}
             </div>
           </q-btn>
         </div>

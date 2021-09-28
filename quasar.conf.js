@@ -22,7 +22,8 @@ module.exports = function (/* ctx */) {
 
       'axios',
       'fcm',
-      'moment'
+      'moment',
+      'i18n'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css

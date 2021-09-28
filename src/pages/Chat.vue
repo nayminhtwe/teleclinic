@@ -10,6 +10,14 @@
       <q-card>
 
         <q-card-section>
+          <div class="q-py-md q-ml-lg">
+            <q-rating
+              v-model="rating"
+              size="3.5em"
+              color="green-5"
+              icon="star_border"
+            />
+          </div>
           <div class="q-py-md">
             <q-btn
               color="primary"
@@ -310,7 +318,8 @@ export default {
       mediaRecorder: null,
       chunks: [],
       btnStop: false,
-      record_cancel: false
+      record_cancel: false,
+      rating: 0
     }
   },
   computed: {
@@ -328,6 +337,23 @@ export default {
     this.init()
 
     window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight)
+
+    this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`
+    this.$api.post(
+      'doctor_rated', { doctor_id: this.sender_id }
+    ).then((response) => {
+      console.log(response.data.rating)
+      if (this.sender_id === response.data.doctor_id) this.rating = response.data.rating
+    })
+  },
+  watch: {
+    rating: function (val) {
+      this.$api.post(
+        'doctor_rating', { doctor_id: this.sender_id, rating: val }
+      ).then((response) => {
+        console.log(response)
+      })
+    }
   },
   methods: {
     getFile (path) {

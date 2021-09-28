@@ -1,6 +1,31 @@
 <template>
   <q-page style="overflow: hidden;">
     <profile-header />
+    <q-dialog
+      full-width
+      v-model="help_popup"
+      persistent
+    >
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">{{ help.heading}}</div>
+        </q-card-section>
+
+        <q-card-section
+          class="q-pt-none"
+          v-html="help.body"
+        />
+
+        <q-card-actions align="right">
+          <q-btn
+            flat
+            label="Ok"
+            color="primary"
+            v-close-popup
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
     <div
       class="q-pa-md"
       v-if="getDoctorProfile.status == 0"
@@ -762,6 +787,17 @@
         </div>
       </q-btn>
     </div>
+    <div class="q-gutter-sm">
+      <q-btn
+        flat
+        class="full-width"
+        @click="checkHelp"
+      >
+        <div class="ellipsis">
+          Help
+        </div>
+      </q-btn>
+    </div>
   </q-page>
 </template>
 
@@ -803,7 +839,9 @@ export default {
       patient_phone: '',
       patient_profile_image: '',
       doctor_edit: false,
-      noti: true
+      noti: true,
+      help_popup: false,
+      help: {}
     }
   },
   components: {
@@ -928,6 +966,15 @@ export default {
           console.log(err.response.data)
         })
       this.tor_popup = true
+    },
+    async checkHelp () {
+      await this.$api.get('help')
+        .then((response) => {
+          this.help = response.data.data
+        }).catch(err => {
+          console.log(err.response.data)
+        })
+      this.help_popup = true
     },
     async doctor_profile () {
       await this.fetch_doctor()

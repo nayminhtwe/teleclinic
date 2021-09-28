@@ -727,6 +727,16 @@
           >
         </div>
       </div>
+      <div class="row q-py-md">
+        <div class="col-4 offset-2 col-lg-4">
+          <div class="text-subtitle1 q-py-sm">
+            Notifications
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <q-toggle v-model="noti" />
+        </div>
+      </div>
       <div class="q-py-md q-gutter-sm">
         <q-btn
           color="red"
@@ -792,7 +802,8 @@ export default {
       patient_address: '',
       patient_phone: '',
       patient_profile_image: '',
-      doctor_edit: false
+      doctor_edit: false,
+      noti: true
     }
   },
   components: {
@@ -824,6 +835,24 @@ export default {
     ).then((response) => {
       this.languages = response.data.data
     })
+  },
+  watch: {
+    noti: function (val) {
+      this.$api.post(
+        'active_status', { active_status: this.noti }
+      ).then((response) => {
+        if (response.data.error_code === '0') {
+          this.$store.dispatch('doctor/profile')
+          this.$q.notify({
+            type: 'positive',
+            message: response.data.message,
+            html: true
+          })
+        }
+      }).catch(err => {
+        console.log(err.response.data)
+      })
+    }
   },
   methods: {
     addInput () {

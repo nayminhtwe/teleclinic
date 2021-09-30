@@ -124,6 +124,7 @@
 
         <div
           class="row justify-center items-center q-py-xs"
+          :class="{ 'absolute-bottom': messages.length < 6 }"
           id="chat-input"
         >
           <div class="col-1">

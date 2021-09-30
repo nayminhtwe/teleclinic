@@ -801,7 +801,7 @@
     <q-select
       v-model="lang"
       :options="langOptions"
-      label="Quasar Language"
+      label="App Language"
       dense
       borderless
       emit-value
@@ -908,6 +908,7 @@ export default {
       })
     },
     lang (lang) {
+      localStorage.setItem('locale', lang)
       this.$i18n.locale = lang
     }
   },

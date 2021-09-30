@@ -134,6 +134,7 @@ export default {
   'Sagaing': 'စစ်ကိုင်း',
   'Tanintharyi': 'တနသ်ာရီ',
   'Kachin': 'ကချင်',
+  'Kayah': 'ကယား',
   'Kayin': 'ကရင်',
   'Chin': 'ချင်း',
   'Mon': 'မွန်',

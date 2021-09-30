@@ -134,6 +134,7 @@ export default {
   'Sagaing': 'Sagaing',
   'Tanintharyi': 'Tanintharyi',
   'Kachin': 'Kachin',
+  'Kayah': 'Kayah',
   'Kayin': 'Kayin',
   'Chin': 'Chin',
   'Mon': 'Mon',

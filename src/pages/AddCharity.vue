@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <q-page style="overflow: hidden;">
     <profile-header />
     <div class="q-pa-xs row q-gutter-md">
       <q-banner

@@ -121,7 +121,7 @@
           />
           <q-tab
             name="lab"
-            label="Labs"
+            label="Oxygen"
             no-caps
           />
         </q-tabs>

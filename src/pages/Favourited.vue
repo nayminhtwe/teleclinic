@@ -25,6 +25,106 @@
       </q-card>
     </q-dialog>
     <q-dialog
+      v-model="doctor_card"
+      full-width
+    >
+      <q-card class="my-card">
+        <q-img
+          :src="getFile(charity.profile_image.profile_picture)"
+          v-if="charity.profile_image"
+        />
+
+        <q-img
+          src="~assets/ezcare.png"
+          v-else
+        />
+        <q-card-section>
+          <q-btn
+            fab
+            :color="charity.favorite_status ? 'primary' : 'black'"
+            icon="favorite"
+            class="absolute"
+            style="top: 0; right: 12px; transform: translateY(-50%);"
+            @click="favourite(charity.id)"
+          />
+
+          <div class="row no-wrap items-center">
+            <div
+              class="col text-h6 ellipsis"
+              v-if="!charity.hide_my_info"
+            >
+              {{ charity.name }}
+            </div>
+            <div
+              class="col text-h6 ellipsis"
+              v-else
+            >
+              EZCare Doctor {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(charity.id) }}
+            </div>
+          </div>
+
+          <!-- <q-rating
+            v-model="stars"
+            :max="5"
+            size="32px"
+          /> -->
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="text-subtitle1">
+            {{ charity.available_time }}
+          </div>
+          <div class="text-subtitle1">
+            {{ charity.address }}
+          </div>
+          <div class="q-py-sm q-gutter-sm">
+            <q-btn
+              v-for="language in charity.available_language"
+              :key="language.id"
+              color="grey-4"
+              text-color="black"
+              size="sm"
+              :label="language.language"
+              disable
+            />
+          </div>
+
+        </q-card-section>
+
+        <q-separator />
+
+        <q-card-actions>
+          <!-- <div class="col-6">
+            <q-btn
+              v-close-popup
+              color="primary"
+              label="Call"
+              size="md"
+              :href="'tel:'+charity.contact_number"
+            />
+          </div> -->
+          <div class="col column items-center">
+            <q-btn
+              v-if="getDoctorProfile.status == 2"
+              v-close-popup
+              color="primary"
+              label="Message"
+              size="md"
+              @click="$router.push({ name: 'chat', params: { user_id: charity.app_user_id, user: charity } })"
+            />
+            <q-btn
+              v-if="getDoctorProfile.status == 0"
+              v-close-popup
+              color="primary"
+              label="Message"
+              size="md"
+              @click="register = true"
+            />
+          </div>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <q-dialog
       v-model="card"
       full-width
     >
@@ -266,6 +366,7 @@ export default {
       banner: false,
       alert: false,
       card: false,
+      doctor_card: false,
       charity: {},
       charities: [],
       search: '',
@@ -297,7 +398,7 @@ export default {
     },
     popup (charity) {
       this.charity = charity
-      this.card = true
+      this.charity_type === 'doctor' ? this.doctor_card = true : this.card = true
     },
     filter () {
       this.$api.defaults.headers.Authorization = `Bearer ${this.getDoctorToken}`

@@ -9,14 +9,14 @@
       <div class="col-lg-6 col-12 q-py-xs">
         <q-banner
           inline-actions
-          class="text-white bg-red q-mb-lg"
+          class="text-black bg-red q-mb-lg"
           v-if="banner"
         >
           {{ message }}
           <template v-slot:action>
             <q-btn
               flat
-              color="white"
+              color="black"
               icon="error"
               @click="banner = false"
             />
@@ -26,7 +26,7 @@
           color="teal"
           v-model="email"
           label="Username"
-          label-color="white"
+          label-color="black"
           :rules="[val => !!val || 'Field is required']"
         >
           <template v-slot:prepend>
@@ -34,7 +34,7 @@
               flat
               dense
               icon="account_circle"
-              class="q-mr-sm text-white"
+              class="q-mr-sm text-black"
             />
             <!-- <q-avatar>
               <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
@@ -48,7 +48,7 @@
           v-model="password"
           type="password"
           label="Password"
-          label-color="white"
+          label-color="black"
           :rules="[val => !!val || 'Field is required']"
         >
           <template v-slot:prepend>
@@ -59,7 +59,7 @@
               flat
               dense
               icon="vpn_key"
-              class="q-mr-sm text-white"
+              class="q-mr-sm text-black"
             />
           </template>
         </q-input>
@@ -67,9 +67,9 @@
 
       <div class="q-py-md q-gutter-sm">
         <q-btn
-          color="white"
+          color="deep-orange-10"
           style="width: 250px"
-          class="text-black"
+          class="text-white"
           rounded
           @click="submit"
         >
@@ -81,7 +81,7 @@
       <div class="q-py-md text-center">
         <q-btn
           flat
-          color="white"
+          color="black"
           label="Register"
           @click="$router.push('/login/register')"
         />

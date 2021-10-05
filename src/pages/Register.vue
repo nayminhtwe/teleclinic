@@ -16,7 +16,7 @@
           <template v-slot:action>
             <q-btn
               flat
-              color="white"
+              color="black"
               icon="error"
               @click="banner = false"
             />
@@ -26,7 +26,7 @@
           color="teal"
           v-model="name"
           label="Username"
-          label-color="white"
+          label-color="black"
           :rules="[val => !!val || 'Field is required']"
         >
           <template v-slot:prepend>
@@ -34,7 +34,7 @@
               flat
               dense
               icon="account_circle"
-              class="q-mr-sm text-white"
+              class="q-mr-sm text-black"
             />
           </template>
         </q-input>
@@ -78,7 +78,7 @@
           v-model="password"
           type="password"
           label="Password"
-          label-color="white"
+          label-color="black"
           :rules="[val => !!val || 'Field is required']"
         >
           <template v-slot:prepend>
@@ -89,7 +89,7 @@
               flat
               dense
               icon="vpn_key"
-              class="q-mr-sm text-white"
+              class="q-mr-sm text-black"
             />
           </template>
         </q-input>
@@ -113,9 +113,9 @@
 
       <div class="q-py-md q-gutter-sm">
         <q-btn
-          color="white"
+          color="deep-orange-10"
           style="width: 250px"
-          class="text-black"
+          class="text-white"
           rounded
           @click="submit"
         >
@@ -127,7 +127,7 @@
       <div class="q-py-md text-center">
         <q-btn
           flat
-          color="white"
+          color="black"
           label="Login"
           @click="$router.push('/login/login')"
         />

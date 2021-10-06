@@ -217,7 +217,7 @@
         <q-btn
           class="text-black menu-box"
           id="doctors"
-          icon="person"
+          icon="fas fa-user-md"
           label="Doctors"
           no-caps
           stack
@@ -235,7 +235,7 @@
         <q-btn
           class="text-black menu-box"
           id="clinics"
-          icon="apartment"
+          icon="fas fa-hospital"
           label="Clinics"
           no-caps
           stack
@@ -253,7 +253,7 @@
         <q-btn
           class="text-black menu-box"
           id="ambulances"
-          icon="local_shipping"
+          icon="fas fa-ambulance"
           label="Ambulances"
           no-caps
           stack
@@ -271,7 +271,7 @@
         <q-btn
           class="text-black menu-box"
           id="pharmacy"
-          icon="local_pharmacy"
+          icon="fas fa-plus-square"
           label="Pharmacy"
           no-caps
           stack
@@ -289,7 +289,7 @@
         <q-btn
           class="text-black menu-box"
           id="labs"
-          icon="support"
+          icon="fas fa-heartbeat"
           label="Oxygen"
           no-caps
           stack
@@ -306,7 +306,7 @@
         /> -->
         <q-btn
           class="text-black menu-box"
-          icon="link"
+          icon="fas fa-folder-plus"
           label="Register"
           stack
           @click="$router.push('add_charity')"
@@ -382,7 +382,7 @@
         <q-btn
           class="text-black doctor-box"
           id="donate"
-          icon="account_balance_wallet"
+          icon="fas fa-hand-holding-usd"
           label="Donate"
           no-caps
           stack

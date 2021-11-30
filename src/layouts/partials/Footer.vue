@@ -124,6 +124,7 @@ export default {
         cluster: 'ap1',
         forceTLS: true,
         authEndpoint: 'http://188.166.217.32/broadcasting/auth',
+        // authEndpoint: 'http://booking.local/broadcasting/auth',
         auth: { headers: { Authorization: `Bearer ${this.getDoctorToken}` } }
 
       })

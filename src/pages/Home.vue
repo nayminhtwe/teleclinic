@@ -326,10 +326,10 @@
     >
       <div class="col-4 col-lg-2 q-mb-md">
         <q-btn
-          class="text-black doctor-box"
+          class="text-black doctor-box-2"
           id="new"
           icon="receipt_long"
-          label="New Patients Record"
+          label="New Patient Record"
           no-caps
           stack
           @click="record"
@@ -338,7 +338,7 @@
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
         <q-btn
-          class="text-black doctor-box"
+          class="text-black doctor-box-2"
           id="waitings"
           icon="medical_services"
           label="Waiting Patients"
@@ -350,7 +350,7 @@
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
         <q-btn
-          class="text-black doctor-box"
+          class="text-black doctor-box-2"
           id="patients"
           icon="home"
           label="My Patients "
@@ -390,6 +390,37 @@
           outline
         />
       </div>
+      <div
+        class="col-4 col-lg-2 q-mb-md"
+        v-if="getDoctorProfile.status === '1'"
+      >
+        <q-btn
+          class="text-black doctor-box"
+          id="wallet"
+          icon="fas fa-wallet"
+          label="My Wallet"
+          no-caps
+          stack
+          @click="$router.push('doctor_wallet')"
+          outline
+        />
+      </div>
+      <div
+        class="col-4 col-lg-2 q-mb-md"
+        v-if="getDoctorProfile.status === '2'"
+      >
+        <q-btn
+          class="text-black doctor-box"
+          id="wallet"
+          icon="fas fa-wallet"
+          label="My Wallet"
+          no-caps
+          stack
+          @click="$router.push('patient_wallet')"
+          outline
+        />
+      </div>
+
     </div>
     <!-- <div
       class="q-pa-md row items-start q-gutter-lg"
@@ -597,12 +628,29 @@ export default {
   line-height: 120%;
 }
 
+.doctor-box-2 {
+  height: 8.5em;
+  width: 7.5em;
+  /* border-radius: 5px;
+  box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5; */
+  box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: visible;
+  border-radius: 10px;
+  line-height: 120%;
+}
+
 .menu-box >>> .q-icon {
   font-size: 40px;
 }
 
 .doctor-box >>> .q-icon {
   font-size: 30px;
+}
+
+.doctor-box-2 >>> .q-icon {
+  font-size: 30px;
+  height: 1.5em;
 }
 
 #doctors >>> .q-icon {
@@ -644,6 +692,11 @@ export default {
 #donate >>> .q-icon {
   color: green;
 }
+
+#wallet >>> .q-icon {
+  color: yellowgreen;
+}
+
 .menu-box >>> .block {
   font-size: 14px;
 }
@@ -651,5 +704,10 @@ export default {
 .doctor-box >>> .block {
   font-size: 14px;
   line-height: 300%;
+}
+
+.doctor-box-2 >>> .block {
+  font-size: 14px;
+  line-height: 150%;
 }
 </style>

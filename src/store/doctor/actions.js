@@ -6,6 +6,7 @@ const actions = {
     commit(types.AUTH_REQUEST)
     await axios
       .post('http://188.166.217.32/api/v1/register', formData, {
+      // .post('http://booking.local/api/v1/register', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -33,6 +34,7 @@ const actions = {
     commit(types.AUTH_REQUEST)
     await axios
       .post('http://188.166.217.32/api/v1/login', formData)
+      // .post('http://booking.local/api/v1/login', formData)
       .then(response => {
         if (response.data.error_code === '0') {
           localStorage.setItem('access_token', response.data.access_token)

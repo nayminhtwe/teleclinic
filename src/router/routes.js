@@ -38,7 +38,10 @@ const routes = [
       { path: 'doctor', component: () => import('src/pages/Doctor.vue'), beforeEnter: ifAuthenticated },
       { path: 'inbox', component: () => import('src/pages/Inbox.vue'), beforeEnter: ifAuthenticated },
       { path: 'chat/:user_id', name: 'chat', component: () => import('src/pages/Chat.vue'), beforeEnter: ifAuthenticated },
-      { path: 'favourited', component: () => import('src/pages/Favourited.vue'), beforeEnter: ifAuthenticated }
+      { path: 'favourited', component: () => import('src/pages/Favourited.vue'), beforeEnter: ifAuthenticated },
+      { path: 'doctor_wallet', component: () => import('src/pages/DoctorWallet.vue'), beforeEnter: ifAuthenticated },
+      { path: 'patient_wallet', component: () => import('src/pages/PatientWallet.vue'), beforeEnter: ifAuthenticated },
+      { path: 'transfer_consultation_fee', component: () => import('src/pages/TransferConsultationFee.vue'), beforeEnter: ifAuthenticated }
     ]
   },
   {

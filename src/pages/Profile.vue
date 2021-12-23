@@ -120,6 +120,7 @@
           </div>
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="patient_name"
               label="Name"
               :rules="[val => !!val || 'Field is required']"
@@ -128,6 +129,7 @@
 
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="patient_age"
               label="Age"
               :rules="[val => !!val || 'Field is required']"
@@ -141,6 +143,7 @@
               :rules="[val => !!val || 'Field is required']"
             /> -->
             <q-select
+              outlined
               v-model="patient_gender"
               label="Gender"
               :options="genders"
@@ -150,6 +153,7 @@
 
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="patient_address"
               label="Adress"
               :rules="[val => !!val || 'Field is required']"
@@ -158,6 +162,7 @@
 
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="patient_phone"
               label="Phone"
               :rules="[val => !!val || 'Field is required']"
@@ -215,6 +220,7 @@
           </div>
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="name"
               label="Name"
               :rules="[val => !!val || 'Field is required']"
@@ -223,6 +229,7 @@
 
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="sama_number"
               label="SAMA No."
               :rules="[val => !!val || 'Field is required']"
@@ -231,6 +238,7 @@
 
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="qualifications"
               label="Qualifications"
               :rules="[val => !!val || 'Field is required']"
@@ -262,6 +270,7 @@
 
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="contact_number"
               label="Phone No."
               :rules="[val => !!val || 'Field is required']"
@@ -270,6 +279,7 @@
 
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="email"
               label="Email"
               :rules="[val => !!val || 'Field is required']"
@@ -277,6 +287,7 @@
           </div>
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="time"
               label="Available Time"
               :rules="[val => !!val || 'Field is required']"
@@ -285,6 +296,7 @@
 
           <div class="col-lg-4 col-12">
             <q-input
+              outlined
               v-model="other"
               label="Comment"
             />
@@ -423,41 +435,46 @@
         </div>
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.name"
             label="Name"
-            readonly
+            disable
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.age"
             label="Age"
-            readonly
+            disable
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.gender"
             label="Gender"
-            readonly
+            disable
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.address"
             label="Adress"
-            readonly
+            disable
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.contact_number"
             label="Phone"
-            readonly
+            disable
           />
         </div>
 
@@ -500,6 +517,7 @@
               </q-banner>
               <div class="col-lg-4 col-12">
                 <q-input
+                  outlined
                   v-model="name"
                   label="Name"
                   :rules="[val => !!val || 'Field is required']"
@@ -508,6 +526,7 @@
 
               <div class="col-lg-4 col-12">
                 <q-input
+                  outlined
                   v-model="sama_number"
                   label="SAMA No."
                   :rules="[val => !!val || 'Field is required']"
@@ -516,6 +535,7 @@
 
               <div class="col-lg-4 col-12">
                 <q-input
+                  outlined
                   v-model="qualifications"
                   label="Qualifications"
                   :rules="[val => !!val || 'Field is required']"
@@ -547,6 +567,7 @@
 
               <div class="col-lg-4 col-12">
                 <q-input
+                  outlined
                   v-model="contact_number"
                   label="Phone No."
                   :rules="[val => !!val || 'Field is required']"
@@ -555,6 +576,7 @@
 
               <div class="col-lg-4 col-12">
                 <q-input
+                  outlined
                   v-model="email"
                   label="Email"
                   :rules="[val => !!val || 'Field is required']"
@@ -562,6 +584,7 @@
               </div>
               <div class="col-lg-4 col-12">
                 <q-input
+                  outlined
                   v-model="time"
                   label="Available Time"
                   :rules="[val => !!val || 'Field is required']"
@@ -570,6 +593,7 @@
 
               <div class="col-lg-4 col-12">
                 <q-input
+                  outlined
                   v-model="other"
                   label="Comment"
                 />
@@ -661,40 +685,45 @@
           v-if="getDoctorProfile.hide_my_info"
         >
           <q-input
+            outlined
             :value="new Intl.NumberFormat('en', { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(getDoctorProfile.id)"
             label="ID"
-            readonly
+            disable
           />
         </div>
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.name"
             label="Name"
-            readonly
+            disable
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.sama_number"
             label="SAMA No."
-            readonly
+            disable
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.qualifications"
             label="Qualifications"
-            readonly
+            disable
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-select
+            outlined
             :value="getDoctorProfile.specialization"
             label="Specializations"
-            readonly
+            disable
           />
         </div>
 
@@ -716,32 +745,36 @@
 
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.contact_number"
             label="Phone No."
-            readonly
+            disable
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.email"
             label="Email"
-            readonly
+            disable
           />
         </div>
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.available_time"
             label="Available Time"
-            readonly
+            disable
           />
         </div>
 
         <div class="col-lg-4 col-12">
           <q-input
+            outlined
             :value="getDoctorProfile.other_option"
             label="Comment"
-            readonly
+            disable
           />
         </div>
         <div class="col-12">

@@ -169,6 +169,49 @@
       </div>
     </div>
     <div class="q-pa-xs q-gutter-md">
+      <!-- <RecycleScroller
+        class="scroller"
+        :items="charities"
+        :minItemSize="30"
+        key-field="id"
+        v-slot="{ item }"
+      >
+        <div>
+          <div class="row col-12">
+            <div
+              class="col-3 column justify-center"
+              @click="popup(item)"
+            >
+              <q-avatar size="60px">
+                <img
+                  :src="getFile(item.profile_image)"
+                  v-if="item.profile_image"
+                />
+                <img
+                  src="~assets/ezcare.png"
+                  v-else
+                />
+              </q-avatar>
+            </div>
+            <div
+              class="col-7"
+              @click="popup(item)"
+            >
+              <div class="text-h6">{{ item.name }}</div>
+              <div>{{ item.address }}</div>
+            </div>
+            <div class="col-2 column justify-center">
+              <q-icon
+                name="favorite"
+                class="border-icon"
+                :class="item.favorite_status ? 'text-black' : 'text-white'"
+                size="md"
+                @click="favourite(item.id)"
+              />
+            </div>
+          </div>
+        </div>
+      </RecycleScroller> -->
       <div
         v-for="charity in charities"
         :key="charity.id"
@@ -183,10 +226,6 @@
                 :src="getFile(charity.profile_image)"
                 v-if="charity.profile_image"
               />
-              <!-- <img
-                src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg"
-                v-else
-              /> -->
               <img
                 src="~assets/ezcare.png"
                 v-else

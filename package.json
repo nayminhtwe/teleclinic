@@ -16,7 +16,8 @@
     "moment": "^2.29.1",
     "pusher-js": "^7.0.3",
     "quasar": "^1.0.0",
-    "vue-i18n": "^8.26.7"
+    "vue-i18n": "^8.26.7",
+    "vue-virtual-scroller": "^1.0.10"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",

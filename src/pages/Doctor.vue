@@ -28,13 +28,13 @@
       v-model="card"
       full-width
     >
-      <q-card class="my-card">
+      <q-card
+        class="my-card"
+        id="doctor_info"
+      >
         <div class="row q-pa-xs">
           <div class="col-3">
-            <q-avatar
-              size="4em"
-              rounded
-            >
+            <q-avatar size="4em">
               <img
                 :src="getFile(charity.profile_image.profile_picture)"
                 v-if="charity.profile_image"
@@ -82,7 +82,7 @@
                   size="xs"
                   name="far fa-user"
                   class="q-pa-sm"
-                  color="blue"
+                  color="negative"
                 />
                 {{ charity.name }}
               </div>
@@ -94,7 +94,7 @@
                   size="xs"
                   name="far fa-user"
                   class="q-pa-sm"
-                  color="blue"
+                  color="negative"
                 />
                 EZCare Doctor {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(charity.id) }}
               </div>
@@ -102,9 +102,9 @@
               <div class="text-subtitle2">
                 <q-icon
                   size="xs"
-                  name="far fa-user"
+                  name="fas fa-stethoscope"
                   class="q-pa-sm"
-                  color="blue"
+                  color="secondary"
                 />
                 {{ charity.specialization }}
               </div>
@@ -112,9 +112,9 @@
               <div class="text-subtitle2">
                 <q-icon
                   size="xs"
-                  name="far fa-user"
+                  name="fas fa-graduation-cap"
                   class="q-pa-sm"
-                  color="blue"
+                  color="accent"
                 />
                 {{ charity.qualifications }}
               </div>
@@ -122,9 +122,9 @@
               <div class="text-subtitle2">
                 <q-icon
                   size="xs"
-                  name="far fa-user"
+                  name="fas fa-language"
                   class="q-pa-sm"
-                  color="blue"
+                  color="pink"
                 />
                 <template v-for="language in charity.available_language">
                   {{ language.language }}
@@ -134,9 +134,9 @@
               <div class="text-subtitle2">
                 <q-icon
                   size="xs"
-                  name="far fa-user"
+                  name="far fa-clock"
                   class="q-pa-sm"
-                  color="blue"
+                  color="primary"
                 />
                 {{ charity.available_time }}
               </div>
@@ -144,8 +144,9 @@
           </q-card>
         </div>
         <q-card-actions>
-          <div class="col column items-center">
+          <div class="col q-px-md">
             <q-btn
+              class="full-width"
               v-if="getDoctorProfile.status == 2"
               v-close-popup
               color="primary"
@@ -468,5 +469,9 @@ export default {
 <style scoped>
 .border-icon {
   text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+}
+
+#doctor_info {
+  border-radius: 1em;
 }
 </style>

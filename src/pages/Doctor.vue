@@ -58,7 +58,7 @@
             >
               EZCare Doctor {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(charity.id) }}
             </div>
-            <div>Hello</div>
+            <!-- <div>Hello</div> -->
           </div>
           <div class="col-2">
             <q-btn

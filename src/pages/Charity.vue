@@ -6,19 +6,32 @@
       full-width
     >
       <q-card>
-        <q-card-section>
-          <div class="text-h6">Success</div>
+        <q-card-section align="center">
+          <q-icon
+            size="md"
+            name="far fa-thumbs-up"
+            class="q-pa-sm"
+            color="blue"
+          />
+          <div class="text-h4">Success</div>
         </q-card-section>
 
-        <q-card-section class="q-pt-none">
+        <q-separator />
+
+        <q-card-section
+          class="q-pa-lg"
+          align="center"
+        >
           {{ this.message }}
         </q-card-section>
 
-        <q-card-actions align="right">
+        <q-separator />
+
+        <q-card-actions align="center">
           <q-btn
             flat
             label="OK"
-            color="primary"
+            color="red"
             v-close-popup
           />
         </q-card-actions>
@@ -350,7 +363,7 @@ export default {
         `favorite_${this.charity_type}/${id}`
       ).then((response) => {
         this.message = response.data.message
-        // this.alert = true
+        this.alert = true
         this.filter()
         if (this.charity.id === id) this.charity.favorite_status = !this.charity.favorite_status
       })

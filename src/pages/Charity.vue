@@ -41,6 +41,103 @@
       v-model="card"
       full-width
     >
+      <q-card
+        class="my-card"
+        id="charity_info"
+      >
+        <div class="row q-pa-xs">
+          <div class="col-3">
+            <q-avatar size="4em">
+              <img
+                :src="getFile(charity.profile_image)"
+                v-if="charity.profile_image"
+              >
+              <img
+                src="~assets/ezcare.png"
+                v-else
+              >
+            </q-avatar>
+          </div>
+          <div class="col-7">
+            <div class="col text-subtitle1 ellipsis">
+              {{ charity.name }}
+            </div>
+          </div>
+          <div class="col-2">
+            <q-btn
+              round
+              :color="charity.favorite_status ? 'primary' : 'black'"
+              icon="favorite"
+              class="absolute"
+              size="md"
+              @click="favourite(charity.id)"
+            />
+          </div>
+        </div>
+        <div class="q-pa-md">
+          <q-card class="my-card">
+            <q-card-section class="q-gutter-xs">
+              <div class="text-subtitle2">
+                <q-icon
+                  size="xs"
+                  name="far fa-user"
+                  class="q-pa-sm"
+                  color="negative"
+                />
+                {{ charity.name }}
+              </div>
+              <q-separator />
+              <div class="text-subtitle2">
+                <q-icon
+                  size="xs"
+                  name="fas fa-stethoscope"
+                  class="q-pa-sm"
+                  color="secondary"
+                />
+                {{ charity.charity_service }}
+              </div>
+              <q-separator />
+              <div class="text-subtitle2">
+                <q-icon
+                  size="xs"
+                  name="fas fa-graduation-cap"
+                  class="q-pa-sm"
+                  color="accent"
+                />
+                {{ charity.address }}
+              </div>
+              <q-separator />
+              <div class="text-subtitle2">
+                <q-icon
+                  size="xs"
+                  name="far fa-clock"
+                  class="q-pa-sm"
+                  color="primary"
+                />
+                {{ charity.available_time }}
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+        <q-card-actions>
+          <div class="col q-px-md">
+            <q-btn
+              class="full-width"
+              v-close-popup
+              color="primary"
+              label="Call"
+              size="md"
+              type="a"
+              :href="'tel:'+charity.contact_number"
+            />
+          </div>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <!-- <q-dialog
+      v-model="card"
+      full-width
+    >
       <q-card class="my-card">
         <q-img
           :src="getFile(charity.profile_image)"
@@ -65,17 +162,7 @@
             <div class="col text-h6 ellipsis">
               {{ charity.name }}
             </div>
-            <!-- <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
-              <q-icon name="favorite" />
-              250 ft
-            </div> -->
           </div>
-
-          <!-- <q-rating
-            v-model="stars"
-            :max="5"
-            size="32px"
-          /> -->
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -102,7 +189,7 @@
           </div>
         </q-card-actions>
       </q-card>
-    </q-dialog>
+    </q-dialog> -->
     <div class="q-pa-sm">
       <div class="q-gutter-y-xs">
         <q-tabs

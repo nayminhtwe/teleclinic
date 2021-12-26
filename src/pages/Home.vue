@@ -1,7 +1,14 @@
 <template>
   <q-page>
-    <!-- <profile-header /> -->
-    <home-header :images=cover_images />
+    <div class="text-heading">
+      <div class="e-z-care-m-m row">EZ Care <div style="color: red">MM</div>
+      </div>
+    </div>
+
+    <div class="date">
+      <div class="date1">{{this.current_date}}</div>
+    </div>
+
     <q-dialog
       v-model="alert"
       full-width
@@ -173,15 +180,15 @@
       class="q-ma-md"
       v-if="getDoctorProfile.hide_my_info"
     >
-      <div class="text-h6">Hello {{ getDoctorProfile.name }} ({{ new Intl.NumberFormat('en', { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(getDoctorProfile.id)}}),</div>
+      <div class="name">Hi, {{ getDoctorProfile.name }} ({{ new Intl.NumberFormat('en', { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(getDoctorProfile.id)}})</div>
     </div>
     <div
       class="q-ma-md"
       v-else
     >
-      <div class="text-h6">{{$t('Hello') }} {{ getDoctorProfile.name }},</div>
+      <div class="name">{{$t('Hi,') }} {{ getDoctorProfile.name }}</div>
     </div>
-    <div class="q-ma-sm">
+    <!-- <div class="q-ma-sm">
       <div class="col-12 col-lg-4 offset-lg-4 col-md-4 offset-md-4">
         <q-input
           rounded
@@ -195,10 +202,10 @@
           </template>
         </q-input>
       </div>
-    </div>
+    </div> -->
 
     <div class="q-my-sm q-ml-md">
-      <div class="text-h6">{{ $t('How can we help you?') }}</div>
+      <div class="text-h6">{{ $t('What are you looking for?') }}</div>
     </div>
 
     <div class="row q-ma-xs text-center">
@@ -218,7 +225,7 @@
           class="text-black menu-box"
           id="doctors"
           icon="fas fa-user-md"
-          label="Doctors"
+          label="EZ Care Doctors"
           no-caps
           stack
           @click="treatment"
@@ -236,7 +243,7 @@
           class="text-black menu-box"
           id="clinics"
           icon="fas fa-hospital"
-          label="Clinics"
+          label="Clinic"
           no-caps
           stack
           @click="$router.push('charity/clinic')"
@@ -254,7 +261,7 @@
           class="text-black menu-box"
           id="ambulances"
           icon="fas fa-ambulance"
-          label="Ambulances"
+          label="Ambulance"
           no-caps
           stack
           @click="$router.push('charity/ambulance')"
@@ -306,14 +313,18 @@
         /> -->
         <q-btn
           class="text-black menu-box"
-          icon="fas fa-folder-plus"
-          label="Register"
+          id="register_ch"
+          icon="fas fa-briefcase-medical"
+          label="Register Charity"
+          no-caps
           stack
           @click="$router.push('add_charity')"
           outline
         />
       </div>
     </div>
+    <!-- <profile-header /> -->
+    <home-header :images=cover_images />
     <div
       class="q-my-md q-ml-md"
       v-if="getDoctorProfile.status === '1'"
@@ -328,8 +339,8 @@
         <q-btn
           class="text-black doctor-box-2"
           id="new"
-          icon="receipt_long"
-          label="New Patient Record"
+          icon="fas fa-notes-medical"
+          label="Create new EMR"
           no-caps
           stack
           @click="record"
@@ -340,7 +351,7 @@
         <q-btn
           class="text-black doctor-box-2"
           id="waitings"
-          icon="medical_services"
+          icon="fas fa-hourglass-half"
           label="Waiting Patients"
           no-caps
           stack
@@ -352,7 +363,7 @@
         <q-btn
           class="text-black doctor-box-2"
           id="patients"
-          icon="home"
+          icon="fas fa-book"
           label="My Patients "
           no-caps
           stack
@@ -361,6 +372,91 @@
         />
       </div>
     </div>
+
+    <div class="row q-my-md q-ml-md">
+      <div class="text-h6 col-9">Have you read this?</div>
+      <div class="col-3">
+        <q-btn
+          class="text-grey"
+          label="See All"
+          no-caps
+          stack
+          outline
+          @click="$router.push('blogs')"
+        />
+      </div>
+    </div>
+    <div class="row q-pa-md q-gutter-sm">
+      <div class="col">
+        <img
+          :src="getFile(blog_last_record.image)"
+          v-if="blog_last_record.image != null"
+          style="height: 150px; max-width: 150px"
+        />
+        <img
+          src="~assets/ezcare.png"
+          v-else
+          style="height: 150px; max-width: 150px"
+        />
+      </div>
+      <div class="col">
+        <div class="blog-heading" v-html="blog_last_record.heading"></div>
+        <div class="blog-body-trim" v-html="blog_last_record.body_trim"></div>
+        <div>
+          <q-btn
+            color="deep-orange-10"
+            dense
+            round
+            flat
+            @click="blogdetail(blog_last_record.id)"
+            label="Read full article >"
+            no-caps
+          ></q-btn>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div>
+      <q-dialog v-model="blog_popup" full-width persistent>
+        <q-card>
+          <q-card-section>
+            <img
+              :src="getFile(this.blog_last_record.image)"
+              v-if="this.blog_last_record.image != null"
+              style="height: 200px; width: 100%"
+            />
+            <img
+              src="~assets/ezcare.png"
+              v-else
+              style="height: 140px; max-width: 150px"
+            />
+            <div class="text-h6" style="padding: 5px 0" v-html="this.blog_last_record.heading">
+            </div>
+            <q-separator/>
+            <div class="row q-gutter-sm">
+              <div class="col row" style="padding: 10px 0">
+                <q-icon class="fas fa-edit"></q-icon>
+                <div> By Admin</div>
+              </div>
+              <div class="col row" style="padding: 10px 0">
+                <q-icon class="fas fa-calendar-alt"></q-icon>
+                <div>{{this.blog_last_record.created_at}}</div>
+              </div>
+            </div>
+            <div class="text-h7" style="padding: 5px 0" v-html="this.blog_last_record.body">
+            </div>
+          </q-card-section>
+          <q-card-actions align="right">
+              <q-btn
+                flat
+                label="Ok"
+                color="primary"
+                v-close-popup
+              />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
+    </div> -->
 
     <div class="q-my-md q-ml-md">
       <div class="text-h6">{{ $t('For tele-consultation') }}</div>
@@ -382,7 +478,7 @@
         <q-btn
           class="text-black doctor-box"
           id="donate"
-          icon="fas fa-hand-holding-usd"
+          icon="fas fa-hand-holding-medical"
           label="Donate"
           no-caps
           stack
@@ -492,6 +588,9 @@
 import { mapGetters } from 'vuex'
 // import ProfileHeader from 'src/layouts/partials/Header/ProfileHeader.vue'
 import HomeHeader from 'src/layouts/partials/Header/HomeHeader.vue'
+import { constantes } from 'src/boot/constantes.js'
+import { date } from 'quasar'
+
 export default {
   name: 'Home',
   components: {
@@ -521,7 +620,10 @@ export default {
       patient_profile_image: '',
       visited_patients: [],
       waiting_patients: [],
-      cover_images: []
+      cover_images: [],
+      current_date: '',
+      blog_last_record: '',
+      blog_popup: false
     }
   },
   async created () {
@@ -559,11 +661,37 @@ export default {
         this.visited_patients = response.data.data
       })
     }
+
+    const timeStamp = Date.now()
+    this.current_date = date.formatDate(timeStamp, 'dddd, DD MMM')
+
+    await this.$api.get(
+      'blog_last_record'
+    ).then((response) => {
+      this.blog_last_record = response.data.data
+    })
   },
   methods: {
     patientdetail (id) {
       this.$router.push(`/patient/${id}`)
     },
+
+    getFile (path) {
+      return `${constantes.SERVER_MEDIA}${path}`
+    },
+
+    blogdetail (id) {
+      this.$router.push(`/blog/${id}`)
+    },
+
+    // async readBlog () {
+    //   await this.$api.get(
+    //     'blog_last_record'
+    //   ).then((response) => {
+    //     this.blog_last_record = response.data.data
+    //   })
+    //   this.blog_popup = true
+    // },
 
     treatment () {
       // if (this.getDoctorProfile.status === 0) {
@@ -604,8 +732,49 @@ export default {
 }
 </script>
 <style scoped>
+.text-heading {
+  padding: 20px 18px;
+}
+.e-z-care-m-m {
+  width: auto; /* 167px */
+  height: auto; /* 29px */
+  overflow: visible;
+  white-space: pre;
+  font-weight: 699;
+  font-family: ".SFNSDisplay-Bold", "SFProDisplay-Bold", "SFUIDisplay-Bold", ".SFUIDisplay-Bold", "SF Pro Display", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #022033;
+  font-size: 24px;
+  letter-spacing: 0.7px;
+  line-height: 1.2;
+}
+.date {
+  padding: 0 18px;
+}
+.date1 {
+  width: auto; /* 112px */
+  height: auto; /* 19px */
+  overflow: visible;
+  white-space: pre;
+  font-family: ".SFNSDisplay", "SFProDisplay-Regular", "SFUIDisplay-Regular", ".SFUIDisplay", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #969696;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+}
+.name {
+  width: auto; /* 233px */
+  height: auto; /* 38px */
+  overflow: visible;
+  white-space: pre;
+  font-weight: 699;
+  font-family: ".SFNSDisplay-Bold", "SFProDisplay-Bold", "SFUIDisplay-Bold", ".SFUIDisplay-Bold", "SF Pro Display", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #000000;
+  font-size: 32px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+}
 .menu-box {
-  height: 7em;
+  height: 8.5em;
   width: 7.5em;
   /* border-radius: 5px;
   box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5; */
@@ -613,7 +782,7 @@ export default {
   background-color: #ffffff;
   overflow: visible;
   border-radius: 10px;
-  line-height: 270%;
+  line-height: 120%;
 }
 
 .doctor-box {
@@ -640,8 +809,49 @@ export default {
   line-height: 120%;
 }
 
+.blog-heading {
+  width: auto; /* 133px */
+  height: auto; /* 19px */
+  overflow: visible;
+  /* white-space: pre; */
+  font-weight: 699;
+  font-family: ".SFNSDisplay-Bold", "SFProDisplay-Bold", "SFUIDisplay-Bold", ".SFUIDisplay-Bold", "SF Pro Display", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+}
+.blog-body-trim {
+  width: auto; /* 183px */
+  height: auto; /* 77px */
+  /* white-space: pre; */
+  overflow: visible;
+  padding-top: 5px;
+  font-family: ".SFNSDisplay", "SFProDisplay-Regular", "SFUIDisplay-Regular", ".SFUIDisplay", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #969696;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.read-full-article_ {
+  width: auto; /* 162px */
+  height: auto; /* 19px */
+  overflow: visible;
+  white-space: pre;
+  font-weight: 699;
+  font-family: ".SFNSDisplay-Bold", "SFProDisplay-Bold", "SFUIDisplay-Bold", ".SFUIDisplay-Bold", "SF Pro Display", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #cd3700;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  text-align: center;
+}
+
 .menu-box >>> .q-icon {
-  font-size: 40px;
+  font-size: 30px;
+  height: 2em;
 }
 
 .doctor-box >>> .q-icon {
@@ -650,39 +860,43 @@ export default {
 
 .doctor-box-2 >>> .q-icon {
   font-size: 30px;
-  height: 1.5em;
+  height: 2em;
 }
 
 #doctors >>> .q-icon {
-  color: green;
+  color: #99acff;
 }
 
 #clinics >>> .q-icon {
-  color: pink;
+  color: #ff9999;
 }
 
 #ambulances >>> .q-icon {
-  color: blue;
+  color: #99ffa0;
 }
 
 #pharmacy >>> .q-icon {
-  color: magenta;
+  color: #ff99eb;
 }
 
 #labs >>> .q-icon {
-  color: red;
+  color: #ffd199;
+}
+
+#register_ch >>> .q-icon {
+  color: green;
 }
 
 #new >>> .q-icon {
-  color: blue;
+  color: rgb(126, 72, 72);
 }
 
 #waitings >>> .q-icon {
-  color: red;
+  color: rgb(13, 176, 240);
 }
 
 #patients >>> .q-icon {
-  color: green;
+  color: rgb(82, 10, 163);
 }
 
 #profile >>> .q-icon {
@@ -690,7 +904,7 @@ export default {
 }
 
 #donate >>> .q-icon {
-  color: green;
+  color: purple;
 }
 
 #wallet >>> .q-icon {

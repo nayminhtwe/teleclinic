@@ -12,15 +12,21 @@
     >
       <q-tab
         name="home"
+        flat
+        round
+        dense
+        icon="las la-home"
+        class="q-mr-md"
         @click="$router.push('/')"
+        label="Home"
       >
-        <q-btn
+        <!-- <q-btn
           flat
           round
           dense
           icon="home"
           class="q-mr-md"
-        />
+        /> -->
       </q-tab>
       <!-- <q-tab
         name="patients"
@@ -36,15 +42,14 @@
       </q-tab> -->
       <q-tab
         name="inbox"
+        flat
+        round
+        dense
+        icon="las la-stethoscope"
+        class="q-mr-md"
         @click="$router.push('/inbox')"
+        label="Consult"
       >
-        <q-btn
-          flat
-          round
-          dense
-          icon="chat"
-          class="q-mr-md"
-        />
         <q-badge
           color="red"
           floating
@@ -53,15 +58,14 @@
       </q-tab>
       <q-tab
         name="profile"
+        flat
+        round
+        dense
+        icon="las la-user"
+        class="q-mr-md"
         @click="$router.push('/profile')"
+        label="Profile"
       >
-        <q-btn
-          flat
-          round
-          dense
-          icon="account_circle"
-          class="q-mr-md"
-        />
       </q-tab>
     </q-tabs>
   </q-footer>

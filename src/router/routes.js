@@ -41,7 +41,9 @@ const routes = [
       { path: 'favourited', component: () => import('src/pages/Favourited.vue'), beforeEnter: ifAuthenticated },
       { path: 'doctor_wallet', component: () => import('src/pages/DoctorWallet.vue'), beforeEnter: ifAuthenticated },
       { path: 'patient_wallet', component: () => import('src/pages/PatientWallet.vue'), beforeEnter: ifAuthenticated },
-      { path: 'transfer_consultation_fee', component: () => import('src/pages/TransferConsultationFee.vue'), beforeEnter: ifAuthenticated }
+      { path: 'transfer_consultation_fee', component: () => import('src/pages/TransferConsultationFee.vue'), beforeEnter: ifAuthenticated },
+      { path: 'blogs', component: () => import('pages/Blogs.vue'), beforeEnter: ifAuthenticated },
+      { path: 'blog/:blogId', component: () => import('pages/Blog.vue'), beforeEnter: ifAuthenticated }
     ]
   },
   {

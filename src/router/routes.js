@@ -13,7 +13,7 @@ const ifAuthenticated = (to, from, next) => {
     next()
     return
   }
-  next('/login/login')
+  next('/start/start')
 }
 
 const routes = [
@@ -55,9 +55,10 @@ const routes = [
     ]
   },
   {
-    path: '/login',
+    path: '/start',
     component: () => import('layouts/AuthLayout.vue'),
     children: [
+      { path: 'start', component: () => import('pages/Start.vue'), beforeEnter: ifNotAuthenticated },
       { path: 'login', component: () => import('pages/Login.vue'), beforeEnter: ifNotAuthenticated },
       { path: 'register', component: () => import('pages/Register.vue'), beforeEnter: ifNotAuthenticated }
     ]

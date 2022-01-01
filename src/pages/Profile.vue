@@ -925,7 +925,7 @@ export default {
     logout () {
       this.$store.dispatch('doctor/logout')
       setTimeout(() => {
-        this.$router.push('/login/login')
+        this.$router.push('/start/start')
       }, 2000)
     },
     patient () {

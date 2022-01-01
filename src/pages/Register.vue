@@ -124,19 +124,21 @@
           class="text-white menu-2"
           rounded
           @click="submit"
+          no-caps
         >
           <div class="ellipsis">
             Sign up
           </div>
         </q-btn>
       </div>
-      <div class="q-py-md text-center">
-        <div class="text-center">Already have an account?</div>
+
+      <div class="text-center">
         <q-btn
           flat
-          color="black"
-          label="Login"
-          @click="$router.push('/login/login')"
+          label="Already have an account?"
+          no-caps
+          class="login-button"
+          @click="$router.push('/start/login')"
         />
       </div>
     </div>
@@ -255,5 +257,18 @@ export default {
   overflow: visible;
   border-radius: 12px;
   border: 1px solid #DFDFDF;
+}
+.login-button {
+  width: auto; /* 182px */
+  height: auto; /* 17px */
+  overflow: visible;
+  white-space: pre;
+  font-weight: 599;
+  font-family: ".SFNSDisplay-Semibold", "SFProDisplay-Semibold", "SFUIDisplay-Semibold", ".SFUIDisplay-Semibold", "SF Pro Display", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  text-align: center;
 }
 </style>

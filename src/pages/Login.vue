@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center ">
+  <q-page class="flex flex-center">
 
       <div class="text-heading">
         <div class="sign-in">Sign in</div>
@@ -78,21 +78,32 @@
             style="width: 100px"
             class="text-white menu-2"
             rounded
+            no-caps
             @click="submit"
           >
             <div class="ellipsis">
-              Login
+              Sign in
             </div>
           </q-btn>
         </div>
 
-        <div class="q-py-md text-center">
-          <div class="text-center">Doesn't have an account?</div>
+        <div class="text-center">
           <q-btn
             flat
-            color="black"
-            label="Register"
-            @click="$router.push('/login/register')"
+            label="Forget password"
+            no-caps
+            class="forget-password"
+            @click="$router.push('/start/forgetpassword')"
+          />
+        </div>
+
+        <div class="text-center">
+          <q-btn
+            flat
+            label="Doesn't have an account?"
+            no-caps
+            class="register-button"
+            @click="$router.push('/start/register')"
           />
         </div>
       </div>
@@ -207,5 +218,31 @@ export default {
   overflow: visible;
   border-radius: 12px;
   border: 1px solid #DFDFDF;
+}
+.forget-password {
+  width: auto; /* 116px */
+  height: auto; /* 17px */
+  overflow: visible;
+  white-space: pre;
+  font-weight: 599;
+  font-family: ".SFNSDisplay-Semibold", "SFProDisplay-Semibold", "SFUIDisplay-Semibold", ".SFUIDisplay-Semibold", "SF Pro Display", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  text-align: center;
+}
+.register-button {
+  width: auto; /* 182px */
+  height: auto; /* 17px */
+  overflow: visible;
+  white-space: pre;
+  font-weight: 599;
+  font-family: ".SFNSDisplay-Semibold", "SFProDisplay-Semibold", "SFUIDisplay-Semibold", ".SFUIDisplay-Semibold", "SF Pro Display", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  text-align: center;
 }
 </style>

@@ -57,6 +57,43 @@
         >{{ noti }}</q-badge>
       </q-tab>
       <q-tab
+        flat
+        round
+        dense
+        icon="las la-bars"
+        class="q-mr-md"
+        label="Menu"
+      >
+        <q-menu fit>
+          <q-list style="min-width: 100px">
+            <q-item clickable>
+              <q-item-section @click="$router.push('/profile')">
+                My Profile
+                <!-- <q-item-section side>
+                  <q-icon name="keyboard_arrow_right" />
+                </q-item-section> -->
+              </q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item clickable>
+              <q-item-section  @click="$router.push('/favourited')">My favorites</q-item-section>
+            </q-item>
+            <q-separator />
+            <div v-if="getDoctorProfile.status === '1'">
+              <q-item clickable>
+                <q-item-section   @click="$router.push('doctor_wallet')">My Wallet</q-item-section>
+              </q-item>
+            </div>
+            <div v-if="getDoctorProfile.status === '2'">
+              <q-item clickable>
+                <q-item-section   @click="$router.push('patient_wallet')">My Wallet</q-item-section>
+              </q-item>
+            </div>
+
+          </q-list>
+        </q-menu>
+      </q-tab>
+      <!-- <q-tab
         name="profile"
         flat
         round
@@ -66,7 +103,7 @@
         @click="$router.push('/profile')"
         label="Profile"
       >
-      </q-tab>
+      </q-tab> -->
     </q-tabs>
   </q-footer>
 </template>

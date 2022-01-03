@@ -229,7 +229,7 @@
           label="Consult a doctor"
           no-caps
           stack
-          @click="$router.push('/inbox')"
+          @click="$router.push('doctor')"
           outline
         />
       </div>

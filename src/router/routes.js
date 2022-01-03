@@ -60,7 +60,10 @@ const routes = [
     children: [
       { path: 'start', component: () => import('pages/Start.vue'), beforeEnter: ifNotAuthenticated },
       { path: 'login', component: () => import('pages/Login.vue'), beforeEnter: ifNotAuthenticated },
-      { path: 'register', component: () => import('pages/Register.vue'), beforeEnter: ifNotAuthenticated }
+      { path: 'register', component: () => import('pages/Register.vue'), beforeEnter: ifNotAuthenticated },
+      { path: 'forget_password', component: () => import('pages/ForgetPassword.vue'), beforeEnter: ifNotAuthenticated },
+      { path: 'password_reset_otp', component: () => import('pages/PasswordResetOTP.vue'), beforeEnter: ifNotAuthenticated },
+      { path: 'new_password/:app_user_id', component: () => import('pages/NewPassword.vue'), beforeEnter: ifNotAuthenticated }
     ]
   },
 

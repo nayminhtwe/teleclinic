@@ -1,9 +1,12 @@
 <template>
-  <q-page class="flex flex-center bg-image">
+  <q-page class="flex flex-center">
       <div class="text-heading">
         <div class="welcome-to">Welcome to</div>
         <div class="e-z-care-m-m row">EZ Care <div style="color: red">MM</div></div>
         <div class="text">A tele-consultation app</div>
+      </div>
+      <div class="text-center">
+          <img src="~assets/login_signup.png" />
       </div>
 
       <div class="text-body">
@@ -62,13 +65,12 @@ export default {
 </script>
 
 <style scoped>
-.bg-image {
+/* .bg-image {
   background-image: url("../assets/start.png");
   background-size: cover;
-}
+} */
 .text-heading {
-  padding-top: 25px;
-  padding-bottom: 40px;
+  padding: 15% 0;
   width: 80%
 }
 .welcome-to {
@@ -109,7 +111,7 @@ export default {
   text-align: left;
 }
 .text-body {
-  padding-top: 50%;
+  padding-bottom: 25%;
 }
 .menu-2 {
   width: 346px;

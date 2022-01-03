@@ -1,112 +1,115 @@
 <template>
   <q-page class="flex flex-center">
 
-      <div class="text-heading">
-        <div class="sign-in">Sign in</div>
-        <div class="e-z-care-m-m row">EZ Care <div style="color: red">MM</div></div>
-        <div class="text">A tele-consultation app</div>
+    <div class="text-heading">
+      <div class="sign-in">Sign in</div>
+      <div class="e-z-care-m-m row">EZ Care <div style="color: red">MM</div></div>
+      <div class="text">A tele-consultation app</div>
+    </div>
+
+    <div class="text-center">
+        <img src="~assets/login_signup.png" />
+    </div>
+
+    <div class="text-body">
+      <div class="col-lg-6 col-12 q-py-xs input">
+        <q-banner
+          inline-actions
+          class="text-black bg-red"
+          v-if="banner"
+        >
+          {{ message }}
+          <template v-slot:action>
+            <q-btn
+              flat
+              color="black"
+              icon="error"
+              @click="banner = false"
+            />
+          </template>
+        </q-banner>
+        <q-input
+          class="menu-1"
+          borderless
+          v-model="name"
+          label="User name"
+          label-color="black"
+          :rules="[val => !!val || 'Field is required']"
+        >
+          <template v-slot:prepend>
+            <q-btn
+              flat
+              dense
+              id="user"
+              icon="las la-user"
+              class="q-mr-sm text-black"
+            />
+            <!-- <q-avatar>
+              <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
+            </q-avatar> -->
+          </template>
+        </q-input>
       </div>
-      <!-- <div class="text-center q-mb-xl">
-        <q-avatar size="72px">
-          <img src="~assets/ezcare.png" />
-        </q-avatar>
-      </div> -->
-
-      <div>
-        <div class="col-lg-6 col-12 q-py-xs">
-          <q-banner
-            inline-actions
-            class="text-black bg-red"
-            v-if="banner"
-          >
-            {{ message }}
-            <template v-slot:action>
-              <q-btn
-                flat
-                color="black"
-                icon="error"
-                @click="banner = false"
-              />
-            </template>
-          </q-banner>
-          <q-input
-            standout="bg-teal text-black"
-            v-model="email"
-            label="User name"
-            label-color="black"
-            :rules="[val => !!val || 'Field is required']"
-          >
-            <template v-slot:prepend>
-              <q-btn
-                flat
-                dense
-                icon="account_circle"
-                class="q-mr-sm text-black"
-              />
-              <!-- <q-avatar>
-                <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
-              </q-avatar> -->
-            </template>
-          </q-input>
-        </div>
-        <div class="col-lg-6 col-12 q-py-xs">
-          <q-input
-            standout="bg-teal text-black"
-            v-model="password"
-            type="password"
-            label="Password"
-            label-color="black"
-            :rules="[val => !!val || 'Field is required']"
-          >
-            <template v-slot:prepend>
-              <!-- <q-avatar>
-                <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
-              </q-avatar> -->
-              <q-btn
-                flat
-                dense
-                icon="vpn_key"
-                class="q-mr-sm text-black"
-              />
-            </template>
-          </q-input>
-        </div>
-
-        <div class="q-py-md q-gutter-sm text-center">
-          <q-btn
-            color="deep-orange-10"
-            style="width: 100px"
-            class="text-white menu-2"
-            rounded
-            no-caps
-            @click="submit"
-          >
-            <div class="ellipsis">
-              Sign in
-            </div>
-          </q-btn>
-        </div>
-
-        <div class="text-center">
-          <q-btn
-            flat
-            label="Forget password"
-            no-caps
-            class="forget-password"
-            @click="$router.push('/start/forgetpassword')"
-          />
-        </div>
-
-        <div class="text-center">
-          <q-btn
-            flat
-            label="Doesn't have an account?"
-            no-caps
-            class="register-button"
-            @click="$router.push('/start/register')"
-          />
-        </div>
+      <div class="col-lg-6 col-12 q-py-xs input">
+        <q-input
+          class="menu-1"
+          borderless
+          v-model="password"
+          type="password"
+          label="Password"
+          label-color="black"
+          :rules="[val => !!val || 'Field is required']"
+        >
+          <template v-slot:prepend>
+            <!-- <q-avatar>
+              <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
+            </q-avatar> -->
+            <q-btn
+              flat
+              dense
+              id="password"
+              icon="las la-unlock-alt"
+              class="q-mr-sm text-black"
+            />
+          </template>
+        </q-input>
       </div>
+
+      <div class="q-py-md q-gutter-sm text-center">
+        <q-btn
+          color="deep-orange-10"
+          style="width: 100px"
+          class="text-white menu-2"
+          rounded
+          no-caps
+          @click="submit"
+        >
+          <div class="ellipsis">
+            Sign in
+          </div>
+        </q-btn>
+      </div>
+
+      <div class="text-center">
+        <q-btn
+          flat
+          label="Forget password"
+          no-caps
+          class="forget-password"
+          @click="$router.push('/start/forget_password')"
+        />
+      </div>
+
+      <div class="text-center">
+        <q-btn
+          flat
+          label="Doesn't have an account?"
+          no-caps
+          class="register-button"
+          @click="$router.push('/start/register')"
+        />
+      </div>
+    </div>
   </q-page>
 </template>
 
@@ -117,7 +120,7 @@ export default {
   data () {
     return {
       banner: '',
-      email: '',
+      name: '',
       password: ''
     }
   },
@@ -134,7 +137,7 @@ export default {
   methods: {
     async submit () {
       const formData = new FormData()
-      formData.append('name', this.email)
+      formData.append('name', this.name)
       formData.append('password', this.password)
 
       await this.$store.dispatch('doctor/login', formData)
@@ -169,7 +172,7 @@ export default {
 
 <style scoped>
 .text-heading {
-  padding: 25px 0;
+  padding: 15% 0;
   width: 80%
 }
 .sign-in {
@@ -209,6 +212,22 @@ export default {
   line-height: 1.2;
   text-align: left;
 }
+.text-body {
+  padding-bottom: 15%;
+}
+.input {
+  padding: 10px 0;
+}
+.menu-1 {
+  width: 346px;
+  height: 60px;
+  box-shadow: 2px 2px 22px -2px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: visible;
+  border-radius: 12px;
+  padding-top: 20px;
+  font-size: 17px;
+}
 .menu-2 {
   box-sizing: border-box;
   width: 136px;
@@ -244,5 +263,17 @@ export default {
   letter-spacing: 0px;
   line-height: 1.2;
   text-align: center;
+}
+#user >>> .q-icon {
+  color: blue;
+  height: 2em;
+  font-size: 30px;
+  padding-left: 10px;
+}
+#password >>> .q-icon {
+  color: orangered;
+  height: 2em;
+  font-size: 30px;
+  padding-left: 10px;
 }
 </style>

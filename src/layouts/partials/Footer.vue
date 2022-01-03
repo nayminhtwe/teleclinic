@@ -127,8 +127,8 @@ export default {
       var presence = new Pusher('836d77ac3f3198d7cf6d', {
         cluster: 'ap1',
         forceTLS: true,
-        authEndpoint: 'http://188.166.217.32/broadcasting/auth',
-        // authEndpoint: 'http://booking.local/broadcasting/auth',
+        // authEndpoint: 'http://188.166.217.32/broadcasting/auth',
+        authEndpoint: 'http://booking.local/broadcasting/auth',
         auth: { headers: { Authorization: `Bearer ${this.getDoctorToken}` } }
 
       })

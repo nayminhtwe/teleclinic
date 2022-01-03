@@ -6,16 +6,16 @@
       <div class="e-z-care-m-m row">EZ Care <div style="color: red">MM</div></div>
       <div class="text">A tele-consultation app</div>
     </div>
-      <!-- <div class="text-center q-mb-xl">
-        <q-avatar size="72px">
-          <img src="~assets/ezcare.png" />
-        </q-avatar>
-      </div> -->
-    <div>
-      <div class="col-lg-6 col-12 q-py-xs">
+
+    <div class="text-center">
+        <img src="~assets/login_signup.png" />
+    </div>
+
+    <div class="text-body">
+      <div class="col-lg-6 col-12 q-py-xs input">
         <q-banner
           inline-actions
-          class="text-white bg-red q-mb-lg"
+          class="text-black bg-red"
           v-if="banner"
         >
           {{ message }}
@@ -29,7 +29,8 @@
           </template>
         </q-banner>
         <q-input
-          standout="bg-teal text-black"
+          class="menu-1"
+          borderless
           v-model="name"
           label="User name"
           label-color="black"
@@ -39,48 +40,17 @@
             <q-btn
               flat
               dense
-              icon="account_circle"
+              id="user"
+              icon="las la-user"
               class="q-mr-sm text-black"
             />
           </template>
         </q-input>
       </div>
-      <!-- <div class="col-lg-6 col-12 q-py-xs">
-        <q-banner
-          inline-actions
-          class="text-white bg-red q-mb-lg"
-          v-if="banner"
-        >
-          {{ message }}
-          <template v-slot:action>
-            <q-btn
-              flat
-              color="white"
-              icon="error"
-              @click="banner = false"
-            />
-          </template>
-        </q-banner>
+      <div class="col-lg-6 col-12 q-py-xs input">
         <q-input
-          color="teal"
-          v-model="email"
-          label="Email"
-          label-color="white"
-          :rules="[val => !!val || 'Field is required']"
-        >
-          <template v-slot:prepend>
-            <q-btn
-              flat
-              dense
-              icon="account_circle"
-              class="q-mr-sm text-white"
-            />
-          </template>
-        </q-input>
-      </div> -->
-      <div class="col-lg-6 col-12 q-py-xs">
-        <q-input
-          standout="bg-teal text-black"
+          class="menu-1"
+          borderless
           v-model="password"
           type="password"
           label="Password"
@@ -94,28 +64,13 @@
             <q-btn
               flat
               dense
-              icon="vpn_key"
+              id="password"
+              icon="las la-unlock-alt"
               class="q-mr-sm text-black"
             />
           </template>
         </q-input>
       </div>
-
-      <!-- <div class="text-center q-my-lg">
-        <q-avatar size="72px">
-          <q-file
-            borderless
-            v-model="file"
-          >
-            <template v-slot:prepend>
-              <img
-                src="~assets/profile_upload.jpg"
-                @click.stop
-              />
-            </template>
-          </q-file>
-        </q-avatar>
-      </div> -->
 
       <div class="q-py-md q-gutter-sm text-center">
         <q-btn
@@ -208,7 +163,7 @@ export default {
 
 <style scoped>
 .text-heading {
-  padding: 25px 0;
+  padding: 15% 0;
   width: 80%
 }
 .sign-up {
@@ -248,6 +203,22 @@ export default {
   line-height: 1.2;
   text-align: left;
 }
+.text-body {
+  padding-bottom: 15%;
+}
+.input {
+  padding: 10px 0;
+}
+.menu-1 {
+  width: 346px;
+  height: 60px;
+  box-shadow: 2px 2px 22px -2px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: visible;
+  border-radius: 12px;
+  padding-top: 20px;
+  font-size: 17px;
+}
 .menu-2 {
   box-sizing: border-box;
   width: 136px;
@@ -270,5 +241,17 @@ export default {
   letter-spacing: 0px;
   line-height: 1.2;
   text-align: center;
+}
+#user >>> .q-icon {
+  color: blue;
+  height: 2em;
+  font-size: 30px;
+  padding-left: 10px;
+}
+#password >>> .q-icon {
+  color: orangered;
+  height: 2em;
+  font-size: 30px;
+  padding-left: 10px;
 }
 </style>

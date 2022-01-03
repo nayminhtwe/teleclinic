@@ -9,7 +9,7 @@
       <div class="date1">{{this.current_date}}</div>
     </div>
 
-    <q-dialog
+    <!-- <q-dialog
       v-model="alert"
       full-width
     >
@@ -76,7 +76,7 @@
           />
         </q-card-actions>
       </q-card>
-    </q-dialog>
+    </q-dialog> -->
     <q-dialog v-model="register">
       <q-card>
         <q-card-section>
@@ -210,115 +210,38 @@
 
     <div class="row q-ma-xs text-center">
       <div class="col-4 col-lg-2 q-mb-md">
-        <!-- <q-avatar
-          font-size="52px"
-          color="red"
-          text-color="white"
-          icon="directions"
-        /> -->
-        <!-- <q-btn
-          flat
-          dense
-          icon="apps"
-        /> -->
         <q-btn
           class="text-black menu-box"
-          id="doctors"
-          icon="fas fa-user-md"
-          label="EZ Care Doctors"
+          id="directory"
+          icon="las la-search"
+          label="Healthcare Directory"
           no-caps
           stack
-          @click="treatment"
+          @click="$router.push('/directory')"
           outline
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
-        <!-- <q-avatar
-          font-size="52px"
-          color="teal"
-          text-color="white"
-          icon="local_hospital"
-        /> -->
         <q-btn
           class="text-black menu-box"
-          id="clinics"
-          icon="fas fa-hospital"
-          label="Clinic"
+          id="consult-doctor"
+          icon="las la-stethoscope"
+          label="Consult a doctor"
           no-caps
           stack
-          @click="$router.push('charity/clinic')"
+          @click="$router.push('/inbox')"
           outline
         />
       </div>
       <div class="col-4 col-lg-2 q-mb-md">
-        <!-- <q-avatar
-          font-size="52px"
-          color="yellow"
-          text-color="white"
-          icon="history"
-        /> -->
         <q-btn
           class="text-black menu-box"
-          id="ambulances"
-          icon="fas fa-ambulance"
-          label="Ambulance"
+          id="blogs"
+          icon="las la-book-open"
+          label="EZ Care Blogs"
           no-caps
           stack
-          @click="$router.push('charity/ambulance')"
-          outline
-        />
-      </div>
-      <div class="col-4 col-lg-2 q-mb-md">
-        <!-- <q-avatar
-          font-size="52px"
-          color="red"
-          text-color="white"
-          icon="directions"
-        /> -->
-        <q-btn
-          class="text-black menu-box"
-          id="pharmacy"
-          icon="fas fa-plus-square"
-          label="Pharmacy"
-          no-caps
-          stack
-          @click="$router.push('charity/pharmacy')"
-          outline
-        />
-      </div>
-      <div class="col-4 col-lg-2 q-mb-md">
-        <!-- <q-avatar
-          font-size="52px"
-          color="teal"
-          text-color="white"
-          icon="local_hospital"
-        /> -->
-        <q-btn
-          class="text-black menu-box"
-          id="labs"
-          icon="fas fa-heartbeat"
-          label="Oxygen"
-          no-caps
-          stack
-          @click="$router.push('charity/lab')"
-          outline
-        />
-      </div>
-      <div class="col-4 col-lg-2 q-mb-md">
-        <!-- <q-avatar
-          font-size="52px"
-          color="yellow"
-          text-color="white"
-          icon="history"
-        /> -->
-        <q-btn
-          class="text-black menu-box"
-          id="register_ch"
-          icon="fas fa-briefcase-medical"
-          label="Register Charity"
-          no-caps
-          stack
-          @click="$router.push('add_charity')"
+          @click="$router.push('blogs')"
           outline
         />
       </div>
@@ -339,7 +262,7 @@
         <q-btn
           class="text-black doctor-box-2"
           id="new"
-          icon="fas fa-notes-medical"
+          icon="las la-notes-medical"
           label="Create new EMR"
           no-caps
           stack
@@ -351,7 +274,7 @@
         <q-btn
           class="text-black doctor-box-2"
           id="waitings"
-          icon="fas fa-hourglass-half"
+          icon="las la-hourglass-half"
           label="Waiting Patients"
           no-caps
           stack
@@ -363,7 +286,7 @@
         <q-btn
           class="text-black doctor-box-2"
           id="patients"
-          icon="fas fa-book"
+          icon="las la-book"
           label="My Patients "
           no-caps
           stack
@@ -459,10 +382,34 @@
     </div> -->
 
     <div class="q-my-md q-ml-md">
-      <div class="text-h6">{{ $t('For tele-consultation') }}</div>
+      <div class="text-h6">{{ $t('Get involved?') }}</div>
     </div>
     <div class="row q-ma-xs text-center">
-      <div class="col-4 col-lg-2 q-mb-md">
+      <div class="col-6 col-lg-2 q-mb-md">
+        <q-btn
+          class="text-black menu-box-2"
+          id="donate"
+          icon="las la-wallet"
+          label="Donate"
+          no-caps
+          stack
+          @click="$router.push('donation')"
+          outline
+        />
+      </div>
+      <div class="col-3 col-lg-2 q-mb-md">
+        <q-btn
+          class="text-black menu-box-2"
+          id="register_ch"
+          icon="las la-briefcase-medical"
+          label="Register Charity Works"
+          no-caps
+          stack
+          @click="$router.push('add_charity')"
+          outline
+        />
+      </div>
+      <!-- <div class="col-4 col-lg-2 q-mb-md">
         <q-btn
           class="text-black doctor-box"
           id="profile"
@@ -473,20 +420,8 @@
           @click="$router.push('favourited')"
           outline
         />
-      </div>
-      <div class="col-4 col-lg-2 q-mb-md">
-        <q-btn
-          class="text-black doctor-box"
-          id="donate"
-          icon="fas fa-hand-holding-medical"
-          label="Donate"
-          no-caps
-          stack
-          @click="alert = true"
-          outline
-        />
-      </div>
-      <div
+      </div> -->
+      <!-- <div
         class="col-4 col-lg-2 q-mb-md"
         v-if="getDoctorProfile.status === '1'"
       >
@@ -515,7 +450,7 @@
           @click="$router.push('patient_wallet')"
           outline
         />
-      </div>
+      </div> -->
 
     </div>
     <!-- <div
@@ -773,18 +708,45 @@ export default {
   letter-spacing: 0px;
   line-height: 1.2;
 }
-.menu-box {
+/* .menu-box {
   height: 8.5em;
   width: 7.5em;
-  /* border-radius: 5px;
-  box-shadow: 3px 3px 1px #b6b5b5, -3px -3px 1px #b6b5b5; */
   box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.25);
   background-color: #ffffff;
   overflow: visible;
   border-radius: 10px;
   line-height: 120%;
-}
+} */
 
+.menu-box {
+  width: 100px;
+  height: 132px;
+  box-shadow: 2px 2px 22px -5px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: visible;
+  border-radius: 12px;
+  font-family: ".SFNSDisplay", "SFProDisplay-Regular", "SFUIDisplay-Regular", ".SFUIDisplay", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  text-align: center;
+
+}
+.menu-box-2 {
+  width: 162px;
+  height: 132px;
+  box-shadow: 2px 2px 22px -5px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: visible;
+  border-radius: 12px;
+  font-family: ".SFNSDisplay", "SFProDisplay-Regular", "SFUIDisplay-Regular", ".SFUIDisplay", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  text-align: center;
+}
 .doctor-box {
   height: 8.5em;
   width: 7.5em;
@@ -795,6 +757,12 @@ export default {
   overflow: visible;
   border-radius: 10px;
   line-height: 120%;
+  font-family: ".SFNSDisplay", "SFProDisplay-Regular", "SFUIDisplay-Regular", ".SFUIDisplay", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: 0px;
+  /* line-height: 1.2; */
+  text-align: center;
 }
 
 .doctor-box-2 {
@@ -807,6 +775,11 @@ export default {
   overflow: visible;
   border-radius: 10px;
   line-height: 120%;
+  font-family: ".SFNSDisplay", "SFProDisplay-Regular", "SFUIDisplay-Regular", ".SFUIDisplay", "-apple-system", "BlinkMacSystemFont", sans-serif;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: 0px;
+  text-align: center;
 }
 
 .blog-heading {
@@ -850,7 +823,12 @@ export default {
 }
 
 .menu-box >>> .q-icon {
-  font-size: 30px;
+  font-size: 40px;
+  height: 2em;
+}
+
+.menu-box-2 >>> .q-icon {
+  font-size: 40px;
   height: 2em;
 }
 
@@ -859,28 +837,20 @@ export default {
 }
 
 .doctor-box-2 >>> .q-icon {
-  font-size: 30px;
+  font-size: 40px;
   height: 2em;
 }
 
-#doctors >>> .q-icon {
-  color: #99acff;
+#directory >>> .q-icon {
+  color: green;
 }
 
-#clinics >>> .q-icon {
-  color: #ff9999;
+#consult-doctor >>> .q-icon {
+  color: orangered;
 }
 
-#ambulances >>> .q-icon {
-  color: #99ffa0;
-}
-
-#pharmacy >>> .q-icon {
-  color: #ff99eb;
-}
-
-#labs >>> .q-icon {
-  color: #ffd199;
+#blogs >>> .q-icon {
+  color: purple;
 }
 
 #register_ch >>> .q-icon {
@@ -913,6 +883,10 @@ export default {
 
 .menu-box >>> .block {
   font-size: 14px;
+}
+
+.menu-box-2 >>> .block {
+  font-size: 15px;
 }
 
 .doctor-box >>> .block {

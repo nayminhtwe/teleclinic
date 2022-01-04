@@ -13,7 +13,7 @@ const ifAuthenticated = (to, from, next) => {
     next()
     return
   }
-  next('/login/login')
+  next('/start/start')
 }
 
 const routes = [
@@ -41,7 +41,11 @@ const routes = [
       { path: 'favourited', component: () => import('src/pages/Favourited.vue'), beforeEnter: ifAuthenticated },
       { path: 'doctor_wallet', component: () => import('src/pages/DoctorWallet.vue'), beforeEnter: ifAuthenticated },
       { path: 'patient_wallet', component: () => import('src/pages/PatientWallet.vue'), beforeEnter: ifAuthenticated },
-      { path: 'transfer_consultation_fee', component: () => import('src/pages/TransferConsultationFee.vue'), beforeEnter: ifAuthenticated }
+      { path: 'transfer_consultation_fee', component: () => import('src/pages/TransferConsultationFee.vue'), beforeEnter: ifAuthenticated },
+      { path: 'blogs', component: () => import('pages/Blogs.vue'), beforeEnter: ifAuthenticated },
+      { path: 'blog/:blogId', component: () => import('pages/Blog.vue'), beforeEnter: ifAuthenticated },
+      { path: 'directory', component: () => import('pages/Directory.vue'), beforeEnter: ifAuthenticated },
+      { path: 'donation', component: () => import('pages/Donation.vue'), beforeEnter: ifAuthenticated }
     ]
   },
   {
@@ -53,11 +57,15 @@ const routes = [
     ]
   },
   {
-    path: '/login',
+    path: '/start',
     component: () => import('layouts/AuthLayout.vue'),
     children: [
+      { path: 'start', component: () => import('pages/Start.vue'), beforeEnter: ifNotAuthenticated },
       { path: 'login', component: () => import('pages/Login.vue'), beforeEnter: ifNotAuthenticated },
-      { path: 'register', component: () => import('pages/Register.vue'), beforeEnter: ifNotAuthenticated }
+      { path: 'register', component: () => import('pages/Register.vue'), beforeEnter: ifNotAuthenticated },
+      { path: 'forget_password', component: () => import('pages/ForgetPassword.vue'), beforeEnter: ifNotAuthenticated },
+      { path: 'password_reset_otp', component: () => import('pages/PasswordResetOTP.vue'), beforeEnter: ifNotAuthenticated },
+      { path: 'new_password/:app_user_id', component: () => import('pages/NewPassword.vue'), beforeEnter: ifNotAuthenticated }
     ]
   },
 

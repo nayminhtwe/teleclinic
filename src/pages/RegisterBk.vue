@@ -197,7 +197,7 @@
           flat
           color="white"
           label="Login"
-          @click="$router.push('/login/login')"
+          @click="$router.push('/start/login')"
         />
       </div>
     </div>

@@ -12,15 +12,21 @@
     >
       <q-tab
         name="home"
+        flat
+        round
+        dense
+        icon="las la-home"
+        class="q-mr-md"
         @click="$router.push('/')"
+        label="Home"
       >
-        <q-btn
+        <!-- <q-btn
           flat
           round
           dense
           icon="home"
           class="q-mr-md"
-        />
+        /> -->
       </q-tab>
       <!-- <q-tab
         name="patients"
@@ -36,15 +42,14 @@
       </q-tab> -->
       <q-tab
         name="inbox"
+        flat
+        round
+        dense
+        icon="las la-stethoscope"
+        class="q-mr-md"
         @click="$router.push('/inbox')"
+        label="Consult"
       >
-        <q-btn
-          flat
-          round
-          dense
-          icon="chat"
-          class="q-mr-md"
-        />
         <q-badge
           color="red"
           floating
@@ -52,17 +57,53 @@
         >{{ noti }}</q-badge>
       </q-tab>
       <q-tab
-        name="profile"
-        @click="$router.push('/profile')"
+        flat
+        round
+        dense
+        icon="las la-bars"
+        class="q-mr-md"
+        label="Menu"
       >
-        <q-btn
-          flat
-          round
-          dense
-          icon="account_circle"
-          class="q-mr-md"
-        />
+        <q-menu fit>
+          <q-list style="min-width: 100px">
+            <q-item clickable>
+              <q-item-section @click="$router.push('/profile')">
+                My Profile
+                <!-- <q-item-section side>
+                  <q-icon name="keyboard_arrow_right" />
+                </q-item-section> -->
+              </q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item clickable>
+              <q-item-section  @click="$router.push('/favourited')">My favorites</q-item-section>
+            </q-item>
+            <q-separator />
+            <div v-if="getDoctorProfile.status === '1'">
+              <q-item clickable>
+                <q-item-section   @click="$router.push('doctor_wallet')">My Wallet</q-item-section>
+              </q-item>
+            </div>
+            <div v-if="getDoctorProfile.status === '2'">
+              <q-item clickable>
+                <q-item-section   @click="$router.push('patient_wallet')">My Wallet</q-item-section>
+              </q-item>
+            </div>
+
+          </q-list>
+        </q-menu>
       </q-tab>
+      <!-- <q-tab
+        name="profile"
+        flat
+        round
+        dense
+        icon="las la-user"
+        class="q-mr-md"
+        @click="$router.push('/profile')"
+        label="Profile"
+      >
+      </q-tab> -->
     </q-tabs>
   </q-footer>
 </template>

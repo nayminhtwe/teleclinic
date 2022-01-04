@@ -70,7 +70,7 @@ export default {
   background-size: cover;
 } */
 .text-heading {
-  padding: 15% 0;
+  padding: 5% 0;
   width: 80%
 }
 .welcome-to {
@@ -111,10 +111,10 @@ export default {
   text-align: left;
 }
 .text-body {
-  padding-bottom: 25%;
+  padding-bottom: 5%;
 }
 .menu-2 {
-  width: 346px;
+  width: 246px;
   height: 60px;
   box-shadow: 2px 2px 22px -2px rgba(0, 0, 0, 0.25);
   background-color: #ffffff;

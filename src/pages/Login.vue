@@ -172,7 +172,7 @@ export default {
 
 <style scoped>
 .text-heading {
-  padding: 15% 0;
+  padding: 5% 0;
   width: 80%
 }
 .sign-in {
@@ -213,13 +213,13 @@ export default {
   text-align: left;
 }
 .text-body {
-  padding-bottom: 15%;
+  padding-bottom: 5%;
 }
 .input {
-  padding: 10px 0;
+  padding: 5px 0;
 }
 .menu-1 {
-  width: 346px;
+  width: 300px;
   height: 60px;
   box-shadow: 2px 2px 22px -2px rgba(0, 0, 0, 0.25);
   background-color: #ffffff;

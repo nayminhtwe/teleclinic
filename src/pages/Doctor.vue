@@ -321,6 +321,7 @@
       <div
         v-for="charity in charities"
         :key="charity.id"
+        class="card-box"
       >
         <div class="row col-12">
           <div
@@ -354,7 +355,7 @@
               class="text-h6"
               v-else
             >EZCare Doctor {{ new Intl.NumberFormat("en", { minimumIntegerDigits: 3,minimumSignificantDigits: 1, useGrouping: false}).format(charity.id) }}</div>
-            <!-- <div>{{ charity.address }}</div> -->
+            <div>{{ charity.qualifications }}</div>
           </div>
           <div class="col-2 column justify-center">
             <q-icon
@@ -486,5 +487,13 @@ export default {
 
 #doctor_info {
   border-radius: 1em;
+}
+
+.card-box {
+  box-shadow: 2px 2px 22px -5px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: visible;
+  border-radius: 12px;
+  padding: 15px;
 }
 </style>

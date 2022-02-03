@@ -496,4 +496,8 @@ export default {
   border-radius: 12px;
   padding: 15px;
 }
+
+.q-tab {
+  border-radius: 20px;
+}
 </style>

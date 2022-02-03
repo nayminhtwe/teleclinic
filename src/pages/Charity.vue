@@ -194,8 +194,8 @@
       <div class="q-gutter-y-xs">
         <q-tabs
           v-model="tab"
-          inline-label
           dense
+          inline-label
           active-color="white"
           active-bg-color="red"
         >
@@ -489,5 +489,9 @@ export default {
   overflow: visible;
   border-radius: 12px;
   padding: 15px;
+}
+
+.q-tab {
+  border-radius: 20px;
 }
 </style>

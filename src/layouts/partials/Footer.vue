@@ -75,10 +75,6 @@
               </q-item-section>
             </q-item>
             <q-separator />
-            <q-item clickable>
-              <q-item-section  @click="$router.push('/favourited')">My favorites</q-item-section>
-            </q-item>
-            <q-separator />
             <div v-if="getDoctorProfile.status === '1'">
               <q-item clickable>
                 <q-item-section   @click="$router.push('doctor_wallet')">My Wallet</q-item-section>
@@ -89,6 +85,14 @@
                 <q-item-section   @click="$router.push('patient_wallet')">My Wallet</q-item-section>
               </q-item>
             </div>
+            <q-separator />
+            <q-item clickable>
+              <q-item-section  @click="$router.push('/favourited')">My favorites</q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item clickable>
+              <q-item-section  @click="$router.push('/faq')">FAQs</q-item-section>
+            </q-item>
 
           </q-list>
         </q-menu>

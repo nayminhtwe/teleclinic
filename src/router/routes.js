@@ -45,7 +45,8 @@ const routes = [
       { path: 'blogs', component: () => import('pages/Blogs.vue'), beforeEnter: ifAuthenticated },
       { path: 'blog/:blogId', component: () => import('pages/Blog.vue'), beforeEnter: ifAuthenticated },
       { path: 'directory', component: () => import('pages/Directory.vue'), beforeEnter: ifAuthenticated },
-      { path: 'donation', component: () => import('pages/Donation.vue'), beforeEnter: ifAuthenticated }
+      { path: 'donation', component: () => import('pages/Donation.vue'), beforeEnter: ifAuthenticated },
+      { path: 'faq', component: () => import('pages/FAQ.vue'), beforeEnter: ifAuthenticated }
     ]
   },
   {

@@ -315,6 +315,7 @@
       <div
         v-for="charity in charities"
         :key="charity.id"
+        class="card-box"
       >
         <div class="row col-12">
           <div
@@ -480,5 +481,13 @@ export default {
 <style scoped>
 .border-icon {
   text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+}
+
+.card-box {
+  box-shadow: 2px 2px 22px -5px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: visible;
+  border-radius: 12px;
+  padding: 15px;
 }
 </style>

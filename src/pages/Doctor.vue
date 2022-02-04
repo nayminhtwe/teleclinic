@@ -157,7 +157,7 @@
           </q-card>
         </div>
         <q-card-actions>
-          <div class="col q-px-md">
+          <div class="col q-px-md ">
             <q-btn
               class="full-width"
               v-if="getDoctorProfile.status == 2"
@@ -166,6 +166,15 @@
               label="Message"
               size="md"
               @click="$router.push({ name: 'chat', params: { user_id: charity.app_user_id, user: charity } })"
+            />
+            <q-btn
+              class="full-width q-my-md"
+              v-if="getDoctorProfile.status == 2"
+              v-close-popup
+              color="primary"
+              label="Appointment"
+              size="md"
+              @click="$router.push({ path: `appointment/${charity.app_user_id}` })"
             />
             <q-btn
               v-if="getDoctorProfile.status == 0"

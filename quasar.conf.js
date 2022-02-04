@@ -23,7 +23,8 @@ module.exports = function (/* ctx */) {
       'fcm',
       'moment',
       'i18n',
-      'virtualscroller'
+      'virtualscroller',
+      'admob'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css

@@ -33,10 +33,17 @@
         "ANDROID_FIREBASE_MESSAGING_VERSION": "22.0.+",
         "ANDROIDX_CORE_VERSION": "1.6.+"
       },
-      "phonegap-plugin-media-recorder": {}
+      "phonegap-plugin-media-recorder": {},
+      "admob-plus-cordova": {
+        "APP_ID_ANDROID": "ca-app-pub-1900479989523412~9324534132",
+        "PLAY_SERVICES_VERSION": "20.3.0"
+      }
     },
     "platforms": [
       "android"
     ]
+  },
+  "dependencies": {
+    "admob-plus-cordova": "1.25.0"
   }
 }
